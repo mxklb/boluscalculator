@@ -67,7 +67,7 @@
 <body>
     <article>
         <header>
-            <h1>Correction/Bolus Calculator</h1>
+            <h1>Bolus/Correction Calculator (*)</h1>
             <p>Calculate insulin dose for food using intense insulin therapy ...</p>
         </header>
 
@@ -83,7 +83,7 @@
 											correction3.value = Math.round(100 * (actbolus.value - aim3.value)/corr3.value) / 100;; 
 											food3.value = Math.round(100 * foodbe.value * bolus3.value) / 100; 
 											final3.value = Math.round(100 * (((actbolus.value - aim3.value) / corr3.value) + (foodbe.value * bolus3.value))) / 100;">
-			<h2>Input Values</h2>            
+			<h3>Input Values</h3>            
 			<table>
 				<tr>
 					<td>Glucose Level [mg/dl]</td>
@@ -95,7 +95,7 @@
 				</tr>
 			</table>
 			<hr />
-			<h2>Therapy Settings</h2>
+			<h3>Therapy Settings</h3>
 			<table>
 				<tr>
 					<th></th>
@@ -123,7 +123,7 @@
 				</tr>
 			</table>			
             <hr />
-			<h2>Provisional Results</h2>
+			<h3>Provisional Results</h3>
 			<table>
 				<tr>
 					<th></th>
@@ -145,7 +145,7 @@
 				</tr>
 			</table>            
 			<hr />
-			<h2>Final Results</h2>
+			<h3>Final Results</h3>
 			<table>
 				<tr>
 					<th></th>
