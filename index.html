@@ -33,33 +33,33 @@
 		if( document.getElementById('final1').value > 0 ) {
       		document.getElementById('final1').style.color='red';
 		} else {
-			document.getElementById('final1').style.color='green';
+			document.getElementById('final1').style.color='darkgreen';
 		}
 		if( document.getElementById('final2').value > 0 ) {
       		document.getElementById('final2').style.color='red';
 		} else {
-			document.getElementById('final2').style.color='green';
+			document.getElementById('final2').style.color='darkgreen';
 		}
 		if( document.getElementById('final3').value > 0 ) {
       		document.getElementById('final3').style.color='red';
 		} else {
-			document.getElementById('final3').style.color='green';
+			document.getElementById('final3').style.color='darkgreen';
 		}
 
 		if( document.getElementById('correction1').value > 0 ) {
       		document.getElementById('correction1').style.color='red';
 		} else {
-			document.getElementById('correction1').style.color='green';
+			document.getElementById('correction1').style.color='darkgreen';
 		}
 		if( document.getElementById('correction2').value > 0 ) {
       		document.getElementById('correction2').style.color='red';
 		} else {
-			document.getElementById('correction2').style.color='green';
+			document.getElementById('correction2').style.color='darkgreen';
 		}
 		if( document.getElementById('correction3').value > 0 ) {
       		document.getElementById('correction3').style.color='red';
 		} else {
-			document.getElementById('correction3').style.color='green';
+			document.getElementById('correction3').style.color='darkgreen';
 		}
     }
 </script>
@@ -68,7 +68,7 @@
     <article>
         <header>
             <h1>Bolus/Correction Calculator (*)</h1>
-            <p>Calculate insulin dose for food using intense insulin therapy ...</p>
+            <p>Calculate insulin dose for a meal using intense insulin therapy ...</p>
         </header>
 
 		<form onsubmit="return false" oninput="
@@ -90,7 +90,7 @@
 					<td><input name="actbolus" id="actbolus" type="number" min="0" step="10" placeholder="Set Glucose Level" onchange="updateTextColors();"></td>
 				</tr>
 				<tr>
-					<td>Food to eat [BE]</td>
+					<td>Meal to eaten [BE]</td>
 					<td><input name="foodbe" id="foodbe" type="number" min="0" step="0.5" placeholder="Set Bread Units" onchange="updateTextColors();"></td>
 				</tr>
 			</table>
@@ -138,7 +138,7 @@
 					<td><output name="correction3" id="correction3" type="number" for="actbolus aim3 corr3"></output></td>
 				</tr>
 				<tr>
-					<td>Effective Food [BE]</td>
+					<td>Effective Meal [BE]</td>
 					<td><output name="food1" id="food1" type="number" for="foodbe bolus1"></output></td>
 					<td><output name="food2" id="food2" type="number" for="foodbe bolus2"></output></td>
 					<td><output name="food3" id="food3" type="number" for="foodbe bolus3"></output></td>
@@ -166,7 +166,8 @@
         <footer>
             <h1></h1>
             <p>(*) For personal use at your own risk!</p>
-			<p><a href="https://github.com/maxkalb/boluscalculator">About this app</a> : <a href="http://maxkalb.github.io/">&copy;MK</a></p>
+			<p><a href="https://github.com/maxkalb/boluscalculator">About the App</a></p>
+			<p><a href="http://maxkalb.github.io/">The Author</a></p>
         </footer>
     </article>
 </body>
