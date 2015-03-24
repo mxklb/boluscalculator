@@ -68,11 +68,11 @@
     <article>
         <header>
             <h1>Bolus/Correction Calculator (*)</h1>
-            <p>Calculate a insulin dose for a meal using intense insulin therapy ...</p>
+            <p>Calculate a insulin dosis for a meal using the intensive insulin therapy ...</p>
         </header>
 
 		<form onsubmit="return false" oninput="
-											correction1.value = Math.round(100 * (actbolus.value - aim1.value)/corr1.value) / 100; 
+											correction1.value = Math.round(100 * (actbolus.value - aim1.value) / corr1.value) / 100; 
 											food1.value = Math.round(100 * foodbe.value * bolus1.value) / 100; 
 											final1.value = Math.round(100 * (((actbolus.value - aim1.value) / corr1.value) + (foodbe.value * bolus1.value))) / 100;
 
@@ -166,8 +166,7 @@
         <footer>
             <h1></h1>
             <p>(*) For personal use at your own risk only!</p>
-			<p><a href="https://github.com/maxkalb/boluscalculator">About the App</a></p>
-			<p><a href="http://maxkalb.github.io/">The Author</a></p>
+			<p><a href="https://github.com/maxkalb/boluscalculator">About this app</a></p>
         </footer>
     </article>
 </body>
