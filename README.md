@@ -17,7 +17,7 @@ I highly recommend to discuss the personal therapy settings with a doctor.
 2. Enter the actual _Glucose Level_ (soberly measured) --> _Correction_ [BE]
 3. Enter the amount of _Bread Units_ to be eaten --> _Effective Meal_ [BE]
 
-The resulting insulin which is needed - the _Final Bolus_ [BE] - is defined as the sum of the _Correction_ and the _Effective Meal_. All results are immediately calculated when the input values change. Red colored numbers indicate that a correction is needed. Green colored numbers indicate that one need to eat.
+The resulting insulin which is needed - the _Final Bolus_ [BE] - is defined as the sum of the _Correction_ and the _Effective Meal_. All results are immediately calculated when the input values are changed. Red colored numbers indicate that a correction is needed. Green colored numbers indicate that one need to eat.
 
 _Note:_ By setting the amount of _Bread Units_ to be eaten to "0", the result is the _Correction_.   
 
