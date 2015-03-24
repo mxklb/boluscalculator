@@ -1,9 +1,9 @@
 # Bolus Calculator
-Bolus / Correction Calculator HTML5 Webapp (deployed using [gh-pages](https://pages.github.com/)).
+Insulin Bolus & Correction Calculator HTML5 Webapp (deployed using [gh-pages](https://pages.github.com/)).
 
 A simple and tranparent calculator app for the intensive insulin therapy (Diabetes Typ A).
 
-[Just try it out](http://maxkalb.github.io/boluscalculator/)
+[Just try it out here](http://maxkalb.github.io/boluscalculator/)
 
 ## About
 This is a bolus calculator app to estimate a single insulin dosis based on personalized therapy settings and a meal. I wrote this app because I couldn't find any free web/mobile app that let one calculate a insulin bolus depending on the meal to be eaten that implements the formulars I knew. Most of the apps I found did not clearly point out the formulars used to perform the bolus calculations. So this is the result, hopefully someone will find it usable ... 
@@ -24,14 +24,12 @@ _Note:_ By setting the amount of _Bread Units_ to be eaten to "0", the result is
 ## How is the Bolus calculated
 The fromulars used to calculate the resulting insulin dosis are as simple as ...
 
-### Final Result
+### The Final Result
+<p align="center"><a href="" target="_blank"><img src="finalbolus.gif"/></a><br></p>
 
-- <a href="" target="_blank"><img src="finalbolus.gif"/></a>
-
-### Provisional Results
-- <a href="" target="_blank"><img src="effmeal.gif"/></a>
-
-- <a href="" target="_blank"><img src="correction.gif"/></a>    
+### The Provisional Results
+<p align="center"><a href="" target="_blank"><img src="effmeal.gif"/></a></p><br>
+<p align="center"><a href="" target="_blank"><img src="correction.gif"/></a></p><br>
 
 Note that therapy settings (_Glucose Aim_, _Corr. Factor_ and _Bolus_) may vary depending on the daytime!
 
