@@ -50,7 +50,7 @@ All calculations are performed using html5 forms _input_ and _output_ capabiliti
 Actually the code is not tested, reviewed or validated!
 
 ### Todo
-- --Add therapy settings for daytime _Late_--
+- ~~Add therapy settings for daytime _Late_~~
 - Make different measurement units available
 - Form entries should remember/cache values!?
 - Default therapy settings should be configureable
