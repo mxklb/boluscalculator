@@ -1,7 +1,7 @@
 # Bolus Calculator
 Insulin Bolus & Correction Calculator HTML5 Webapp (using [gh-pages](https://pages.github.com/)).
 
-A simple and tranparent calculator app for the [intensive insulin therapy](https://en.wikipedia.org/wiki/Intensive_insulinotherapy).
+A simple and tranparent calculator app for the intensive/flexibles insulin therapy.
 
 [Just try it out here](http://maxkalb.github.io/boluscalculator/)
 
@@ -31,14 +31,14 @@ The fromulars used to calculate the resulting insulin dosis are simple ...
 ### The Final Result
 The _Final Bolus_ is defined as the sum of the _Effective Meal_ and the _Correction_.
 
-<p align="center"><a href="" target="_blank"><img src="finalbolus.gif"/></a></p>
+<p align="center"><a href="" target="_blank"><img src="images/finalbolus.gif"/></a></p>
 
 The _Correction_ and the _Effective Meal_ are provisional results ...
 
 ### The Provisional Results
 The _Effective Meal_ is the product of the _Meal to eaten_ and the _Bolus_ factor.
-<p align="center"><a href="" target="_blank"><img src="effmeal.gif"/></a></p><br>
-<p align="center"><a href="" target="_blank"><img src="correction.gif"/></a></p>
+<p align="center"><a href="" target="_blank"><img src="images/effmeal.gif"/></a></p><br>
+<p align="center"><a href="" target="_blank"><img src="images/correction.gif"/></a></p>
 
 _Note:_ Therapy settings (indexed i) may vary depending on the daytime! The calculation during the day can be adjusted by tweaking the therapy settings. This should always be discussed with a doctor!
 
@@ -50,7 +50,7 @@ All calculations are performed using html5 forms _input_ and _output_ capabiliti
 Actually the code is not tested, reviewed or validated!
 
 ### Todo
-- Add therapy settings for daytime _Late_
+- --Add therapy settings for daytime _Late_--
 - Make different measurement units available
 - Form entries should remember/cache values!?
 - Default therapy settings should be configureable

@@ -45,6 +45,11 @@
 		} else {
 			document.getElementById('final3').style.color='darkgreen';
 		}
+		if( document.getElementById('final4').value > 0 ) {
+      document.getElementById('final4').style.color='red';
+		} else {
+			document.getElementById('final4').style.color='darkgreen';
+		}
 
 		if( document.getElementById('correction1').value > 0 ) {
       document.getElementById('correction1').style.color='red';
@@ -60,6 +65,11 @@
       document.getElementById('correction3').style.color='red';
 		} else {
 			document.getElementById('correction3').style.color='darkgreen';
+		}
+		if( document.getElementById('correction4').value > 0 ) {
+      document.getElementById('correction4').style.color='red';
+		} else {
+			document.getElementById('correction4').style.color='darkgreen';
 		}
   }
 </script>
@@ -80,9 +90,13 @@
 											food2.value = Math.round(100 * foodbe.value * bolus2.value) / 100; 
 											final2.value = Math.round(100 * (((actbolus.value - aim2.value) / corr2.value) + (foodbe.value * bolus2.value))) / 100;
 
-											correction3.value = Math.round(100 * (actbolus.value - aim3.value)/corr3.value) / 100;; 
+											correction3.value = Math.round(100 * (actbolus.value - aim3.value) / corr3.value) / 100; 
 											food3.value = Math.round(100 * foodbe.value * bolus3.value) / 100; 
-											final3.value = Math.round(100 * (((actbolus.value - aim3.value) / corr3.value) + (foodbe.value * bolus3.value))) / 100;">
+											final3.value = Math.round(100 * (((actbolus.value - aim3.value) / corr3.value) + (foodbe.value * bolus3.value))) / 100;
+											
+											correction4.value = Math.round(100 * (actbolus.value - aim4.value) / corr4.value) / 100; 
+											food4.value = Math.round(100 * foodbe.value * bolus4.value) / 100; 
+											final4.value = Math.round(100 * (((actbolus.value - aim4.value) / corr4.value) + (foodbe.value * bolus4.value))) / 100;">
 			<h3>Input Values</h3>            
 			<table>
 				<tr>
@@ -102,24 +116,28 @@
 					<th>Morning</th>
 					<th>Noontime</th>
 					<th>Evening</th>
+					<th>Late</th>
 				</tr>
 				<tr>
 					<td>Glucose Aim [mg/dl]</td>
 					<td><input name="aim1" id="aim1" type="number" min="0" step="10" value='100' onchange="updateTextColors();"></td>
 					<td><input name="aim2" id="aim2" type="number" min="0" step="10" value='100' onchange="updateTextColors();"></td>
 					<td><input name="aim3" id="aim3" type="number" min="0" step="10" value='120' onchange="updateTextColors();"></td>
+					<td><input name="aim4" id="aim4" type="number" min="0" step="10" value='120' onchange="updateTextColors();"></td>
 				</tr>
 				<tr>
 					<td>Corr. Factor [mg/dl]</td>
 					<td><input name="corr1" id="corr1" type="number" step="10" value='50' onchange="updateTextColors();"></td>
 					<td><input name="corr2" id="corr2" type="number" step="10" value='50' onchange="updateTextColors();"></td>
 					<td><input name="corr3" id="corr3" type="number" step="10" value='50' onchange="updateTextColors();"></td>
+					<td><input name="corr4" id="corr4" type="number" step="10" value='50' onchange="updateTextColors();"></td>
 				</tr>
 				<tr>
 					<td>Bolus [IE/BE]</td>
 					<td><input name="bolus1" id="bolus1" type="number" step="0.1" value='1.5' onchange="updateTextColors();"></td>
-					<td><input name="bolus2" id="bolus2" type="number" step="0.1" value='1.0' onchange="updateTextColors();"></td>
+					<td><input name="bolus2" id="bolus2" type="number" step="0.1" value='0.8' onchange="updateTextColors();"></td>
 					<td><input name="bolus3" id="bolus3" type="number" step="0.1" value='1.0' onchange="updateTextColors();"></td>
+					<td><input name="bolus4" id="bolus4" type="number" step="0.1" value='1.0' onchange="updateTextColors();"></td>
 				</tr>
 			</table>			
       <hr />
@@ -130,18 +148,21 @@
 					<th>Morning</th>
 					<th>Noontime</th>
 					<th>Evening</th>
+					<th>Late</th>
 				</tr>
 				<tr>
 					<td>Correction [BE]</td>
 					<td><output name="correction1" id="correction1" type="number" for="actbolus aim1 corr1"></output></td>
 					<td><output name="correction2" id="correction2" type="number" for="actbolus aim2 corr2"></output></td>
 					<td><output name="correction3" id="correction3" type="number" for="actbolus aim3 corr3"></output></td>
+					<td><output name="correction4" id="correction4" type="number" for="actbolus aim4 corr4"></output></td>
 				</tr>
 				<tr>
 					<td>Effective Meal [BE]</td>
 					<td><output name="food1" id="food1" type="number" for="foodbe bolus1"></output></td>
 					<td><output name="food2" id="food2" type="number" for="foodbe bolus2"></output></td>
 					<td><output name="food3" id="food3" type="number" for="foodbe bolus3"></output></td>
+					<td><output name="food4" id="food4" type="number" for="foodbe bolus4"></output></td>
 				</tr>
 			</table>            
 			<hr />
@@ -152,12 +173,14 @@
 					<th>Morning</th>
 					<th>Noontime</th>
 					<th>Evening</th>
+					<th>Late</th>
 				</tr>
 				<tr>
 					<td>Final Dose / Bolus [BE]</td>
 					<td><output name="final1" id="final1" type="number" for="actbolus aim1 corr1 foodbe bolus1"></output></td>
 					<td><output name="final2" id="final2" type="number" for="actbolus aim2 corr2 foodbe bolus2"></output></td>
 					<td><output name="final3" id="final3" type="number" for="actbolus aim3 corr3 foodbe bolus3"></output></td>
+					<td><output name="final4" id="final4" type="number" for="actbolus aim4 corr4 foodbe bolus4"></output></td>
 				</tr>
 			</table>
 			<hr />
