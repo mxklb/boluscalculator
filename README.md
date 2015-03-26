@@ -1,5 +1,5 @@
 # Bolus Calculator
-Insulin Bolus & Correction Calculator HTML5 Webapp (using [gh-pages](https://pages.github.com/)).
+Insulin Bolus & Correction Calculator HTML5 Webapp.
 
 A simple and tranparent calculator app for the intensive/flexibles insulin therapy.
 
@@ -31,18 +31,18 @@ The fromulars used to calculate the resulting insulin dosis are simple ...
 ### The Final Result
 The _Final Bolus_ is defined as the sum of the _Effective Meal_ and the _Correction_.
 
-<p align="center"><a href="" target="_blank"><img src="images/finalbolus.svg"/></a></p>
+<p align="center"><a href="" target="_blank"><img src="images/finalbolus.png"/></a></p>
 
 The _Correction_ and the _Effective Meal_ are provisional results which are calculated as described in the following chapter. These results depend on the therapy settings and the daytime, which is indicated by the index i.
 
 ### The Provisional Results
 The _Effective Meal_ is the product of the _Meal to eaten_ and the _Bolus_ factor.
 
-<p align="center"><a href="" target="_blank"><img src="images/effmeal.svg"/></a></p>
+<p align="center"><a href="" target="_blank"><img src="images/effmeal.png"/></a></p>
 
-The _Correction_ is defined as the difference of the actual _Glucose Level_ and the aspired _Glucose Aim_ divided by a correction, the _Corr. Factor_. The _Correction_ could be negative which indicates that the resulting amount of bread units is missing to hit _Glucose Aim_. If it is possitive insulin is needed reduce blood sugar.
+The _Correction_ is defined as the difference of the actual _Glucose Level_ and the aspired _Glucose Aim_ divided by a correction, the _Corr. Factor_. The _Correction_ could be negative which indicates that the resulting amount of bread units is missing to hit the _Glucose Aim_. If it is possitive, insulin is needed to reduce the blood sugar.
 
-<p align="center"><a href="" target="_blank"><img src="images/correction.svg"/></a></p>
+<p align="center"><a href="" target="_blank"><img src="images/correction.png"/></a></p>
 
 _Note:_ Therapy settings (indexed i) may vary depending on the daytime! The calculation during the day can be adjusted by tweaking the therapy settings. This should always be discussed with a doctor!
 
