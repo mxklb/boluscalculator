@@ -26,7 +26,7 @@ _Note:_ By setting the amount of _Bread Units_ to be eaten to "0", the result is
 To use this app without internet connection one can simpley download the _index.html_ and put it somewhere into the local file system. For example a dropbox (or other cloud sync'ed) folder could be a good choice to also feed multiple devices. Then just open the local file in the web browser et voila ...
 
 ## How is the Bolus calculated
-The fromulars used to calculate the resulting insulin dosis are simple ...
+The equations used to calculate the resulting insulin dosis are simple ...
 
 ### The Final Result
 The _Final Bolus_ is defined as the sum of the _Effective Meal_ and the _Correction_.
@@ -36,11 +36,11 @@ The _Final Bolus_ is defined as the sum of the _Effective Meal_ and the _Correct
 The _Correction_ and the _Effective Meal_ are provisional results which are calculated as described in the following chapter. These results depend on the therapy settings and the daytime, which is indicated by the index i.
 
 ### The Provisional Results
-The _Effective Meal_ is the product of the _Meal to eaten_ and the _Bolus_ factor.
+The _Effective Meal_ is defined as the product of the _Meal to eaten_ and the _Bolus_ factor.
 
 <p align="center"><a href="" target="_blank"><img src="images/effmeal.png"/></a></p>
 
-The _Correction_ is defined as the difference of the actual _Glucose Level_ and the aspired _Glucose Aim_ divided by a correction, the _Corr. Factor_. The _Correction_ could be negative which indicates that the resulting amount of bread units is missing to hit the _Glucose Aim_. If it is possitive, insulin is needed to reduce the blood sugar.
+The _Correction_ is defined as the difference of the actual _Glucose Level_ and the aspired _Glucose Aim_ divided by a correction, the _Corr. Factor_. The _Correction_ could be negative which indicates that the resulting amount of bread units is missing to hit the _Glucose Aim_. If it is possitive insulin is needed to reduce the blood sugar level to reach the _Glucose Aim_.
 
 <p align="center"><a href="" target="_blank"><img src="images/correction.png"/></a></p>
 
