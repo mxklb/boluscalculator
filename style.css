@@ -1,0 +1,24 @@
+<style>
+	input{ 
+		text-align: center; 
+	}
+	output{
+		font-weight: bold;
+	}
+	table{
+		text-align: center;
+		border: 0px solid black;
+		table-layout: fixed;
+		width: 320px;
+	}
+	table td:first-child {
+		text-align: right;
+		white-space: nowrap;
+	}
+	th, td {
+		border: 0px solid black;
+		overflow: hidden;
+		width: 190px;
+	}
+</style>
+

@@ -1,78 +1,12 @@
 <!DOCTYPE html>
-
 <html>
+
+<head>
 <meta charset="utf-8">
 <title>Intensive Insulin Therapie</title>
-
-<style>
-	input{ 
-		text-align: center; 
-	}
-	output{
-		font-weight: bold;
-	}
-	table{
-		text-align: center;
-		border: 0px solid black;
-		table-layout: fixed;
-		width: 320px;
-	}
-	table td:first-child {
-		text-align: right;
-		white-space: nowrap;
-	}
-	th, td {
-		border: 0px solid black;
-		overflow: hidden;
-		width: 190px;
-	}
-</style>
-
-<script type="text/javascript">
-  function updateTextColors() {
-		if( document.getElementById('final1').value > 0 ) {
-      document.getElementById('final1').style.color='red';
-		} else {
-		  document.getElementById('final1').style.color='darkgreen';
-		}
-		if( document.getElementById('final2').value > 0 ) {
-      document.getElementById('final2').style.color='red';
-		} else {
-			document.getElementById('final2').style.color='darkgreen';
-		}
-		if( document.getElementById('final3').value > 0 ) {
-      document.getElementById('final3').style.color='red';
-		} else {
-			document.getElementById('final3').style.color='darkgreen';
-		}
-		if( document.getElementById('final4').value > 0 ) {
-      document.getElementById('final4').style.color='red';
-		} else {
-			document.getElementById('final4').style.color='darkgreen';
-		}
-
-		if( document.getElementById('correction1').value > 0 ) {
-      document.getElementById('correction1').style.color='red';
-		} else {
-			document.getElementById('correction1').style.color='darkgreen';
-		}
-		if( document.getElementById('correction2').value > 0 ) {
-      document.getElementById('correction2').style.color='red';
-		} else {
-			document.getElementById('correction2').style.color='darkgreen';
-		}
-		if( document.getElementById('correction3').value > 0 ) {
-      document.getElementById('correction3').style.color='red';
-		} else {
-			document.getElementById('correction3').style.color='darkgreen';
-		}
-		if( document.getElementById('correction4').value > 0 ) {
-      document.getElementById('correction4').style.color='red';
-		} else {
-			document.getElementById('correction4').style.color='darkgreen';
-		}
-  }
-</script>
+<link rel="stylesheet" type="text/css" href="style.css"> 
+<script src="main.js"></script>
+</head>
 
 <body>
   <article>
@@ -81,31 +15,16 @@
       <p>Calculate a insulin dosis for a meal using the intensive insulin therapy ...</p>
     </header>
 
-		<form onsubmit="return false" oninput="
-											correction1.value = Math.round(100 * (actbolus.value - aim1.value) / corr1.value) / 100; 
-											food1.value = Math.round(100 * foodbe.value * bolus1.value) / 100; 
-											final1.value = Math.round(100 * (((actbolus.value - aim1.value) / corr1.value) + (foodbe.value * bolus1.value))) / 100;
-
-											correction2.value = Math.round(100 * (actbolus.value - aim2.value) / corr2.value) / 100; 
-											food2.value = Math.round(100 * foodbe.value * bolus2.value) / 100; 
-											final2.value = Math.round(100 * (((actbolus.value - aim2.value) / corr2.value) + (foodbe.value * bolus2.value))) / 100;
-
-											correction3.value = Math.round(100 * (actbolus.value - aim3.value) / corr3.value) / 100; 
-											food3.value = Math.round(100 * foodbe.value * bolus3.value) / 100; 
-											final3.value = Math.round(100 * (((actbolus.value - aim3.value) / corr3.value) + (foodbe.value * bolus3.value))) / 100;
-											
-											correction4.value = Math.round(100 * (actbolus.value - aim4.value) / corr4.value) / 100; 
-											food4.value = Math.round(100 * foodbe.value * bolus4.value) / 100; 
-											final4.value = Math.round(100 * (((actbolus.value - aim4.value) / corr4.value) + (foodbe.value * bolus4.value))) / 100;">
+		<form onsubmit="return false" oninput="updateCalculations();updateTextColors();">
 			<h3>Input Values</h3>            
 			<table>
 				<tr>
 					<td>Glucose Level [mg/dl]</td>
-					<td><input name="actbolus" id="actbolus" type="number" min="0" step="10" placeholder="Set Glucose Level" onchange="updateTextColors();"></td>
+					<td><input name="actbolus" id="actbolus" type="number" min="0" step="10" placeholder="Set Glucose Level"></td>
 				</tr>
 				<tr>
 					<td>Meal to be eaten [BE]</td>
-					<td><input name="foodbe" id="foodbe" type="number" min="0" step="0.5" placeholder="Set Bread Units" onchange="updateTextColors();"></td>
+					<td><input name="foodbe" id="foodbe" type="number" min="0" step="0.5" placeholder="Set Bread Units"></td>
 				</tr>
 			</table>
 			<hr />
@@ -120,24 +39,24 @@
 				</tr>
 				<tr>
 					<td>Glucose Aim [mg/dl]</td>
-					<td><input name="aim1" id="aim1" type="number" min="0" step="10" value='100' onchange="updateTextColors();"></td>
-					<td><input name="aim2" id="aim2" type="number" min="0" step="10" value='100' onchange="updateTextColors();"></td>
-					<td><input name="aim3" id="aim3" type="number" min="0" step="10" value='120' onchange="updateTextColors();"></td>
-					<td><input name="aim4" id="aim4" type="number" min="0" step="10" value='120' onchange="updateTextColors();"></td>
+					<td><input name="aim1" id="aim1" type="number" min="0" step="10" value='100'></td>
+					<td><input name="aim2" id="aim2" type="number" min="0" step="10" value='100'></td>
+					<td><input name="aim3" id="aim3" type="number" min="0" step="10" value='120'></td>
+					<td><input name="aim4" id="aim4" type="number" min="0" step="10" value='120'></td>
 				</tr>
 				<tr>
 					<td>Corr. Factor [mg/dl]</td>
-					<td><input name="corr1" id="corr1" type="number" step="10" value='50' onchange="updateTextColors();"></td>
-					<td><input name="corr2" id="corr2" type="number" step="10" value='50' onchange="updateTextColors();"></td>
-					<td><input name="corr3" id="corr3" type="number" step="10" value='50' onchange="updateTextColors();"></td>
-					<td><input name="corr4" id="corr4" type="number" step="10" value='50' onchange="updateTextColors();"></td>
+					<td><input name="corr1" id="corr1" type="number" step="10" value='50'></td>
+					<td><input name="corr2" id="corr2" type="number" step="10" value='50'></td>
+					<td><input name="corr3" id="corr3" type="number" step="10" value='50'></td>
+					<td><input name="corr4" id="corr4" type="number" step="10" value='50'></td>
 				</tr>
 				<tr>
 					<td>Bolus [IE/BE]</td>
-					<td><input name="bolus1" id="bolus1" type="number" step="0.1" value='1.5' onchange="updateTextColors();"></td>
-					<td><input name="bolus2" id="bolus2" type="number" step="0.1" value='0.8' onchange="updateTextColors();"></td>
-					<td><input name="bolus3" id="bolus3" type="number" step="0.1" value='1.0' onchange="updateTextColors();"></td>
-					<td><input name="bolus4" id="bolus4" type="number" step="0.1" value='1.0' onchange="updateTextColors();"></td>
+					<td><input name="bolus1" id="bolus1" type="number" step="0.1" value='1.5'></td>
+					<td><input name="bolus2" id="bolus2" type="number" step="0.1" value='0.8'></td>
+					<td><input name="bolus3" id="bolus3" type="number" step="0.1" value='1.0'></td>
+					<td><input name="bolus4" id="bolus4" type="number" step="0.1" value='1.0'></td>
 				</tr>
 			</table>			
       <hr />
