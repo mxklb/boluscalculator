@@ -56,8 +56,8 @@ Actually the code is not tested, reviewed or validated!
 ### Todo
 - ~~Add therapy settings for daytime _Late_~~
 - Make different measurement units available
-- Form entries should remember/cache values!?
-- Default therapy settings should be configureable
+- ~~Form entries should remember/cache values!?~~
+- ~~Default therapy settings should be configureable~~
 - Develop a new more modern, scalable or mobile app
     - Therapy settings should be separated (menu)
     - Steady changing therapy settings (curves)?
