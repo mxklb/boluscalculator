@@ -32,23 +32,23 @@ function setDefaultSettings()
 */
 function setLocalSettings()
 {
-  if (localStorage.getItem("glucose") != 'null') { document.getElementById('glucose').value = localStorage.getItem("glucose"); }
-  if (localStorage.getItem("food") != 'null') { document.getElementById('foodbe').value = localStorage.getItem("food"); }
+  if (localStorage.getItem("glucose") != null) { document.getElementById('glucose').value = localStorage.getItem("glucose"); }
+  if (localStorage.getItem("food") != null) { document.getElementById('foodbe').value = localStorage.getItem("food"); }
   
-  if (localStorage.getItem("aim1") != 'null') { document.getElementById('aim1').value = localStorage.getItem("aim1"); }
-  if (localStorage.getItem("aim2") != 'null') { document.getElementById('aim2').value = localStorage.getItem("aim2"); }
-  if (localStorage.getItem("aim3") != 'null') { document.getElementById('aim3').value = localStorage.getItem("aim3"); }
-  if (localStorage.getItem("aim4") != 'null') { document.getElementById('aim4').value = localStorage.getItem("aim4"); }
+  if (localStorage.getItem("aim1") != null) { document.getElementById('aim1').value = localStorage.getItem("aim1"); }
+  if (localStorage.getItem("aim2") != null) { document.getElementById('aim2').value = localStorage.getItem("aim2"); }
+  if (localStorage.getItem("aim3") != null) { document.getElementById('aim3').value = localStorage.getItem("aim3"); }
+  if (localStorage.getItem("aim4") != null) { document.getElementById('aim4').value = localStorage.getItem("aim4"); }
   
-  if (localStorage.getItem("corr1") != 'null') { document.getElementById('corr1').value = localStorage.getItem("corr1"); }
-  if (localStorage.getItem("corr2") != 'null') { document.getElementById('corr2').value = localStorage.getItem("corr2"); }
-  if (localStorage.getItem("corr3") != 'null') { document.getElementById('corr3').value = localStorage.getItem("corr3"); }
-  if (localStorage.getItem("corr4") != 'null') { document.getElementById('corr4').value = localStorage.getItem("corr4"); }
+  if (localStorage.getItem("corr1") != null) { document.getElementById('corr1').value = localStorage.getItem("corr1"); }
+  if (localStorage.getItem("corr2") != null) { document.getElementById('corr2').value = localStorage.getItem("corr2"); }
+  if (localStorage.getItem("corr3") != null) { document.getElementById('corr3').value = localStorage.getItem("corr3"); }
+  if (localStorage.getItem("corr4") != null) { document.getElementById('corr4').value = localStorage.getItem("corr4"); }
   
-  if (localStorage.getItem("bolus1") != 'null') { document.getElementById('bolus1').value = localStorage.getItem("bolus1"); }
-  if (localStorage.getItem("bolus2") != 'null') { document.getElementById('bolus2').value = localStorage.getItem("bolus2"); }
-  if (localStorage.getItem("bolus3") != 'null') { document.getElementById('bolus3').value = localStorage.getItem("bolus3"); }
-  if (localStorage.getItem("bolus4") != 'null') { document.getElementById('bolus4').value = localStorage.getItem("bolus4"); }
+  if (localStorage.getItem("bolus1") != null) { document.getElementById('bolus1').value = localStorage.getItem("bolus1"); }
+  if (localStorage.getItem("bolus2") != null) { document.getElementById('bolus2').value = localStorage.getItem("bolus2"); }
+  if (localStorage.getItem("bolus3") != null) { document.getElementById('bolus3').value = localStorage.getItem("bolus3"); }
+  if (localStorage.getItem("bolus4") != null) { document.getElementById('bolus4').value = localStorage.getItem("bolus4"); }
 }
 
 window.onload = function () 
