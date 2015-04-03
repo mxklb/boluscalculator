@@ -1,24 +1,99 @@
-<style>
-	input{ 
-		text-align: center; 
-	}
-	output{
-		font-weight: bold;
-	}
-	table{
-		text-align: center;
-		border: 0px solid black;
-		table-layout: fixed;
-		width: 320px;
-	}
-	table td:first-child {
-		text-align: right;
-		white-space: nowrap;
-	}
-	th, td {
-		border: 0px solid black;
-		overflow: hidden;
-		width: 190px;
-	}
-</style>
+body {
+  font-family: "Trebuchet MS", Helvetica, Arial, freescan, clean, sans-serif;
+}
 
+.outer {
+    position: absolute;  
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 98%;
+    height: 98%;
+}
+
+.inner {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    
+    /* unnecessary styling properties */
+    min-width: 100%;
+    text-align: center;
+    #border: 1px solid blue;
+}
+
+.select-style {
+    padding: 0em 0em;
+    margin: 0em 2.9em;
+    border: 1px solid #ccc;
+    width: 60%;
+    border-radius: 3px;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.select-style select {
+    padding: .5em 0.8em;
+    width: 100%;
+    #text-align: center;
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+}
+
+.select-style select:focus {
+    outline: none;
+}
+
+form.usrinput {
+  margin-left: auto;
+  margin-right: auto;
+  width: 95%;
+  max-width: 15em;
+  #border: 1px solid red;
+}
+
+.float-label-wrapper {
+  display: table;
+  margin: 1em 0;
+  position: relative;
+  width: 100%;
+}
+.float-label-wrapper input {
+  padding: 1.0em 1.5em;
+  border: solid 1px #D5D5D5;
+  font-size: 1em;
+  color: #3A3A3A;
+  text-align: center;
+}
+
+input[readonly], input[readonly="readonly"] {
+  width: 6.5em;
+  height: 1.5em;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.float-label, .float-label-hidden {
+  display: block;
+  position: absolute;
+  margin: -1.1em 0em;
+  width: 100%;
+  font-size: 0.7em;
+}
+.float-label-hidden {
+  top: 0.2em;
+  opacity: 0;
+  transition: all 1s ease
+}
+.float-label {
+  transition: all 1s cubic-bezier(1, -0.06, 0, 0.98) 0s;
+  top: 1.25em;
+  opacity: 0.8;
+  color: #0379FF
+}

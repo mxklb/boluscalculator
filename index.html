@@ -9,106 +9,47 @@
 </head>
 
 <body>
-  <article>
-    <header>
-      <h1>Bolus/Correction Calculator (*)</h1>
-      <p>Calculate a insulin dosis for a meal using the intensive insulin therapy ...</p>
-    </header>
-
-		<form onsubmit="return false" oninput="updateCalculations();updateTextColors();">
-			<h3>Input Values</h3>            
-			<table>
-				<tr>
-					<td>Glucose Level [mg/dl]</td>
-					<td><input name="glucose" id="glucose" type="number" min="0" step="10" placeholder="Set Glucose Level" onChange="storeGlucose();"></td>
-				</tr>
-				<tr>
-					<td>Meal to be eaten [BE]</td>
-					<td><input name="foodbe" id="foodbe" type="number" min="0" step="0.5" placeholder="Set Bread Units" onChange="storeFood();"></td>
-				</tr>
-			</table>
-			<hr />
-			<h3>Therapy Settings</h3>
-			<table>
-				<tr>
-					<th></th>
-					<th>Morning</th>
-					<th>Noontime</th>
-					<th>Evening</th>
-					<th>Late</th>
-				</tr>
-				<tr>
-					<td>Glucose Aim [mg/dl]</td>
-					<td><input name="aim1" id="aim1" type="number" min="0" step="10" value='100' onChange="storeSettings();"></td>
-					<td><input name="aim2" id="aim2" type="number" min="0" step="10" value='100' onChange="storeSettings();"></td>
-					<td><input name="aim3" id="aim3" type="number" min="0" step="10" value='120' onChange="storeSettings();"></td>
-					<td><input name="aim4" id="aim4" type="number" min="0" step="10" value='120' onChange="storeSettings();"></td>
-				</tr>
-				<tr>
-					<td>Corr. Factor [mg/dl]</td>
-					<td><input name="corr1" id="corr1" type="number" step="10" value='50' onChange="storeSettings();"></td>
-					<td><input name="corr2" id="corr2" type="number" step="10" value='50' onChange="storeSettings();"></td>
-					<td><input name="corr3" id="corr3" type="number" step="10" value='50' onChange="storeSettings();"></td>
-					<td><input name="corr4" id="corr4" type="number" step="10" value='50' onChange="storeSettings();"></td>
-				</tr>
-				<tr>
-					<td>Bolus [IE/BE]</td>
-					<td><input name="bolus1" id="bolus1" type="number" step="0.1" value='1.5' onChange="storeSettings();"></td>
-					<td><input name="bolus2" id="bolus2" type="number" step="0.1" value='0.8' onChange="storeSettings();"></td>
-					<td><input name="bolus3" id="bolus3" type="number" step="0.1" value='1.0' onChange="storeSettings();"></td>
-					<td><input name="bolus4" id="bolus4" type="number" step="0.1" value='1.0' onChange="storeSettings();"></td>
-				</tr>
-			</table>			
-      <hr />
-			<h3>Provisional Results</h3>
-			<table>
-				<tr>
-					<th></th>
-					<th>Morning</th>
-					<th>Noontime</th>
-					<th>Evening</th>
-					<th>Late</th>
-				</tr>
-				<tr>
-					<td>Correction [BE]</td>
-					<td><output name="correction1" id="correction1" type="number" for="glucose aim1 corr1"></output></td>
-					<td><output name="correction2" id="correction2" type="number" for="glucose aim2 corr2"></output></td>
-					<td><output name="correction3" id="correction3" type="number" for="glucose aim3 corr3"></output></td>
-					<td><output name="correction4" id="correction4" type="number" for="glucose aim4 corr4"></output></td>
-				</tr>
-				<tr>
-					<td>Effective Meal [BE]</td>
-					<td><output name="food1" id="food1" type="number" for="foodbe bolus1"></output></td>
-					<td><output name="food2" id="food2" type="number" for="foodbe bolus2"></output></td>
-					<td><output name="food3" id="food3" type="number" for="foodbe bolus3"></output></td>
-					<td><output name="food4" id="food4" type="number" for="foodbe bolus4"></output></td>
-				</tr>
-			</table>            
-			<hr />
-			<h3>Final Results</h3>
-			<table>
-				<tr>
-					<th></th>
-					<th>Morning</th>
-					<th>Noontime</th>
-					<th>Evening</th>
-					<th>Late</th>
-				</tr>
-				<tr>
-					<td>Final Dose / Bolus [BE]</td>
-					<td><output name="final1" id="final1" type="number" for="glucose aim1 corr1 foodbe bolus1"></output></td>
-					<td><output name="final2" id="final2" type="number" for="glucose aim2 corr2 foodbe bolus2"></output></td>
-					<td><output name="final3" id="final3" type="number" for="glucose aim3 corr3 foodbe bolus3"></output></td>
-					<td><output name="final4" id="final4" type="number" for="glucose aim4 corr4 foodbe bolus4"></output></td>
-				</tr>
-			</table>
-			<hr />
-    </form>
-
-    <footer>
-      <p>(*) For personal use at your own risk only!</p>
-			<p><a href="https://github.com/maxkalb/boluscalculator">About this app</a></p>
-    </footer>
-  </article>
+<div class="outer">
+    <div class="inner">
+      <h1>Bolus Calculator</h1>
+      <small>Enter glucose level and meal to be eaten</small>
+      <form class="usrinput">
+        <div class="inputs">
+          <input class="js-floatLabel" placeholder="Glucose Level [mg/dl]" id="glucose" onChange="validateInputNumber('glucose')"/>
+          <input class="js-floatLabel" placeholder="Meal to be eaten [BE]"/>
+        </div>
+        <hr />
+        <div class="outputs">
+          <input class="js-floatLabel" id="finalBolus" placeholder="Dosis [BE]" value="12" readonly="readonly"/>
+        </div>
+        <hr />
+        <p><small>Active Therapy Setting <span id="time" /></small></p>
+        <table style="width:80%">
+          <tr>
+            <td>
+              <div class="select-style">
+              <select id="therapySetting" onchange="therapySettingsChanged(this)">
+                <option value="0">Morning</option>
+                <option value="1">Noontime</option>
+                <option value="2">Evening</option>
+                <option value="3">Late</option>
+              </select>
+              </div>
+            </td>
+            <td>
+              <input type="button" value="edit" onclick="toggleSettings()" style="position: absolute; margin: -1.16em -2.6em; padding 0em 0em; height: 2.36em;" />
+            </td>
+          </tr>
+        </table>
+        <p style="font-size:0.7em"><span id="therapyInfo" /></p>
+        <div class="settings" id="settings" style="display:none;">
+          <input class="js-floatLabel" placeholder="Glucose Aim [mg/dl]"/>
+          <input class="js-floatLabel" placeholder="Corr. Factor [mg/dl]"/>
+          <input class="js-floatLabel" placeholder="Bolus [IE/BE]"/>
+        </div>
+      </form>
+      <p style="font-size:0.7em"><a href="https://github.com/maxkalb/boluscalculator">About this app</a></p>
+    </div>
+</div>
 </body>
 </html>
