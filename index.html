@@ -3,53 +3,68 @@
 
 <head>
 <meta charset="utf-8">
-<title>Intensive Insulin Therapie</title>
-<link rel="stylesheet" type="text/css" href="style.css"> 
+<title>Testpage</title>
 <script src="main.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
-<div class="outer">
-    <div class="inner">
-      <h1>Bolus Calculator</h1>
-      <small>Enter glucose level and meal to be eaten</small>
-      <form class="usrinput">
-        <div class="inputs">
-          <input class="js-floatLabel" placeholder="Glucose Level [mg/dl]" id="glucose" onChange="validateInputNumber('glucose')"/>
-          <input class="js-floatLabel" placeholder="Meal to be eaten [BE]"/>
-        </div>
-        <hr />
-        <div class="outputs">
-          <input class="js-floatLabel" id="finalBolus" placeholder="Dosis [BE]" value="12" readonly="readonly"/>
-        </div>
-        <hr />
-        <p><small>Active Therapy Setting <span id="time" /></small></p>
-        <table style="width:80%">
-          <tr>
-            <td>
-              <div class="select-style">
-              <select id="therapySetting" onchange="therapySettingsChanged(this)">
-                <option value="0">Morning</option>
-                <option value="1">Noontime</option>
-                <option value="2">Evening</option>
-                <option value="3">Late</option>
-              </select>
-              </div>
-            </td>
-            <td>
-              <input type="button" value="edit" onclick="toggleSettings()" style="position: absolute; margin: -1.16em -2.6em; padding 0em 0em; height: 2.36em;" />
-            </td>
-          </tr>
-        </table>
-        <p style="font-size:0.7em"><span id="therapyInfo" /></p>
-        <div class="settings" id="settings" style="display:none;">
-          <input class="js-floatLabel" placeholder="Glucose Aim [mg/dl]"/>
-          <input class="js-floatLabel" placeholder="Corr. Factor [mg/dl]"/>
-          <input class="js-floatLabel" placeholder="Bolus [IE/BE]"/>
-        </div>
-      </form>
-      <p style="font-size:0.7em"><a href="https://github.com/maxkalb/boluscalculator">About this app</a></p>
+
+<div id="main">
+
+<form>
+  <p style="font-weight:bold; font-size: 2em; margin 0em auto; padding 0px 0px;">Bolus Calculator</p>
+  <small>Enter glucose level and meal to be eaten</small>
+  
+  <div class="inputs">
+    <input type="button" value="-" onclick="decrementNumber(this.form.number1);">
+    <input type='number' name="number1" id="glucose" class="number" step='any' min='0' placeholder='Glucose Level [mg/dl]' required='' onchange="updateCalculations()"> 
+    <input type="button" value="+" onclick="this.form.number1.value++;updateCalculations();">
+  </div>
+  
+  <div class="inputs">
+    <input type="button" value="-" onclick="decrementNumber(this.form.number2);">
+    <input type='number' name="number2" id="foodbe" step='any' min='0' placeholder='Meal to be eaten [BE]' required='' onchange="updateCalculations()">
+    <input type="button" value="+" onclick="this.form.number2.value++;updateCalculations();">
+  </div>
+    
+  <div class="outputs">
+    <input type='number' name="finalBolus" id="finalBolus" step='any' placeholder='Resulting Bolus [BE]'>
+    <span id="sum"/>
+  </div>
+  
+  <div><span id="time"/></div>
+  <div><a id="therapyLink" href="#" onclick="toggleSettings();"><span id="therapyInfo"/></a></div>
+  
+  <div class="inputs">
+    <select id="therapySetting" onchange="updateTherapySettings();">
+      <option value="0">Morning</option>
+      <option value="1">Noontime</option>
+      <option value="2">Evening</option>
+      <option value="3">Late</option>
+    </select>
+  </div>
+  
+  <div class="settings" id="settings" style="display:none;">
+    <div class="outer">
+      <input type="button" value="-" onclick="this.form.settingsAim.value--;">
+      <input type='number' name="settingsAim" id="settingsAim" step='any' placeholder="Glucose Aim [mg/dl]" onchange="changeTherapySettings();"/>
+      <input type="button" value="+" onclick="this.form.settingsAim.value++;">
     </div>
+    <div class="outer">
+      <input type="button" value="-" onclick="this.form.settingsCorr.value--;">
+      <input type='number' name="settingsCorr" id="settingsCorr" step='any' placeholder="Corr. Factor [mg/dl]" onchange="changeTherapySettings();"/>
+      <input type="button" value="+" onclick="this.form.settingsCorr.value++;">
+    </div>
+    <div class="outer">
+      <input type="button" value="-" onclick="this.form.settingsBolus.value--;">
+      <input type='number' name="settingsBolus" id="settingsBolus" step='any' placeholder="Bolus [IE/BE]" onchange="changeTherapySettings();"/>
+      <input type="button" value="+" onclick="this.form.settingsBolus.value++;">
+    </div>
+  </div>
+  
+  <p id="about"><a href="https://github.com/maxkalb/boluscalculator">About this app</a></p>
+</form>
 </div>
 </body>
 </html>
