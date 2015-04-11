@@ -20,48 +20,52 @@
   </div>
   
   <div class="inputs">
-    <input type="button" value="-" onclick="incrementNumber(this.form.glucose, -5, 0);updateCalculations();"/>
+    <input type="button" value="-" onkeyup="incrementNumber(this.form.glucose, -5, 0);updateCalculations();"/>
     <input type="number" name="glucose" id="glucose" class="number" step="any" min="0" placeholder="Glucose Level [mg/dl]" required='' onchange="updateCalculations()"/> 
-    <input type="button" value="+" onclick="incrementNumber(this.form.glucose, 5, 0);updateCalculations();"/>
+    <input type="button" value="+" onkeyup="incrementNumber(this.form.glucose, 5, 0);updateCalculations();"/>
   </div>
   
   <div class="inputs">
-    <input type="button" value="-" onclick="incrementNumber(this.form.foodbe, -0.5, 0);updateCalculations();"/>
+    <input type="button" value="-" onkeyup="incrementNumber(this.form.foodbe, -0.5, 0);updateCalculations();"/>
     <input type="number" name="foodbe" id="foodbe" class="number" step="any" min="0" placeholder="Meal to be eaten [BE]" required='' onchange="updateCalculations()"/>
-    <input type="button" value="+" onclick="incrementNumber(this.form.foodbe, 0.5, 0);updateCalculations();"/>
+    <input type="button" value="+" onkeyup="incrementNumber(this.form.foodbe, 0.5, 0);updateCalculations();"/>
   </div>
     
-  <div class="outputs">
+  <div class="output">
     <input type="number" name="finalBolus" id="finalBolus" step="any" placeholder="Resulting Bolus [BE]"/>
     <span id="sum"/>
   </div>
   
-  <div><span id="time"/></div>
+  <div style="line-height:2em; min-height:1em;"></div><hr>
+  
+  <div style="display:none;"><span id="time"/></div>
+  <div class="therapyTime">Therapy Setting <span id="therapyTime"/></div>
   
   <div id="buttonGroup">
-    <div id="singleButton"><a href="#" class="selectButton" onclick="selectTherapy(this)"><span>M</span></a></div>
-    <div id="singleButton"><a href="#" class="selectButton" onclick="selectTherapy(this)"><span>N</span></a></div>
-    <div id="singleButton"><a href="#" class="selectButton" onclick="selectTherapy(this)"><span>E</span></a></div>
-    <div id="singleButton"><a href="#" class="selectButton" onclick="selectTherapy(this)"><span>L</span></a></div>
+    <div id="singleButton"><a href="#" class="selectButton" onclick="selectTherapy(this);return false;"><span>I</span></a></div>
+    <div id="singleButton"><a href="#" class="selectButton" onclick="selectTherapy(this);return false;"><span>II</span></a></div>
+    <div id="singleButton"><a href="#" class="selectButton" onclick="selectTherapy(this);return false;"><span>III</span></a></div>
+    <div id="singleButton"><a href="#" class="selectButton" onclick="selectTherapy(this);return false;"><span>IV</span></a></div>
   </div>
   
-  <a href="#" id="settingsButton" onclick="toggleSettings();"><span id="therapyInfo"/></a>
+  <div class="therapySetup"><span id="therapySetup"/></div>
+  <a href="#" id="settingsButton" onclick="toggleSettings();return false;"><span id="therapyInfo"/></a>
   
   <div class="settings" id="settings" style="display:none;">
     <div class="outer">
-      <input type="button" value="-" onclick="incrementNumber(this.form.settingsAim, -5, 0);changeTherapySettings();"/>
+      <input type="button" value="-" onkeyup="incrementNumber(this.form.settingsAim, -5, 0);changeTherapySettings();"/>
       <input type="number" name="settingsAim" id="settingsAim" class="number" step="any" min="0" placeholder="Glucose Aim [mg/dl]" onchange="changeTherapySettings();"/>
-      <input type="button" value="+" onclick="incrementNumber(this.form.settingsAim, 5, 0);changeTherapySettings();"/>
+      <input type="button" value="+" onkeyup="incrementNumber(this.form.settingsAim, 5, 0);changeTherapySettings();"/>
     </div>
     <div class="outer">
-      <input type="button" value="-" onclick="incrementNumber(this.form.settingsCorr, -5, 0);changeTherapySettings();"/>
+      <input type="button" value="-" onkeyup="incrementNumber(this.form.settingsCorr, -5, 0);changeTherapySettings();"/>
       <input type="number" name="settingsCorr" id="settingsCorr" class="number" step="any" min="0" placeholder="Corr. Factor [mg/dl]" onchange="changeTherapySettings();"/>
-      <input type="button" value="+" onclick="incrementNumber(this.form.settingsCorr, 5, 0);changeTherapySettings();"/>
+      <input type="button" value="+" onkeyup="incrementNumber(this.form.settingsCorr, 5, 0);changeTherapySettings();"/>
     </div>
     <div class="outer">
-      <input type="button" value="-" onclick="incrementNumber(this.form.settingsBolus, -0.1, 0);changeTherapySettings();"/>
+      <input type="button" value="-" onkeyup="incrementNumber(this.form.settingsBolus, -0.1, 0);changeTherapySettings();"/>
       <input type="number" name="settingsBolus" id="settingsBolus" class="number" step="any" min="0" placeholder="Bolus [IE/BE]" onchange="changeTherapySettings();"/>
-      <input type="button" value="+" onclick="incrementNumber(this.form.settingsBolus, 0.1, 0);changeTherapySettings();"/>
+      <input type="button" value="+" onkeyup="incrementNumber(this.form.settingsBolus, 0.1, 0);changeTherapySettings();"/>
     </div>
   </div>
   <p id="about"><a href="https://github.com/maxkalb/boluscalculator">..-._.:~ readme ~:._.-..</a></p>

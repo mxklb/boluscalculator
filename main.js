@@ -61,10 +61,14 @@ window.onload = function () {
 */
 function toggleSettings() {
 	var e = document.getElementById('settings');
-  if ( e.style.display == 'block' )
+  if ( e.style.display == 'block' ){
     e.style.display = 'none';
-  else
+    $("html, body").animate({ scrollTop: $('settings').offset().top }, "slow");
+  }
+  else {
     e.style.display = 'block';
+    window.scrollTo(0, document.body.scrollHeight);
+  }
   return false;
 }
 
@@ -124,6 +128,18 @@ function getTherapyInfoText(therapyId) {
 }
 
 /*
+* Returns the therapy name of the given id. 
+*/
+function getTherapyName(therapyId) {
+  var therapyName = "";
+  if( therapyId == 0 ) therapyName = "Morning (06:00-12:00)";
+  if( therapyId == 1 ) therapyName = "Noontime (12:00-18:00)";
+  if( therapyId == 2 ) therapyName = "Evening (18:00-24:00)";
+  if( therapyId == 3 ) therapyName = "Late (00:00-06:00)";
+  return therapyName;
+}
+
+/*
 * Updates the GUI by viewing the values stored in the settings array. 
 */
 function updateTherapySettings() {
@@ -147,18 +163,13 @@ function changeTherapySettings() {
 */
 function refreshSettings(therapyId) {
   var therapyInfo = document.getElementById('therapyInfo');
+  var therapySetup = document.getElementById('therapySetup');
   
   therapyInfo.innerHTML = getTherapyInfoText(therapyId);
+  therapySetup.innerHTML = getTherapyName(therapyId);
   document.getElementById('settingsAim').value = getTherapyAim(therapyId);
   document.getElementById('settingsCorr').value = getTherapyCorrection(therapyId);
   document.getElementById('settingsBolus').value = getTherapyBolus(therapyId);
-  
-  if( therapyId == getTherapyDaytime() ) { 
-    therapyInfo.style.color = "#444";
-  }
-  else {
-    therapyInfo.style.color = "#f55";
-  }
   
   updateCalculations();
 }
@@ -190,18 +201,25 @@ function selectTherapy(elem) {
 }
 
 /*
+* Sets the border color of the therapy buttons depending 
+*/
+function updateTherapyColor() {
+  var sub = document.getElementsByClassName("selectButton");
+  for(var i=0; i<sub.length; i++) {
+    if( i == selectedTherapy ) { 
+      if( i == getTherapyDaytime() ) sub[i].style.border = "0.1em solid #ccc";
+      else sub[i].style.border = "0.1em solid #FAA";
+    }
+    else sub[i].style.border = "0em dashed #ccc";
+  }
+}
+
+/*
 * Sets/Activates the given therapy setting.
 */
 function setTherapy(id) {
-  var sub = document.getElementsByClassName("selectButton");
-  for(var i=0; i<sub.length; i++) {
-    if( i == id ) { 
-      if( i == getTherapyDaytime() ) sub[i].style.border = "0.1em dashed #ccc";
-      else sub[i].style.border = "0.1em dashed #f77";
-    }
-    else sub[i].style.border = "0.1em solid #ccc";
-  }
   selectedTherapy = id;
+  updateTherapyColor();
   refreshSettings(id);
   updateTherapySettings();
 }
@@ -301,14 +319,12 @@ function updateTime() {
   if (seconds < 10){
       seconds = "0" + seconds;
   }
-  var v = "Active Therapy Settings " + hours + ":" + minutes + ":" + seconds + " ";
-  setTimeout("updateTime()",1000);
-  document.getElementById('time').innerHTML=v;
-  
-  var elemTherapySetting = document.getElementById('therapySetting');
-  
-  if( initialized == true && selectedTherapy != getTherapyDaytime() && elemTherapySetting.style.display == 'none') {
-  	updateTherapySettings();
+  var v = " " + hours + ":" + minutes + " ";
+  setTimeout("updateTime()", 1000);
+  document.getElementById('therapyTime').innerHTML = v;
+    
+  if( initialized == true && selectedTherapy != getTherapyDaytime() ) {
+  	updateTherapyColor();
   }
 }
 
