@@ -7,6 +7,9 @@ var settings = [];
 // Array holding local storage variable names
 var localNames = [];
 
+// Holds the choosen therapy setting ()
+var selectedTherapy = 0;
+
 // Some simplyfing getter methods
 function getTherapyAim(therapyId) {
   return settings[therapyId].aim;
@@ -35,10 +38,10 @@ function initLocalNames() {
 * Set default therapy settings and initialize local variable names.
 */
 function initDefaultSettings() {
-  settings[0] = {aim:103, corr:50, bolus:1.0};
-	settings[1] = {aim:102, corr:50, bolus:1.1};
-	settings[2] = {aim:121, corr:50, bolus:1.2};
-	settings[3] = {aim:120, corr:50, bolus:1.3};
+  settings[0] = {aim:100, corr:50, bolus:1.0};
+	settings[1] = {aim:100, corr:50, bolus:1.0};
+	settings[2] = {aim:120, corr:50, bolus:1.0};
+	settings[3] = {aim:120, corr:50, bolus:1.0};
   initLocalNames(); 
 }
 
@@ -124,20 +127,18 @@ function getTherapyInfoText(therapyId) {
 * Updates the GUI by viewing the values stored in the settings array. 
 */
 function updateTherapySettings() {
-  var therapyId = document.getElementById('therapySetting').value;
-  refreshSettings(therapyId);
-  return therapyId;
+  refreshSettings(selectedTherapy);
+  return selectedTherapy;
 }
 
 /*
 * Puts the UI values into the settings array and updates the GUI. 
 */
 function changeTherapySettings() {
-  var therapyId = document.getElementById('therapySetting').value;
-  settings[therapyId].aim = document.getElementById('settingsAim').value;
-  settings[therapyId].corr = document.getElementById('settingsCorr').value;
-  settings[therapyId].bolus = document.getElementById('settingsBolus').value;
-  saveTherapySettings(therapyId);
+  settings[selectedTherapy].aim = document.getElementById('settingsAim').value;
+  settings[selectedTherapy].corr = document.getElementById('settingsCorr').value;
+  settings[selectedTherapy].bolus = document.getElementById('settingsBolus').value;
+  saveTherapySettings(selectedTherapy);
   updateTherapySettings();
 }
 
@@ -146,21 +147,17 @@ function changeTherapySettings() {
 */
 function refreshSettings(therapyId) {
   var therapyInfo = document.getElementById('therapyInfo');
-  var therapySetting = document.getElementById('therapySetting');
   
-  therapySetting.value = therapyId;
   therapyInfo.innerHTML = getTherapyInfoText(therapyId);
   document.getElementById('settingsAim').value = getTherapyAim(therapyId);
   document.getElementById('settingsCorr').value = getTherapyCorrection(therapyId);
   document.getElementById('settingsBolus').value = getTherapyBolus(therapyId);
   
   if( therapyId == getTherapyDaytime() ) { 
-  	therapySetting.style.color = "black";
-    therapyInfo.style.color = "black";
+    therapyInfo.style.color = "#444";
   }
   else {
-  	therapySetting.style.color = "#800000";
-    therapyInfo.style.color = "#800000";
+    therapyInfo.style.color = "#f55";
   }
   
   updateCalculations();
@@ -171,7 +168,42 @@ function refreshSettings(therapyId) {
 */
 function autoTherapySetting() {
   var daytimeId = getTherapyDaytime();
-  refreshSettings( daytimeId );
+  setTherapy( daytimeId );
+}
+
+/*
+* Return the index of the select button elem.
+*/
+function getIndexOfSelectButton(elem) {
+  var sub = document.getElementsByClassName("selectButton");
+  for(var i=0; i<sub.length; i++)
+    if( sub[i] == elem )
+      return i;
+  return -1; 
+}
+
+/*
+* Called if the user selects a therapy.
+*/
+function selectTherapy(elem) {
+  setTherapy( getIndexOfSelectButton(elem) );
+}
+
+/*
+* Sets/Activates the given therapy setting.
+*/
+function setTherapy(id) {
+  var sub = document.getElementsByClassName("selectButton");
+  for(var i=0; i<sub.length; i++) {
+    if( i == id ) { 
+      if( i == getTherapyDaytime() ) sub[i].style.border = "0.1em dashed #ccc";
+      else sub[i].style.border = "0.1em dashed #f77";
+    }
+    else sub[i].style.border = "0.1em solid #ccc";
+  }
+  selectedTherapy = id;
+  refreshSettings(id);
+  updateTherapySettings();
 }
 
 
@@ -192,11 +224,10 @@ function calcEffectiveFood(therapyId)
 
 function updateCalculations() {
   var bolusElement = document.getElementById('finalBolus');
-  var therapyId = document.getElementById('therapySetting').value;
   var glucEmpty = document.getElementById("glucose").value == "";
   var foodEmpty = document.getElementById("foodbe").value == "";  
-  var correction = calcCorrection(therapyId);
-  var effectiveFood = calcEffectiveFood(therapyId);
+  var correction = calcCorrection(selectedTherapy);
+  var effectiveFood = calcEffectiveFood(selectedTherapy);
   var finalBolus = correction + effectiveFood;
   
   
@@ -224,16 +255,34 @@ function updateCalculations() {
 */
 function validateInputNumber(elementID)
 {
-    var x = document.getElementById(elementID).value;
-    if (isNaN(x)) // this is the code I need to change
-    {
-        alert("Must input numbers");
-        return false;
-    }
+  var x = document.getElementById(elementID).value;
+  if (isNaN(x)) // this is the code I need to change
+  {
+    alert("Must input numbers");
+    return false;
+  }
 }
 
-function decrementNumber(elementID){
-  elementID.value--;
+/*
+* Helper function to increment values of input fields.
+*/
+function incrementNumber(elementID, value, minimum){
+  var min = parseFloat(minimum);
+  var old = parseFloat(elementID.value);
+  var add = parseFloat(value);
+  
+  if( isNaN(min) ) min = -Number.MAX_VALUE;
+  if( isNaN(old) ) old = 0; 
+  if( isNaN(add) ) add = 0;
+  
+  var out = old + add;
+  
+  if( out < min ){
+    out = "";
+  } 
+  
+  elementID.value = out;
+  
   updateCalculations();
 }
 
@@ -257,14 +306,11 @@ function updateTime() {
   document.getElementById('time').innerHTML=v;
   
   var elemTherapySetting = document.getElementById('therapySetting');
-  var therapyIndex = elemTherapySetting.selectedIndex;
   
-  if( initialized == true && therapyIndex != getTherapyDaytime() && elemTherapySetting.style.display == 'none') {
+  if( initialized == true && selectedTherapy != getTherapyDaytime() && elemTherapySetting.style.display == 'none') {
   	updateTherapySettings();
   }
 }
-
-//updateTime();
 
 /*
 * Returns an ID for the daytime depending on the actual time.

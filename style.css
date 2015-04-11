@@ -11,16 +11,12 @@ body {
   line-height: 3em;
   -webkit-font-smoothing: antialiased;
 }
+
 form {
   max-width: 300px;
   margin: 0em auto;
 }
-legend {
-  font-size: 24px;
-  line-height: 3em;
-  margin: 0 auto;
-  color: #555;
-}
+
 #finalBolus,
 p#output,
 input[type="button"],
@@ -76,17 +72,51 @@ input::-moz-focus-inner {
 
 input[type="button"] {
   width: 12%;
-  color: #AAA;
+  color: #aaa;
   outline:0 none !important;
   font-size: 12px;
   font-weight: bold;
-  line-height: 2em;
+  line-height: 1em;
   padding: 0em 0em;
   margin-bottom: 0em; 
-  border-radius: 5em;
+  border-radius: 7em;
   background: #eee;
-  border:0 none;
-  #border: 0px solid #ccc;
+  border: 1px solid #ccc;
+}
+
+#singleButton {
+  display : inline-block;
+  position: relative;
+  margin: auto;
+  width: 16%;  
+}
+
+.selectButton {
+  color: #aaa;
+  text-align: center;
+  background: #eee;
+  text-decoration: none;
+  outline:0 none !important;
+  display : inline-block;
+  position: relative;
+  margin: auto;
+  width: 3em;
+  line-height: 3em;
+  border-radius: 1.5em;
+  border: 1px solid #aaa;
+}
+
+#header {
+  display:block;
+  margin: 1em auto;
+  width: 100%;
+  line-height:1.5em;
+  font-size: 1.0em;
+}
+
+#header p {
+  font-weight:bold;
+  font-size: 1.5em;
 }
 
 #finalBolus {
@@ -123,17 +153,17 @@ input[type="button"] {
 }
 
 #time {
-  line-height: 1.5em;
-  margin: 3em auto;
+  display: block;
+  position: relative;
+  line-height: 0.1em;
+  margin: 0em 0em;
+  padding: 3.5em 0em;
 }
 
 #therapyInfo {
   display: block;
-  line-height: 0.1em;
-  #height: -1em;
-  #padding: 5em 0em;
-  #margin: -10em auto;
-  #margin: 0% 0%;
+  line-height: 2.5em;
+  #font-size:0.75em;
 }
 
 #therapyLink {
@@ -142,4 +172,29 @@ input[type="button"] {
   border:0 none;
 }
 
+#settingsButton {
+  display:block;
+  margin: 1em auto;
+  width:70%;
+  border-radius:1em;
+  font-size:1.1em;
+  color: #444;
+  line-height:1.5em;
+  text-align:center;
+  background:#eee;
+  text-decoration: none;
+  outline:0 none !important;
+  border: 1px solid #ccc;
+  white-space: nowrap;
+}
+
+#about a {
+  display: block;
+  margin: -1.0em auto;
+  text-decoration: none;
+}
+
+#about a:visited { 
+	color: #444;
+}
 
