@@ -222,8 +222,8 @@ input[type="button"] {
   white-space: nowrap;
 }
 
-#settingsButton:focus,
-#settingsButton:active {
+#settingsButton a:focus,
+#settingsButton a:active {
    outline:none !important;
 }
 
