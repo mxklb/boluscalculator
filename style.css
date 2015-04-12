@@ -13,14 +13,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-a:focus,
-a:active,
-a:target,
-a:hover,
-a-on {
-   outline:none !important;
-}
-
 form {
   max-width: 300px;
   margin: 0em auto;
@@ -228,6 +220,11 @@ input[type="button"] {
   outline:0 none !important;
   border: 1px solid #ccc;
   white-space: nowrap;
+}
+#settingsButton:active {
+  color: red;
+  outline:0 none !important;
+  text-decoration: none;
 }
 
 .settings {
