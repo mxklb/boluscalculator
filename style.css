@@ -197,7 +197,7 @@ input[type="button"] {
 #therapyInfo {
   display: block;
   line-height: 2.5em;
-  #font-size:0.75em;
+  font-size: small;
 }
 
 #therapyLink {

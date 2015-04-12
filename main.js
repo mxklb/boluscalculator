@@ -7,7 +7,7 @@ var settings = [];
 // Array holding local storage variable names
 var localNames = [];
 
-// Holds the choosen therapy setting ()
+// Holds the active therapy setting
 var selectedTherapy = 0;
 
 // Some simplyfing getter methods
@@ -63,7 +63,6 @@ function toggleSettings() {
 	var e = document.getElementById('settings');
   if ( e.style.display == 'block' ){
     e.style.display = 'none';
-    $("html, body").animate({ scrollTop: $('settings').offset().top }, "slow");
   }
   else {
     e.style.display = 'block';
@@ -92,9 +91,9 @@ function loadTherapySettings(therapyId) {
 * Writes the therapy settings of the given id into local storage. 
 */
 function saveTherapySettings(therapyId){
-  localStorage.setItem(localNames[therapyId].aim, settings[therapyId].aim);
-  localStorage.setItem(localNames[therapyId].corr, settings[therapyId].corr);
-  localStorage.setItem(localNames[therapyId].bolus, settings[therapyId].bolus);
+  localStorage.setItem(localNames[therapyId].aim, getTherapyAim(therapyId));
+  localStorage.setItem(localNames[therapyId].corr, getTherapyCorrection(therapyId));
+  localStorage.setItem(localNames[therapyId].bolus, getTherapyBolus(therapyId));
 }
 
 /*
@@ -108,22 +107,12 @@ function initLocalSettings() {
 }
 
 /*
-* Writes all settings and UI inputs to the local storage.
-*/
-function writeLocalStorage() {
-  var therapyId;
-  for	(therapyId = 0; therapyId < settings.length; therapyId++) {
-    saveTherapySettings(therapyId);
-  }
-}
-
-/*
 * Returns a string with the main therapy informations.
 */
 function getTherapyInfoText(therapyId) {
-  var infoText = "Aim " + settings[therapyId].aim + " "
-							 + "Corr " + settings[therapyId].corr + " "
-  						 + "Bolus " + settings[therapyId].bolus;
+  var infoText = "Aim " + getTherapyAim(therapyId) + " "
+							 + "Corr " + getTherapyCorrection(therapyId) + " "
+  						 + "Bolus " + getTherapyBolus(therapyId);
   return infoText;
 }
 
@@ -201,7 +190,7 @@ function selectTherapy(elem) {
 }
 
 /*
-* Sets the border color of the therapy buttons depending 
+* Sets the border color of the therapy buttons.
 */
 function updateTherapyColor() {
   var sub = document.getElementsByClassName("selectButton");
@@ -215,7 +204,7 @@ function updateTherapyColor() {
 }
 
 /*
-* Sets/Activates the given therapy setting.
+* Switches to the given therapy setting id.
 */
 function setTherapy(id) {
   selectedTherapy = id;
@@ -224,41 +213,50 @@ function setTherapy(id) {
   updateTherapySettings();
 }
 
-
+/*
+* Calculate correction
+*/
 function calcCorrection(therapyId)
 {
   var glu = document.getElementById("glucose").value;
   var gluAim = getTherapyAim(therapyId);
   var corr = getTherapyCorrection(therapyId);
-  return (glu - gluAim) / corr;
+  var result = (glu - gluAim) / corr;
+  if( glu == "" ) result = NaN;
+  return result;
 }
 
+/*
+* Calculate meal
+*/
 function calcEffectiveFood(therapyId)
 {
   var food = document.getElementById("foodbe").value;
   var factor = getTherapyBolus(therapyId);
-  return food * factor;
+  var result = food * factor;
+  if( food = "" ) result = NaN;
+  return result;
 }
 
-function updateCalculations() {
+/*
+* Recalculate 
+*/
+function updateCalculations() 
+{
   var bolusElement = document.getElementById('finalBolus');
-  var glucEmpty = document.getElementById("glucose").value == "";
-  var foodEmpty = document.getElementById("foodbe").value == "";  
-  var correction = calcCorrection(selectedTherapy);
-  var effectiveFood = calcEffectiveFood(selectedTherapy);
+    
+  var correction = calcCorrection( selectedTherapy );
+  var effectiveFood = calcEffectiveFood( selectedTherapy );
   var finalBolus = correction + effectiveFood;
   
-  
-  if( glucEmpty && foodEmpty ) bolusElement.value = "";
-  if( glucEmpty && !foodEmpty ) bolusElement.value = effectiveFood.toFixed(2);
-  if( !glucEmpty && foodEmpty ) bolusElement.value = correction.toFixed(2);
-  if( !glucEmpty || !foodEmpty ) bolusElement.value = finalBolus.toFixed(2);
+  if( finalBolus == 0 || isNaN(finalBolus) ) bolusElement.value = "";
+  else bolusElement.value = finalBolus.toFixed(2);
  
   var elemSum = document.getElementById('sum');
  
   var calcString = "";
   if( bolusElement.value != "" ){
-    calcString = "Meal (" + effectiveFood.toFixed(2) + ") + Corr (" + correction.toFixed(2) + ")";
+    calcString = "Corr (" + correction.toFixed(2) + ") + Meal (" + effectiveFood.toFixed(2) + ")";
     elemSum.style.background = "#fff";
   }
   else { elemSum.style.background = "transparent"; }
@@ -271,7 +269,7 @@ function updateCalculations() {
 /*
 * Checks if the given elements value is a number.
 */
-function validateInputNumber(elementID)
+function validateInputNumber(elementID) 
 {
   var x = document.getElementById(elementID).value;
   if (isNaN(x)) // this is the code I need to change
@@ -284,22 +282,21 @@ function validateInputNumber(elementID)
 /*
 * Helper function to increment values of input fields.
 */
-function incrementNumber(elementID, value, minimum){
+function incrementNumber(elementID, value, minimum, decimals) {
   var min = parseFloat(minimum);
   var old = parseFloat(elementID.value);
   var add = parseFloat(value);
+  var dec = parseInt(decimals);
   
   if( isNaN(min) ) min = -Number.MAX_VALUE;
   if( isNaN(old) ) old = 0; 
   if( isNaN(add) ) add = 0;
+  if( isNaN(dec) ) dec = 0;
   
   var out = old + add;
   
-  if( out < min ){
-    out = "";
-  } 
-  
-  elementID.value = out;
+  if( out <= min ) elementID.value = "";
+  else elementID.value = out.toFixed(dec);
   
   updateCalculations();
 }
