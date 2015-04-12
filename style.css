@@ -13,6 +13,18 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+a:link {
+	color: green;
+}
+a:visited {
+	color: #444;
+	text-decoration: none;
+}
+a:active,
+a:hover {
+	color: red;
+}
+
 form {
   max-width: 300px;
   margin: 0em auto;
@@ -118,7 +130,7 @@ input[type="button"] {
 }
 
 #header {
-  display:block;
+  display: block;
   margin: 1em auto;
   width: 100%;
   line-height:1.5em;
@@ -126,12 +138,12 @@ input[type="button"] {
 }
 
 #header p {
-  font-weight:bold;
+  font-weight: bold;
   font-size: 1.5em;
 }
 
 #finalBolus {
-  display:block;
+  display: block;
   margin: 1em auto;
   width: 90%;
   height: 3.2em;
@@ -140,7 +152,7 @@ input[type="button"] {
 }
 
 .output {
-  display:block;
+  display: block;
   margin: 1.5em auto;
 }
 
@@ -206,13 +218,10 @@ input[type="button"] {
   border:0 none;
 }
 
-#settingsButton,
-#settingsButton:focus
-#settingsButton:visited
-#settingsButton:hover {
+#settingsButton {
   display: block;
   margin: 0.5em auto;
-  width:70%;
+  width: 70%;
   border-radius:1em;
   font-size:1.1em;
   color: #444;
