@@ -14,7 +14,10 @@ body {
 }
 
 a:focus,
-a:active {
+a:active,
+a:target,
+a:hover,
+a-on {
    outline:none !important;
 }
 
