@@ -343,7 +343,7 @@ function getTherapyDaytime() {
 
 
 var tid = 0;
-var speed = 50;
+var speed = 200;
 
 function toggleOn(element, value, minimum, decimals){
   var id = element.id;
