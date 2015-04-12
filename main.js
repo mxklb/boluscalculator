@@ -282,9 +282,10 @@ function validateInputNumber(elementID)
 /*
 * Helper function to increment values of input fields.
 */
-function incrementNumber(elementID, value, minimum, decimals) {
+function incrementElement(elemId, value, minimum, decimals) {
+  var element = document.getElementById(elemId);
   var min = parseFloat(minimum);
-  var old = parseFloat(elementID.value);
+  var old = parseFloat(element.value);
   var add = parseFloat(value);
   var dec = parseInt(decimals);
   
@@ -295,8 +296,8 @@ function incrementNumber(elementID, value, minimum, decimals) {
   
   var out = old + add;
   
-  if( out <= min ) elementID.value = "";
-  else elementID.value = out.toFixed(dec);
+  if( out <= min ) element.value = "";
+  else element.value = out.toFixed(dec);
   
   updateCalculations();
 }
@@ -338,5 +339,22 @@ function getTherapyDaytime() {
   if( hours >= 18 && hours < 24 ) daytime = 2;
   if( hours >= 0 && hours < 6 ) daytime = 3;
   return daytime;  
+}
+
+
+var tid = 0;
+var speed = 100;
+
+function toggleOn(element, value, minimum, decimals){
+  var id = element.id;
+  if(tid==0){
+      tid=setInterval('incrementElement("'+id+'", '+value+', '+minimum+', '+decimals+')', speed);
+  }
+}
+function toggleOff(){
+  if(tid!=0){
+      clearInterval(tid);
+      tid=0;
+  }
 }
 

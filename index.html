@@ -20,15 +20,15 @@
   </div>
   
   <div class="inputs">
-    <input type="button" value="-" onclick="incrementNumber(this.form.glucose, -5, 0, 0);updateCalculations();"/>
+    <input type="button" value="-" onmousedown="toggleOn(this.form.glucose, -5, 0, 0);" onmouseup="toggleOff();"/>
     <input type="number" name="glucose" id="glucose" class="number" step="any" min="0" placeholder="Glucose Level [mg/dl]" required='' onchange="updateCalculations()"/> 
-    <input type="button" value="+" onclick="incrementNumber(this.form.glucose, 5, 0, 0);updateCalculations();"/>
+    <input type="button" value="+" onmousedown="toggleOn(this.form.glucose, 5, 0, 0);" onmouseup="toggleOff();"/>
   </div>
   
   <div class="inputs">
-    <input type="button" value="-" onclick="incrementNumber(this.form.foodbe, -0.5, 0, 1);updateCalculations();"/>
+    <input type="button" value="-" onmousedown="toggleOn(this.form.foodbe, -0.5, 0, 1);" onmouseup="toggleOff();"/>
     <input type="number" name="foodbe" id="foodbe" class="number" step="any" min="0" placeholder="Meal to be eaten [BE]" required='' onchange="updateCalculations()"/>
-    <input type="button" value="+" onclick="incrementNumber(this.form.foodbe, 0.5, 0, 1);updateCalculations();"/>
+    <input type="button" value="+" onmousedown="toggleOn(this.form.foodbe, 0.5, 0, 1);" onmouseup="toggleOff();"/>
   </div>
     
   <div class="output">
@@ -39,7 +39,7 @@
   <div style="line-height:2em; min-height:0.8em;"></div><hr>
   
   <div style="display:none;"><span id="time"/></div>
-  <div class="therapyTime">Active Therapy Settings<span id="therapyTime" style="display:none;"/></div>
+  <div class="therapyTime">Active Therapy Setting<span id="therapyTime" style="display:none;"/></div>
   
   <div id="buttonGroup">
     <div id="singleButton"><a href="#" class="selectButton" onclick="selectTherapy(this);return false;"><span>I</span></a></div>
@@ -53,19 +53,19 @@
   
   <div class="settings" id="settings" style="display:none;">
     <div class="outer">
-      <input type="button" value="-" onclick="incrementNumber(this.form.settingsAim, -5, 0, 0);changeTherapySettings();"/>
+      <input type="button" value="-" onmousedown="toggleOn(this.form.settingsAim, -1, 0, 0);" onmouseup="toggleOff();changeTherapySettings();"/>
       <input type="number" name="settingsAim" id="settingsAim" class="number" step="any" min="0" placeholder="Glucose Aim [mg/dl]" onchange="changeTherapySettings();"/>
-      <input type="button" value="+" onclick="incrementNumber(this.form.settingsAim, 5, 0, 0);changeTherapySettings();"/>
+      <input type="button" value="+" onmousedown="toggleOn(this.form.settingsAim, 1, 0, 0);" onmouseup="toggleOff();changeTherapySettings();"/>
     </div>
     <div class="outer">
-      <input type="button" value="-" onclick="incrementNumber(this.form.settingsCorr, -5, 0, 0);changeTherapySettings();"/>
+      <input type="button" value="-" onmousedown="toggleOn(this.form.settingsCorr, -1, 0, 0);" onmouseup="toggleOff();changeTherapySettings();"/>
       <input type="number" name="settingsCorr" id="settingsCorr" class="number" step="any" min="0" placeholder="Corr. Factor [mg/dl]" onchange="changeTherapySettings();"/>
-      <input type="button" value="+" onclick="incrementNumber(this.form.settingsCorr, 5, 0, 0);changeTherapySettings();"/>
+      <input type="button" value="+" onmousedown="toggleOn(this.form.settingsCorr, 1, 0, 0);" onmouseup="toggleOff();changeTherapySettings();"/>
     </div>
     <div class="outer">
-      <input type="button" value="-" onclick="incrementNumber(this.form.settingsBolus, -0.1, 0, 1);changeTherapySettings();"/>
+      <input type="button" value="-" onmousedown="toggleOn(this.form.settingsBolus, -0.1, 0, 1);" onmouseup="toggleOff();changeTherapySettings();"/>
       <input type="number" name="settingsBolus" id="settingsBolus" class="number" step="any" min="0" placeholder="Bolus [IE/BE]" onchange="changeTherapySettings();"/>
-      <input type="button" value="+" onclick="incrementNumber(this.form.settingsBolus, 0.1, 0, 1);changeTherapySettings();"/>
+      <input type="button" value="+" onmousedown="toggleOn(this.form.settingsBolus, 0.1, 0, 1);" onmouseup="toggleOff();changeTherapySettings();"/>
     </div>
   </div>
   <div style="line-height:1em; min-height:0.5em;"></div><hr style="width: 60%;">

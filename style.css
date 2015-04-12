@@ -222,9 +222,8 @@ input[type="button"] {
   white-space: nowrap;
 }
 #settingsButton:active {
-  color: red;
-  outline:0 none !important;
-  text-decoration: none;
+  #outline:0 none !important;
+  $text-decoration: none;
 }
 
 .settings {
