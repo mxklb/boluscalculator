@@ -63,11 +63,14 @@ window.onload = function () {
 */
 function toggleSettings() {
 	var e = document.getElementById('settings');
+	var btn = document.getElementById('settingsButton');
   if ( e.style.display == 'block' ){
     e.style.display = 'none';
+    btn.style.border = "1px solid transparent";
   }
   else {
     e.style.display = 'block';
+    btn.style.border = "1px solid #ccc";
     window.scrollTo(0, document.body.scrollHeight);
   }
   return false;

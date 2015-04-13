@@ -53,7 +53,7 @@ input[type="number"] {
   font-size: 16px;
   line-height: 2em;
   height: 3em;
-  width: 70%;
+  width: 66%;
   padding: .5em 1.34em;
   margin-bottom: 1em;
   background: transparent;
@@ -99,16 +99,19 @@ input::-moz-focus-inner {
 }
 
 input[type="button"] {
-  width: 12%;
+  width: 14%;
   color: #aaa;
-  outline:0 none !important;
-  font-size: 12px;
+  outline: 0 none !important;
+  font-size: 0.9em;
   font-weight: bold;
-  line-height: 1em;
   padding: 0em 0em;
   margin-bottom: 0em; 
-  border-radius: 7em;
+  border-radius: 1.5em;
   background: #eee;
+  border: 0px solid #ccc;
+}
+
+input[type="button"]:active {
   border: 1px solid #ccc;
 }
 
@@ -116,7 +119,7 @@ input[type="button"] {
   display : inline-block;
   position: relative;
   margin: auto;
-  width: 16%;  
+  width: 18%;  
 }
 
 .selectButton {
@@ -235,12 +238,13 @@ input[type="button"] {
   background:#eee;
   text-decoration: none;
   outline:0 none !important;
-  border: 1px solid #ccc;
+  border: 1px solid transparent;
   white-space: nowrap;
 }
 #settingsButton:active {
   #outline:0 none !important;
-  $text-decoration: none;
+  text-decoration: none;
+  border: 1px solid #ccc;
 }
 
 .settings {
