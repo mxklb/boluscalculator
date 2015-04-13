@@ -280,31 +280,7 @@ function validateInputNumber(elementID)
 }
 
 /*
-* Helper function to increment values of input fields.
-*/
-function incrementElement(elemId, value, minimum, decimals) {
-  var element = document.getElementById(elemId);
-  var min = parseFloat(minimum);
-  var old = parseFloat(element.value);
-  var add = parseFloat(value);
-  var dec = parseInt(decimals);
-  
-  if( isNaN(min) ) min = -Number.MAX_VALUE;
-  if( isNaN(old) ) old = 0; 
-  if( isNaN(add) ) add = 0;
-  if( isNaN(dec) ) dec = 0;
-  
-  var out = old + add;
-  
-  if( out <= min ) element.value = "";
-  else element.value = out.toFixed(dec);
-  
-  updateCalculations();
-}
-
-
-/*
-* Frequently called to update the displayed daytime.
+* Frequently called to update the therapy colors to indicate a wrong selection.
 */
 function updateTime() {
   var timeOutMs = 10000;
@@ -343,19 +319,62 @@ function getTherapyDaytime() {
 }
 
 
-var tid = 0;
-var speed = 250;
+var tid = 0;      // Active timer id for incrementation
+var speed = 250;  // Time between incrementations [ms]
+var start = 0;    // Starting time of mouse down
+var duration = 0; // Duration of mouse down
 
-function toggleOn(element, value, minimum, decimals) {
+/*
+* Starts a timer for continous incrementation on mouse down
+*/
+function toggleOn(element, value, minimum, decimals) 
+{
+  duration = 0;
   var id = element.id;
   if( tid == 0 ) {
-    tid=setInterval('incrementElement("'+id+'", '+value+', '+minimum+', '+decimals+')', speed);
+    start = new Date().getTime();
+    tid = setInterval('incrementElement("'+id+'", '+value+', '+minimum+', '+decimals+')', speed);
   }
+  else toggleOff();
 }
+
+/*
+* Starts a timer for continous incrementation on mouse down
+*/
 function toggleOff() {
-  if( tid!=0 ) {
+  if( tid !=0 ) {
+    var end = new Date().getTime();
+    duration = end - start;
     clearInterval(tid);
-    tid=0;
+    tid = 0;
   }
 }
+
+/*
+* Helper function to increment values of input field elemId.
+*/
+function incrementElement(elemId, value, minimum, decimals) 
+{
+  // Avoid onclick after button up  
+  if( duration > speed ) return false; 
+
+  var element = document.getElementById(elemId);
+  var min = parseFloat(minimum);
+  var old = parseFloat(element.value);
+  var add = parseFloat(value);
+  var dec = parseInt(decimals);
+  
+  if( isNaN(min) ) min = -Number.MAX_VALUE;
+  if( isNaN(old) ) old = 0; 
+  if( isNaN(add) ) add = 0;
+  if( isNaN(dec) ) dec = 0;
+  
+  var out = old + add;
+  
+  if( out <= min ) element.value = "";
+  else element.value = out.toFixed(dec);
+  
+  updateCalculations();
+}
+
 
