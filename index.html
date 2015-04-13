@@ -26,9 +26,9 @@
   </div>
   
   <div class="inputs">
-    <input type="button" value="-" onmousedown="toggleOn(this.form.foodbe, -1, 0, 1);" onmouseup="toggleOff();" mouseleave="toggleOff();" onclick="incrementElement(this.form.foodbe.id, -0.1, 0, 1);"/>
+    <input type="button" value="-" onmousedown="toggleOn(this.form.foodbe, -0.5, 0, 1);" onmouseup="toggleOff();" mouseleave="toggleOff();" onclick="incrementElement(this.form.foodbe.id, -0.1, 0, 1);"/>
     <input type="number" name="foodbe" id="foodbe" class="number" step="any" min="0" placeholder="Meal to be eaten [BE]" required='' onchange="updateCalculations()"/>
-    <input type="button" value="+" onmousedown="toggleOn(this.form.foodbe, 1, 0, 1);" onmouseup="toggleOff();" mouseleave="toggleOff();" onclick="incrementElement(this.form.foodbe.id, 0.1, 0, 1);"/>
+    <input type="button" value="+" onmousedown="toggleOn(this.form.foodbe, 0.5, 0, 1);" onmouseup="toggleOff();" mouseleave="toggleOff();" onclick="incrementElement(this.form.foodbe.id, 0.1, 0, 1);"/>
   </div>
     
   <div class="output">

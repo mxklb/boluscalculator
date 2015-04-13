@@ -21,6 +21,8 @@ function getTherapyBolus(therapyId) {
   return settings[therapyId].bolus;
 }
 
+document.addEventListener("onmouseup", toggleOff, false);
+
 /*
 * Initializes the local storage variable names used for therapies.
 */
@@ -90,20 +92,34 @@ function loadTherapySettings(therapyId) {
 /*
 * Writes the therapy settings of the given id into local storage. 
 */
-function saveTherapySettings(therapyId){
+function saveTherapySettings(therapyId) {
   localStorage.setItem(localNames[therapyId].aim, getTherapyAim(therapyId));
   localStorage.setItem(localNames[therapyId].corr, getTherapyCorrection(therapyId));
   localStorage.setItem(localNames[therapyId].bolus, getTherapyBolus(therapyId));
 }
 
 /*
-* Initializes the settings array with local stored values. 
+* Writes the user inputs, glucose and meal, into the local storage.
+*/
+function saveGlucoseAndMeal() {
+  localStorage.setItem("glucose", document.getElementById('glucose').value);
+  localStorage.setItem("meal", document.getElementById('foodbe').value);
+}
+
+/*
+* Initializes the settings array with local stored values and the user inputs. 
 */
 function initLocalSettings() {
   var therapyId;
   for( therapyId = 0; therapyId < settings.length; therapyId++ ) {
     loadTherapySettings(therapyId);
   }
+  
+  if( localStorage.getItem("glucose") != null )
+    document.getElementById('glucose').value = localStorage.getItem("glucose");
+    
+  if( localStorage.getItem("meal") != null )
+    document.getElementById('foodbe').value = localStorage.getItem("meal");
 }
 
 /*
@@ -239,7 +255,7 @@ function calcEffectiveFood(therapyId)
 }
 
 /*
-* Recalculate 
+* Recalculate results and save user input settings.
 */
 function updateCalculations() 
 {
@@ -264,6 +280,8 @@ function updateCalculations()
   
   if( finalBolus <= 0 ) bolusElement.style.color = "darkgreen";
   else bolusElement.style.color = "#F11";
+  
+  saveGlucoseAndMeal();
 }
 
 /*
