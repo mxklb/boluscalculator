@@ -307,6 +307,7 @@ function incrementElement(elemId, value, minimum, decimals) {
 * Frequently called to update the displayed daytime.
 */
 function updateTime() {
+  var timeOutMs = 10000;
   var currentTime = new Date();
   var hours = currentTime.getHours();
   var minutes = currentTime.getMinutes();
@@ -318,7 +319,7 @@ function updateTime() {
       seconds = "0" + seconds;
   }
   var v = " " + hours + ":" + minutes + " ";
-  setTimeout("updateTime()", 1000);
+  setTimeout("updateTime()", timeOutMs);
   document.getElementById('therapyTime').innerHTML = v;
     
   if( initialized == true && selectedTherapy != getTherapyDaytime() ) {
@@ -343,18 +344,18 @@ function getTherapyDaytime() {
 
 
 var tid = 0;
-var speed = 200;
+var speed = 250;
 
-function toggleOn(element, value, minimum, decimals){
+function toggleOn(element, value, minimum, decimals) {
   var id = element.id;
-  if(tid==0){
-      tid=setInterval('incrementElement("'+id+'", '+value+', '+minimum+', '+decimals+')', speed);
+  if( tid == 0 ) {
+    tid=setInterval('incrementElement("'+id+'", '+value+', '+minimum+', '+decimals+')', speed);
   }
 }
-function toggleOff(){
-  if(tid!=0){
-      clearInterval(tid);
-      tid=0;
+function toggleOff() {
+  if( tid!=0 ) {
+    clearInterval(tid);
+    tid=0;
   }
 }
 
