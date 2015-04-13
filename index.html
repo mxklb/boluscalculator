@@ -20,9 +20,9 @@
   </div>
   
   <div class="inputs">
-    <input type="button" value="-" onmousedown="toggleOn(this.form.glucose, -10, 0, 0);" onmouseup="toggleOff();" mouseleave="toggleOff();" onclick="incrementElement(this.form.glucose.id, -1, 0, 0);"/>
+    <input type="button" value="-" onmousedown="toggleOn(this.form.glucose, -10, 0, 0);return false;" onmouseup="toggleOff();return false;" onclick="incrementElement(this.form.glucose.id, -1, 0, 0);"/>
     <input type="number" name="glucose" id="glucose" class="number" step="any" min="0" placeholder="Glucose Level [mg/dl]" required='' onchange="updateCalculations()"/> 
-    <input type="button" value="+" onmousedown="toggleOn(this.form.glucose, 10, 0, 0);" onmouseup="toggleOff();" mouseleave="toggleOff();" onclick="incrementElement(this.form.glucose.id, 1, 0, 0);"/>
+    <input type="button" value="+" onmousedown="toggleOn(this.form.glucose, 10, 0, 0);return false;" onmouseup="toggleOff();return false;" onclick="incrementElement(this.form.glucose.id, 1, 0, 0);"/>
   </div>
   
   <div class="inputs">
