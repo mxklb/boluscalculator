@@ -4,22 +4,6 @@ html {
   -ms-text-size-adjust: 100%;
 }
 
-/* Avoid user selection expect for inputs */
-* {
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: -moz-none;
-  -o-user-select: none;
-  user-select: none;
-}
-input {
-  -webkit-user-select: text;
-  -khtml-user-select: text;
-  -moz-user-select: text;
-  -o-user-select: text;
-  user-select: text;
-}
-
 body {
   color: #444;
   text-align: center;
@@ -27,6 +11,22 @@ body {
   font-size: 16px;
   line-height: 3em;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Avoid user selection. expect for text inputs */
+* {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: -moz-none;
+  -o-user-select: none;
+  user-select: none;
+}
+input:not([type='button']) {
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -o-user-select: text;
+  user-select: text;
 }
 
 form {
@@ -38,10 +38,10 @@ hr {
   width: 90%;
   border: 0;
   height: 1px;
-  background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
-  background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
-  background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
-  background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+  background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(64,64,64,0.75), rgba(0,0,0,0));
+  background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(64,64,64,0.75), rgba(0,0,0,0));
+  background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(64,64,64,0.75), rgba(0,0,0,0));
+  background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(64,64,64,0.75), rgba(0,0,0,0));
 }
 
 #finalBolus,
@@ -78,7 +78,6 @@ input[type="number"]:valid {
 input[type="number"]:focus::-webkit-input-placeholder {
   color: #FAA;
 }
-
 input[type="number"]:focus::-webkit-input-placeholder,
 input[type="number"]:valid::-webkit-input-placeholder {
   -webkit-transform: translate(5%, -75%) scale(0.9, 0.9);
@@ -86,6 +85,21 @@ input[type="number"]:valid::-webkit-input-placeholder {
   overflow: visible;
   text-shadow: -1px 0 #ffffff, -2px 0 #ffffff, -3px 0 #ffffff, -4px 0 #ffffff, -5px 0 #ffffff, 1px 0 #ffffff, 2px 0 #ffffff, 3px 0 #ffffff, 4px 0 #ffffff, 5px 0 #ffffff, -1px -1px #ffffff, -2px -2px #ffffff, -3px -3px #ffffff, -4px -4px #ffffff, -5px -5px #ffffff;
 }
+
+/* Special style for read only input (result output) */
+input[readonly='readonly']:focus::-webkit-input-placeholder {
+  color: #aaa;
+}
+input[readonly='readonly']::-webkit-input-placeholder,
+input[readonly='readonly']:focus::-webkit-input-placeholder,
+input[readonly='readonly']:valid::-webkit-input-placeholder {
+  -webkit-transform: translate(5%, -75%) scale(0.9, 0.9);
+  visibility: visible !important;
+  overflow: visible;
+  text-shadow: -1px 0 #ffffff, -2px 0 #ffffff, -3px 0 #ffffff, -4px 0 #ffffff, -5px 0 #ffffff, 1px 0 #ffffff, 2px 0 #ffffff, 3px 0 #ffffff, 4px 0 #ffffff, 5px 0 #ffffff, -1px -1px #ffffff, -2px -2px #ffffff, -3px -3px #ffffff, -4px -4px #ffffff, -5px -5px #ffffff;
+}
+
+
 
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
@@ -109,6 +123,7 @@ input[type="button"] {
   border-radius: 1.5em;
   background: #eee;
   border: 0px solid #ccc;
+  cursor: pointer; cursor: hand;
 }
 
 input[type="button"]:active {
@@ -241,8 +256,9 @@ input[type="button"]:active {
   border: 1px solid transparent;
   white-space: nowrap;
 }
+#settingsButton:focus,
 #settingsButton:active {
-  #outline:0 none !important;
+  outline: 0 none !important;
   text-decoration: none;
   border: 1px solid #ccc;
 }
