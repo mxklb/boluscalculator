@@ -13,13 +13,14 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Avoid user selection. Expect input buttons */
+/* Avoid user selection. Expect input buttons + remove tab highlight */
 * {
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: -moz-none;
   -o-user-select: none;
   user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 input:not([type='button']) {
   -webkit-user-select: text;
@@ -258,27 +259,23 @@ input[type="button"]:active {
   outline:0 none !important;
   border: 1px solid transparent;
   white-space: nowrap;
-  -webkit-tap-highlight-color: transparent;
 }
 #settingsButton:focus,
 #settingsButton:active {
   outline: 0 none !important;
   text-decoration: none;
   border: 1px solid #ccc;
-  -webkit-tap-highlight-color: transparent;
 }
 
 .settings {
   display: block;
   margin: 2em auto;
-  -webkit-tap-highlight-color: transparent;
 }
 
 #about a {
   display: block;
   margin: -1.0em auto;
   text-decoration: none;
-  -webkit-tap-highlight-color: transparent;
 }
 
 #about a:visited { 
