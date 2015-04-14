@@ -258,6 +258,7 @@ input[type="button"]:active {
   outline:0 none !important;
   border: 1px solid transparent;
   white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
 }
 #settingsButton:focus,
 #settingsButton:active {
