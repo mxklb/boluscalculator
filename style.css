@@ -13,7 +13,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Avoid user selection. expect for text inputs */
+/* Avoid user selection. Expect input buttons */
 * {
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -50,7 +50,7 @@ input[type="button"],
 input[type="number"] {
   text-align: center;
   box-sizing: border-box;
-  font-size: 16px;
+  font-size: 0.965em;
   line-height: 2em;
   height: 3em;
   width: 66%;
@@ -61,6 +61,19 @@ input[type="number"] {
   border-radius: 5em;
   -webkit-font-smoothing: antialiased;
   -moz-appearance: textfield;
+}
+
+/* Aviod appearance of up-/down buttons */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Remove moz dashed rect */
+a::-moz-focus-inner,
+input::-moz-focus-inner { 
+  border: 0; 
 }
 
 input[type="number"]::-webkit-input-placeholder {
@@ -86,7 +99,7 @@ input[type="number"]:valid::-webkit-input-placeholder {
   text-shadow: -1px 0 #ffffff, -2px 0 #ffffff, -3px 0 #ffffff, -4px 0 #ffffff, -5px 0 #ffffff, 1px 0 #ffffff, 2px 0 #ffffff, 3px 0 #ffffff, 4px 0 #ffffff, 5px 0 #ffffff, -1px -1px #ffffff, -2px -2px #ffffff, -3px -3px #ffffff, -4px -4px #ffffff, -5px -5px #ffffff;
 }
 
-/* Special style for read only input (result output) */
+/* Special style for read only input (final bolus output) */
 input[readonly='readonly']:focus::-webkit-input-placeholder {
   color: #aaa;
 }
@@ -100,18 +113,6 @@ input[readonly='readonly']:valid::-webkit-input-placeholder {
 }
 
 
-
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-a::-moz-focus-inner,
-input::-moz-focus-inner { 
-  border: 0; 
-}
-
 input[type="button"] {
   width: 14%;
   color: #aaa;
@@ -124,6 +125,7 @@ input[type="button"] {
   background: #eee;
   border: 0px solid #ccc;
   cursor: pointer; cursor: hand;
+  -webkit-tap-highlight-color: red;
 }
 
 input[type="button"]:active {
@@ -156,13 +158,13 @@ input[type="button"]:active {
   display: block;
   margin: 1em auto;
   width: 100%;
-  line-height:1.5em;
+  line-height: 1.6em;
   font-size: 1.0em;
 }
 
 #header p {
   font-weight: bold;
-  font-size: 1.5em;
+  font-size: 1.6em;
 }
 
 #finalBolus {
