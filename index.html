@@ -41,16 +41,9 @@
   <div style="display:none;"><span id="time"/></div>
   <div class="therapyTime">Active Therapy Setting<span id="therapyTime" style="display:none;"/></div>
   
-  <div id="buttonGroup">
-    <div id="singleButton"><a href="#" class="selectButton" onclick="selectTherapy(this);return false;"><span>I</span></a></div>
-    <div id="singleButton"><a href="#" class="selectButton" onclick="selectTherapy(this);return false;"><span>II</span></a></div>
-    <div id="singleButton"><a href="#" class="selectButton" onclick="selectTherapy(this);return false;"><span>III</span></a></div>
-    <div id="singleButton"><a href="#" class="selectButton" onclick="selectTherapy(this);return false;"><span>IV</span></a></div>
-  </div>
-  
-  <div class="therapySetup"><span id="therapySetup"/></div>
   <a href="#" id="settingsButton" onclick="toggleSettings();return false;"><span id="therapyInfo"/></a>
-  
+  <div class="therapySetup"><span id="therapySetup"/></div>
+    
   <div class="settings" id="settings" style="display:none;">
     <div class="outer">
       <input type="button" value="-" onmousedown="mouseDown(this.form.settingsAim, -10, 0, 0);" onmouseup="mouseUp();changeTherapySettings();" ontouchstart="touchDown(this.form.settingsAim, -10, 0, 0);" ontouchend="touchUp();changeTherapySettings();" onclick="incrementElement(this.form.settingsAim.id, -1, 0, 0);changeTherapySettings();"/>
@@ -67,8 +60,17 @@
       <input type="number" name="settingsBolus" id="settingsBolus" class="number" step="any" min="0" placeholder="Bolus [IE/BE]" onClick="this.select();" onchange="changeTherapySettings();"/>
       <input type="button" value="+" onmousedown="mouseDown(this.form.settingsBolus,  0.1, 0, 1);" onmouseup="mouseUp();changeTherapySettings();" ontouchstart="touchDown(this.form.settingsBolus,  0.1, 0, 1);" ontouchend="touchUp();changeTherapySettings();" onclick="incrementElement(this.form.settingsBolus.id,  0.1, 0, 1);changeTherapySettings();"/>
     </div>
+  </div>  
+    
+  <div id="buttonGroup">
+    <div id="singleButton"><a href="#" class="selectButton" onclick="selectTherapy(this);return false;"><span>I</span></a></div>
+    <div id="singleButton"><a href="#" class="selectButton" onclick="selectTherapy(this);return false;"><span>II</span></a></div>
+    <div id="singleButton"><a href="#" class="selectButton" onclick="selectTherapy(this);return false;"><span>III</span></a></div>
+    <div id="singleButton"><a href="#" class="selectButton" onclick="selectTherapy(this);return false;"><span>IV</span></a></div>
   </div>
-  <div style="line-height:1em; min-height:0.5em;"></div><hr style="width: 60%;">
+  
+  <div style="line-height:1em; min-height:0.5em;"></div>
+  <hr style="width: 60%;">
   <p id="about"><a href="https://github.com/maxkalb/boluscalculator">BC v1.0</a></p>
 </form>
 </div>
