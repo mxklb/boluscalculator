@@ -54,23 +54,27 @@ hr {
   background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(64,64,64,0.75), rgba(0,0,0,0));
 }
 
-#finalBolus,
 p#output,
+#finalBolus,
 input[type="button"],
 input[type="number"] {
   text-align: center;
-  box-sizing: border-box;
   font-size: 0.965em;
   line-height: 2em;
   height: 3em;
   width: 66%;
-  padding: .5em 1.34em;
   margin-bottom: 1em;
   background: transparent;
   border: 1px solid #ccc;
   border-radius: 5em;
   -webkit-font-smoothing: antialiased;
   -moz-appearance: textfield;
+}
+
+#foodbe,
+#lastButton,
+#settingsBolus {
+  margin-bottom: 0em;
 }
 
 /* Aviod appearance of up-/down buttons */
@@ -181,10 +185,15 @@ input[type="button"]:active {
 #finalBolus {
   display: block;
   margin: 1em auto;
-  width: 90%;
+  width: 85%;
   height: 3.2em;
   font-size: 1.2em;
   white-space: nowrap;
+}
+
+.inputs {
+  display: block;
+  margin: auto;
 }
 
 .output {
@@ -235,7 +244,12 @@ input[type="button"]:active {
 
 .therapyTime {
   padding: .75em 0em;
-  line-height: 1em;
+  line-height: 0em;
+  padding: 1em 0em;
+}
+
+.therapySetup {
+  line-height: 0em;
 }
 
 .therapySetup span {
@@ -257,8 +271,10 @@ input[type="button"]:active {
 #settingsButton {
   display: block;
   margin: 0.5em auto;
-  width: 70%;
-  border-radius:1em;
+  margin-bottom: 0.75em;
+  padding: 0.3em 0em;
+  width: 66%;
+  border-radius:1.5em;
   font-size:1.1em;
   color: #444;
   line-height:1.5em;
@@ -276,9 +292,15 @@ input[type="button"]:active {
   border: 1px solid #ccc;
 }
 
+#buttonGroup {
+  display: block;
+  margin: 0em auto;
+}
+
 .settings {
   display: block;
   margin: 0.5em auto;
+  padding: 0.5em 0em;
 }
 
 #about a {
