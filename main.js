@@ -210,14 +210,18 @@ function selectTherapy(elem) {
 * Sets the border color of the therapy buttons.
 */
 function updateTherapyColor() {
+  var isWrongSetting = false;
+  var ele = document.getElementById("therapySetup");
   var sub = document.getElementsByClassName("selectButton");
   for(var i=0; i<sub.length; i++) {
     if( i == selectedTherapy ) { 
       if( i == getTherapyDaytime() ) sub[i].style.border = "0.1em solid #ccc";
-      else sub[i].style.border = "0.1em solid #FAA";
+      else { sub[i].style.border = "0.1em solid #FAA"; isWrongSetting = true; }
     }
     else sub[i].style.border = "0em dashed #ccc";
   }
+  if( isWrongSetting == true ) ele.style.color = "#D00";
+  else ele.style.color = "#444";
 }
 
 /*
@@ -280,7 +284,7 @@ function updateCalculations()
   elemSum.innerHTML = calcString;
   
   if( finalBolus <= 0 ) bolusElement.style.color = "darkgreen";
-  else bolusElement.style.color = "#F11";
+  else bolusElement.style.color = "#D00";
   
   saveGlucoseAndMeal();
 }
