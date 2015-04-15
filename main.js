@@ -21,8 +21,6 @@ function getTherapyBolus(therapyId) {
   return settings[therapyId].bolus;
 }
 
-document.addEventListener("onmouseup", toggleOff, false);
-
 /*
 * Initializes the local storage variable names used for therapies.
 */
@@ -56,24 +54,6 @@ window.onload = function () {
   autoTherapySetting();
   updateTime();
   initialized = true;
-}
-
-/*
-* Toggles (show/hide) the settings. 
-*/
-function toggleSettings() {
-	var e = document.getElementById('settings');
-	var btn = document.getElementById('settingsButton');
-  if ( e.style.display == 'block' ){
-    e.style.display = 'none';
-    btn.style.border = "1px solid transparent";
-  }
-  else {
-    e.style.display = 'block';
-    btn.style.border = "1px solid #ccc";
-    window.scrollTo(0, document.body.scrollHeight);
-  }
-  return false;
 }
 
 /*
@@ -188,6 +168,24 @@ function refreshSettings(therapyId) {
 function autoTherapySetting() {
   var daytimeId = getTherapyDaytime();
   setTherapy( daytimeId );
+}
+
+/*
+* Toggles (show/hide) the settings. 
+*/
+function toggleSettings() {
+	var e = document.getElementById('settings');
+	var btn = document.getElementById('settingsButton');
+  if ( e.style.display == 'block' ){
+    e.style.display = 'none';
+    btn.style.border = "1px solid transparent";
+  }
+  else {
+    e.style.display = 'block';
+    btn.style.border = "1px solid #ccc";
+    window.scrollTo(0, document.body.scrollHeight);
+  }
+  return false;
 }
 
 /*
@@ -339,37 +337,41 @@ function getTherapyDaytime() {
   return daytime;  
 }
 
-var tid = 0;      // Active timer id for incrementation
-var speed = 250;  // Time between incrementations [ms]
-var start = 0;    // Starting time of mouse down
-var duration = 0; // Duration of mouse down
 
-// Check if touch is supported
+var tid = 0;      /* Active timer id for incrementation */
+var speed = 250;  /* Time between incrementations [ms] */
+var start = 0;    /* Starting time of mouse down */
+var duration = 0; /* Duration of mouse down */
+
+// Check if the device has touch enabled
 var isTouch = 'ontouchstart' in window;
 
 
+/*
+* Touchstart and mousedown event equalization.
+* Ignore any mouse down event on touch devices. 
+*/
 function mouseDown(element, value, minimum, decimals) {
   if( !isTouch ) { 
     touchDown(element, value, minimum, decimals);
   }
 }
-
 function touchDown(element, value, minimum, decimals) {
   toggleOn(element, value, minimum, decimals);
 }
 
-
+/*
+* Touchend and mouseup event equalization.
+* Ignore any mouse up event on touch devices. 
+*/
 function mouseUp() {
   if( !isTouch ) { 
     touchUp();
   }
 }
-
 function touchUp(element, value, minimum, decimals) {
   toggleOff();
 }
-
-
 
 /*
 * Starts a timer for continous incrementation on mouse down
@@ -402,7 +404,7 @@ function toggleOff() {
 */
 function incrementElement(elemId, value, minimum, decimals) 
 {
-  // Avoid onclick after button up  
+  // Dismiss onclick event while releasing pressed down button  
   if( duration > speed ) return false; 
 
   var element = document.getElementById(elemId);
@@ -423,5 +425,4 @@ function incrementElement(elemId, value, minimum, decimals)
   
   updateCalculations();
 }
-
 
