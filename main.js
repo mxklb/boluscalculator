@@ -339,11 +339,37 @@ function getTherapyDaytime() {
   return daytime;  
 }
 
-
 var tid = 0;      // Active timer id for incrementation
 var speed = 250;  // Time between incrementations [ms]
 var start = 0;    // Starting time of mouse down
 var duration = 0; // Duration of mouse down
+
+// Check if touch is supported
+var isTouch = 'ontouchstart' in window;
+
+
+function mouseDown(element, value, minimum, decimals) {
+  if( !isTouch ) { 
+    touchDown(element, value, minimum, decimals);
+  }
+}
+
+function touchDown(element, value, minimum, decimals) {
+  toggleOn(element, value, minimum, decimals);
+}
+
+
+function mouseUp() {
+  if( !isTouch ) { 
+    touchUp();
+  }
+}
+
+function touchUp(element, value, minimum, decimals) {
+  toggleOff();
+}
+
+
 
 /*
 * Starts a timer for continous incrementation on mouse down
