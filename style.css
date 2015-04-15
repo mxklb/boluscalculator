@@ -30,6 +30,15 @@ input:not([type='button']) {
   user-select: text;
 }
 
+/* Style input selection color */
+::selection {
+  background: rgba(160, 160, 160, 0.2);
+}
+::-moz-selection {
+  background: rgba(160, 160, 160, 0.2);
+}
+
+
 form {
   max-width: 300px;
   margin: 0em auto;
@@ -82,7 +91,7 @@ input[type="number"]::-webkit-input-placeholder {
   -webkit-transform-origin: left;
 }
 input[type="number"]:focus {
-  border: 1px solid #FAA;
+  border: 1px solid #ccc;
 }
 input[type="number"]:focus,
 input[type="number"]:valid {
@@ -90,7 +99,7 @@ input[type="number"]:valid {
   color: #212121;
 }
 input[type="number"]:focus::-webkit-input-placeholder {
-  color: #FAA;
+  color: #777;
 }
 input[type="number"]:focus::-webkit-input-placeholder,
 input[type="number"]:valid::-webkit-input-placeholder {
