@@ -176,16 +176,36 @@ function autoTherapySetting() {
 function toggleSettings() {
 	var e = document.getElementById('settings');
 	var btn = document.getElementById('settingsButton');
-  if ( e.style.display == 'block' ){
-    e.style.display = 'none';
+  if ( e.style.display == 'block' ) {
+    hideSettings();
     btn.style.border = "1px solid transparent";
   }
   else {
-    e.style.display = 'block';
+    showSettings();
     btn.style.border = "1px solid #ccc";
     window.scrollTo(0, document.body.scrollHeight);
   }
   return false;
+}
+
+function hideSettings(){
+  document.getElementById('settings').style.opacity = 0;
+  /* The following static delayed call to afterTransition 
+     could/should be added as event listener to transitionend. */
+  tTimeout = setTimeout(afterTransition, 500);
+}
+
+function afterTransition(){
+  document.getElementById('settings').style.display = 'none';
+}
+
+function showSettings(){
+  document.getElementById('settings').style.display = 'block';
+  tTimeout = setTimeout(timeoutShow, 10);
+}
+
+function timeoutShow(){
+  document.getElementById('settings').style.opacity = 1;
 }
 
 /*

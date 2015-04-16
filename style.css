@@ -38,6 +38,9 @@ input:not([type='button']) {
   background: rgba(160, 160, 160, 0.2);
 }
 
+a:active {
+  background: none;
+}
 
 form {
   max-width: 300px;
@@ -292,15 +295,20 @@ input[type="button"]:active {
   border: 1px solid #ccc;
 }
 
+.settings {
+  display: none;
+  margin: 0.5em auto;
+  padding: 0.5em 0em;
+  opacity: 0;
+  -webkit-transition: opacity 500ms ease-in;
+  -moz-transition: opacity 500ms ease-in;
+  -o-transition: opacity 500ms ease-in;
+  transition: opacity 500ms ease-in;
+}
+
 #buttonGroup {
   display: block;
   margin: 0em auto;
-}
-
-.settings {
-  display: block;
-  margin: 0.5em auto;
-  padding: 0.5em 0em;
 }
 
 #about a {

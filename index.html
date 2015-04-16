@@ -1,9 +1,9 @@
-<!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.1//EN"
-"http://www.wapforum.org/DTD/wml_1.1.xml">
-<html>
+<!doctype html>
+<html lang="en" manifest="cache.manifest">
 
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" charset="UTF-8">
+<meta name="msapplication-tap-highlight" content="no" />
 <title>Bolus Calculator v1.0</title>
 <script src="main.js"></script>
 <link rel="stylesheet" type="text/css" href="style.css">
@@ -22,13 +22,13 @@
   <div class="inputs">
     <input type="button" value="-" onmousedown="mouseDown(this.form.glucose, -10, 0, 0);" onmouseup="mouseUp();" ontouchstart="touchDown(this.form.glucose, -10, 0, 0);" ontouchend="touchUp();" onclick="incrementElement(this.form.glucose.id, -1, 0, 0);"/>
     <input type="number" name="glucose" id="glucose" class="number" step="any" min="0" placeholder="Glucose Level [mg/dl]" required='' onClick="this.select();" onchange="updateCalculations()"/> 
-    <input type="button" value="+" onmousedown="mouseDown(this.form.glucose, 10, 0, 0);" onmouseup="mouseUp();" ontouchstart="touchDown(this.form.glucose, 10, 0, 0);" ontouchend="touchUp();" onclick="incrementElement(this.form.glucose.id, 1, 0, 0);"/>
+    <input type="button" value="+" onmousedown="mouseDown(this.form.glucose,  10, 0, 0);" onmouseup="mouseUp();" ontouchstart="touchDown(this.form.glucose,  10, 0, 0);" ontouchend="touchUp();" onclick="incrementElement(this.form.glucose.id,  1, 0, 0);"/>
   </div>
   
   <div class="inputs">
     <input type="button" id="lastButton" value="-" onmousedown="mouseDown(this.form.foodbe, -0.5, 0, 1);" onmouseup="mouseUp();" ontouchstart="touchDown(this.form.foodbe, -0.5, 0, 1);" ontouchend="touchUp();" onclick="incrementElement(this.form.foodbe.id, -0.1, 0, 1);"/>
     <input type="number" name="foodbe" id="foodbe" class="number" step="any" min="0" placeholder="Bread Units [BE]" required='' onClick="this.select();" onchange="updateCalculations()"/>
-    <input type="button" id="lastButton" value="+" onmousedown="mouseDown(this.form.foodbe, 0.5, 0, 1);" onmouseup="mouseUp();" ontouchstart="touchDown(this.form.foodbe, 0.5, 0, 1);" ontouchend="touchUp();" onclick="incrementElement(this.form.foodbe.id, 0.1, 0, 1);"/>
+    <input type="button" id="lastButton" value="+" onmousedown="mouseDown(this.form.foodbe,  0.5, 0, 1);" onmouseup="mouseUp();" ontouchstart="touchDown(this.form.foodbe,  0.5, 0, 1);" ontouchend="touchUp();" onclick="incrementElement(this.form.foodbe.id,  0.1, 0, 1);"/>
   </div>
     
   <div class="output">
@@ -44,7 +44,7 @@
   <div class="therapySetup"><span id="therapySetup"/></div>
   <a href="#" id="settingsButton" onclick="toggleSettings();return false;"><span id="therapyInfo"/></a>
     
-  <div class="settings" id="settings" style="display:none;">
+  <div class="settings" id="settings">
     <div class="outer">
       <input type="button" value="-" onmousedown="mouseDown(this.form.settingsAim, -10, 0, 0);" onmouseup="mouseUp();changeTherapySettings();" ontouchstart="touchDown(this.form.settingsAim, -10, 0, 0);" ontouchend="touchUp();changeTherapySettings();" onclick="incrementElement(this.form.settingsAim.id, -1, 0, 0);changeTherapySettings();"/>
       <input type="number" name="settingsAim" id="settingsAim" class="number" step="any" min="0" placeholder="Glucose Aim [mg/dl]" onClick="this.select();" onchange="changeTherapySettings();"/>
