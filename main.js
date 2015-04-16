@@ -53,6 +53,7 @@ window.onload = function () {
   initLocalSettings();
   autoTherapySetting();
   updateTime();
+  hideSettings();
   initialized = true;
 }
 
