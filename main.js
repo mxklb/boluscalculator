@@ -264,7 +264,7 @@ function calcCorrection(therapyId)
   var gluAim = getTherapyAim(therapyId);
   var corr = getTherapyCorrection(therapyId);
   var result = (glu - gluAim) / corr;
-  if( glu == "" ) result = NaN;
+  if( glu == "" || gluAim == "" || corr == "" ) result = NaN;
   return result;
 }
 
@@ -276,7 +276,7 @@ function calcEffectiveFood(therapyId)
   var food = document.getElementById("foodbe").value;
   var factor = getTherapyBolus(therapyId);
   var result = food * factor;
-  if( food = "" ) result = NaN;
+  if( food = "" || factor == "" ) result = NaN;
   return result;
 }
 
@@ -290,23 +290,32 @@ function updateCalculations()
   var correction = calcCorrection( selectedTherapy );
   var effectiveFood = calcEffectiveFood( selectedTherapy );
   var finalBolus = correction + effectiveFood;
+  if( isNaN(correction) ) finalBolus = 0;
+  if( isNaN(effectiveFood) ) finalBolus = 0;
   
-  if( finalBolus == 0 || isNaN(finalBolus) ) bolusElement.value = "";
+  var bolusInvalid = finalBolus == 0;
+  
+  /* Set final bolus result (text) */
+  if( bolusInvalid ) bolusElement.value = "";
   else bolusElement.value = finalBolus.toFixed(2);
  
+  /* Set final bolus result (color) */
+  if( bolusInvalid ) bolusElement.style.color = "#444";
+  else if( finalBolus <= 0 ) bolusElement.style.color = "darkgreen";
+  else bolusElement.style.color = "#D00";
+  
+  /* Update residual results (correction and meal) */
   var elemSum = document.getElementById('sum');
  
   var calcString = "";
-  if( bolusElement.value != "" ){
+  if( !bolusInvalid ){
     calcString = "Corr (" + correction.toFixed(2) + ") + Meal (" + effectiveFood.toFixed(2) + ")";
     elemSum.style.background = "#fff";
   }
   else { elemSum.style.background = "transparent"; }
   elemSum.innerHTML = calcString;
   
-  if( finalBolus <= 0 ) bolusElement.style.color = "darkgreen";
-  else bolusElement.style.color = "#D00";
-  
+  /* Always store inputs */
   saveGlucoseAndMeal();
 }
 

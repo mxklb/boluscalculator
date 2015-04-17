@@ -58,10 +58,10 @@ Actually the code is not tested, reviewed or validated!
 - Make different measurement units available
 - ~~Form entries should remember/cache values!?~~
 - ~~Default therapy settings should be configureable~~
-- Develop a new more modern, scalable or mobile app
-    - Therapy settings should be separated (menu)
+- ~~Develop a new more modern, scalable or mobile app~~
+    - ~~Therapy settings should be separated (menu)~~
     - Steady changing therapy settings (curves)?
-    - Automated daytime detection
+    - ~~Automated daytime detection~~
 
 ## License
 Feel free to use, modify, comment or whatever ... this implementation is licensed under [MIT](https://github.com/maxkalb/boluscalculator/blob/master/LICENSE).

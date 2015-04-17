@@ -30,18 +30,18 @@
   
   <div class="inputs">
     <input type="button" value="-" onmousedown="mouseDown(this.form.glucose, -10, 0, 0);" onmouseup="mouseUp();" ontouchstart="touchDown(this.form.glucose, -10, 0, 0);" ontouchend="touchUp();" onclick="incrementElement(this.form.glucose.id, -1, 0, 0);"/>
-    <input type="number" name="glucose" id="glucose" class="number" step="any" min="0" placeholder="Glucose Level [mg/dl]" required='' onClick="this.select();" onchange="updateCalculations()"/> 
+    <input type="number" name="glucose" id="glucose" class="number" step="any" min="0" placeholder="Glucose Level [mg/dl]" onClick="this.select();" onchange="updateCalculations()"/> 
     <input type="button" value="+" onmousedown="mouseDown(this.form.glucose,  10, 0, 0);" onmouseup="mouseUp();" ontouchstart="touchDown(this.form.glucose,  10, 0, 0);" ontouchend="touchUp();" onclick="incrementElement(this.form.glucose.id,  1, 0, 0);"/>
   </div>
   
   <div class="inputs">
     <input type="button" id="lastButton" value="-" onmousedown="mouseDown(this.form.foodbe, -0.5, 0, 1);" onmouseup="mouseUp();" ontouchstart="touchDown(this.form.foodbe, -0.5, 0, 1);" ontouchend="touchUp();" onclick="incrementElement(this.form.foodbe.id, -0.1, 0, 1);"/>
-    <input type="number" name="foodbe" id="foodbe" class="number" step="any" min="0" placeholder="Bread Units [BE]" required='' onClick="this.select();" onchange="updateCalculations()"/>
+    <input type="number" name="foodbe" id="foodbe" class="number" step="any" min="0" placeholder="Bread Units [BE]" onClick="this.select();" onchange="updateCalculations()"/>
     <input type="button" id="lastButton" value="+" onmousedown="mouseDown(this.form.foodbe,  0.5, 0, 1);" onmouseup="mouseUp();" ontouchstart="touchDown(this.form.foodbe,  0.5, 0, 1);" ontouchend="touchUp();" onclick="incrementElement(this.form.foodbe.id,  0.1, 0, 1);"/>
   </div>
     
   <div class="output">
-    <input type="number" name="finalBolus" id="finalBolus" readonly="readonly" step="any" placeholder="Bolus [BE]"/>
+    <input type="number" name="finalBolus" id="finalBolus" readonly="readonly" step="any" placeholder="Final Bolus [BE]"/>
     <span id="sum"/>
   </div>
   
@@ -56,17 +56,17 @@
   <div class="settings" id="settings">
     <div class="outer">
       <input type="button" value="-" onmousedown="mouseDown(this.form.settingsAim, -10, 0, 0);" onmouseup="mouseUp();changeTherapySettings();" ontouchstart="touchDown(this.form.settingsAim, -10, 0, 0);" ontouchend="touchUp();changeTherapySettings();" onclick="incrementElement(this.form.settingsAim.id, -1, 0, 0);changeTherapySettings();"/>
-      <input type="number" name="settingsAim" id="settingsAim" class="number" step="any" min="0" placeholder="Glucose Aim [mg/dl]" onClick="this.select();" onchange="changeTherapySettings();"/>
+      <input type="number" name="settingsAim" id="settingsAim" class="number" step="any" min="0" required='' placeholder="Glucose Aim [mg/dl]" onClick="this.select();" onchange="changeTherapySettings();"/>
       <input type="button" value="+" onmousedown="mouseDown(this.form.settingsAim,  10, 0, 0);" onmouseup="mouseUp();changeTherapySettings();" ontouchstart="touchDown(this.form.settingsAim,  10, 0, 0);" ontouchend="touchUp();changeTherapySettings();" onclick="incrementElement(this.form.settingsAim.id,  1, 0, 0);changeTherapySettings();"/>
     </div>
     <div class="outer">
       <input type="button" value="-" onmousedown="mouseDown(this.form.settingsCorr, -10, 0, 0);" onmouseup="mouseUp();changeTherapySettings();" ontouchstart="touchDown(this.form.settingsCorr, -10, 0, 0);" ontouchend="touchUp();changeTherapySettings();" onclick="incrementElement(this.form.settingsCorr.id, -1, 0, 0);changeTherapySettings();"/>
-      <input type="number" name="settingsCorr" id="settingsCorr" class="number" step="any" min="0" placeholder="Corr. Factor [mg/dl]" onClick="this.select();" onchange="changeTherapySettings();"/>
+      <input type="number" name="settingsCorr" id="settingsCorr" class="number" step="any" min="0" required='' placeholder="Corr. Factor [mg/dl]" onClick="this.select();" onchange="changeTherapySettings();"/>
       <input type="button" value="+" onmousedown="mouseDown(this.form.settingsCorr,  10, 0, 0);" onmouseup="mouseUp();changeTherapySettings();" ontouchstart="touchDown(this.form.settingsCorr,  10, 0, 0);" ontouchend="touchUp();changeTherapySettings();" onclick="incrementElement(this.form.settingsCorr.id,  1, 0, 0);changeTherapySettings();"/>
     </div>
     <div class="outer">
       <input type="button" id="lastButton" value="-" onmousedown="mouseDown(this.form.settingsBolus, -0.1, 0, 1);" onmouseup="mouseUp();changeTherapySettings();" ontouchstart="touchDown(this.form.settingsBolus, -0.1, 0, 1);" ontouchend="touchUp();changeTherapySettings();" onclick="incrementElement(this.form.settingsBolus.id, -0.1, 0, 1);changeTherapySettings();"/>
-      <input type="number" name="settingsBolus" id="settingsBolus" class="number" step="any" min="0" placeholder="Bolus [IE/BE]" onClick="this.select();" onchange="changeTherapySettings();"/>
+      <input type="number" name="settingsBolus" id="settingsBolus" class="number" step="any" min="0" required='' placeholder="Bolus [IE/BE]" onClick="this.select();" onchange="changeTherapySettings();"/>
       <input type="button" id="lastButton" value="+" onmousedown="mouseDown(this.form.settingsBolus,  0.1, 0, 1);" onmouseup="mouseUp();changeTherapySettings();" ontouchstart="touchDown(this.form.settingsBolus,  0.1, 0, 1);" ontouchend="touchUp();changeTherapySettings();" onclick="incrementElement(this.form.settingsBolus.id,  0.1, 0, 1);changeTherapySettings();"/>
     </div>
   </div>  

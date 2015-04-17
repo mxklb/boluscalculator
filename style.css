@@ -20,6 +20,7 @@ body {
   -moz-user-select: -moz-none;
   -o-user-select: none;
   user-select: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
   -webkit-tap-highlight-color: transparent;
 }
 input:not([type='button']) {
@@ -93,21 +94,34 @@ input::-moz-focus-inner {
   border: 0; 
 }
 
-input[type="number"]::-webkit-input-placeholder {
-  transition: all 0.2s cubic-bezier(0.55, -0.55, 1, 1.55);
-  -webkit-transform-origin: left;
-}
-input[type="number"]:focus {
-  border: 1px solid #ccc;
-}
+/* Styling input type numbers & placeholders */
 input[type="number"]:focus,
 input[type="number"]:valid {
   outline: none;
   color: #212121;
 }
+input[type="number"]:focus {
+  border: 1px solid #ccc;
+}
+input::-placeholder {
+  color: #F0F;
+}
+input[type="number"]::-webkit-input-placeholder {
+  transition: all 0.2s cubic-bezier(0.55, -0.55, 1, 1.55);
+  -webkit-transform-origin: left;
+}
+/*input[type="number"]::-moz-placeholder {
+  transition: all 0.2s cubic-bezier(0.55, -0.55, 1, 1.55);
+  -moz-transform-origin: left;
+}*/
+
 input[type="number"]:focus::-webkit-input-placeholder {
   color: #777;
 }
+input[type="number"]::-moz-placeholder {
+  border: 1px solid #00B;
+}
+
 input[type="number"]:focus::-webkit-input-placeholder,
 input[type="number"]:valid::-webkit-input-placeholder {
   -webkit-transform: translate(5%, -75%) scale(0.9, 0.9);
@@ -115,6 +129,13 @@ input[type="number"]:valid::-webkit-input-placeholder {
   overflow: visible;
   text-shadow: -1px 0 #ffffff, -2px 0 #ffffff, -3px 0 #ffffff, -4px 0 #ffffff, -5px 0 #ffffff, 1px 0 #ffffff, 2px 0 #ffffff, 3px 0 #ffffff, 4px 0 #ffffff, 5px 0 #ffffff, -1px -1px #ffffff, -2px -2px #ffffff, -3px -3px #ffffff, -4px -4px #ffffff, -5px -5px #ffffff;
 }
+/*input[type="number"]:focus::-moz-placeholder,
+input[type="number"]:valid::-moz-placeholder { 
+  -moz-transform: translate(5%, -75%) scale(0.9, 0.9);
+  visibility: visible !important;
+  overflow: visible;
+  text-shadow: -1px 0 #ffffff, -2px 0 #ffffff, -3px 0 #ffffff, -4px 0 #ffffff, -5px 0 #ffffff, 1px 0 #ffffff, 2px 0 #ffffff, 3px 0 #ffffff, 4px 0 #ffffff, 5px 0 #ffffff, -1px -1px #ffffff, -2px -2px #ffffff, -3px -3px #ffffff, -4px -4px #ffffff, -5px -5px #ffffff;
+}*/
 
 /* Special style for read only input (final bolus output) */
 input[readonly='readonly']:focus::-webkit-input-placeholder {
@@ -129,7 +150,7 @@ input[readonly='readonly']:valid::-webkit-input-placeholder {
   text-shadow: -1px 0 #ffffff, -2px 0 #ffffff, -3px 0 #ffffff, -4px 0 #ffffff, -5px 0 #ffffff, 1px 0 #ffffff, 2px 0 #ffffff, 3px 0 #ffffff, 4px 0 #ffffff, 5px 0 #ffffff, -1px -1px #ffffff, -2px -2px #ffffff, -3px -3px #ffffff, -4px -4px #ffffff, -5px -5px #ffffff;
 }
 
-
+/* Styling the +/- buttons */
 input[type="button"] {
   width: 14%;
   color: #aaa;
@@ -142,7 +163,8 @@ input[type="button"] {
   background: #eee;
   border: 0px solid #ccc;
   cursor: pointer; cursor: hand;
-  -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
 input[type="button"]:active {
@@ -169,7 +191,6 @@ input[type="button"]:active {
   line-height: 3em;
   border-radius: 1.5em;
   border: 1px solid #aaa;
-  -webkit-tap-highlight-color: transparent;
 }
 
 #header {
