@@ -333,11 +333,14 @@ input[type="button"]:active {
 }
 
 #about a {
+  color: #444;
   display: block;
   margin: -1.0em auto;
   text-decoration: none;
 }
 
+#about a:active,
+#about a:focus,
 #about a:visited { 
 	color: #444;
 }
