@@ -17,17 +17,17 @@ body {
 
 #main {
   position: relative;
-  top: 30%;
-  -webkit-transform: translateY(-30%);
-  -moz-transform: translateY(-30%);
-  -ms-transform: translateY(-30%);
-  -o-transform: translateY(-30%);
-  transform: translateY(-30%);
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
-@media all and (max-height: 700px) {
+@media all and (max-height: 620px) {
   #main {
-    top: 0%;
+    top: 1em;
     -webkit-transform: translateY(0%);
     -moz-transform: translateY(0%);
     -ms-transform: translateY(0%);
@@ -60,10 +60,6 @@ input:not([type='button']) {
 }
 ::-moz-selection {
   background: rgba(160, 160, 160, 0.2);
-}
-
-a:active {
-  background: none;
 }
 
 form {
@@ -220,13 +216,12 @@ input[type="button"]:active {
   display: block;
   margin: 1em auto;
   width: 100%;
-  line-height: 1.6em;
+  line-height: 1em;
   font-size: 1.0em;
 }
 
 #header p {
-  font-weight: bold;
-  font-size: 1.6em;
+  font-size: 1.1em;
 }
 
 #finalBolus {
@@ -290,9 +285,8 @@ input[type="button"]:active {
 }
 
 .therapyTime {
-  padding: .75em 0em;
-  line-height: 0em;
   padding: 1em 0em;
+  line-height: 0em;
 }
 
 .therapySetup {
