@@ -391,9 +391,12 @@ input[type="image"] {
   color: #444;
 }
 
+#about a:link { color: #FAA }
+#about a:hover,
 #about a:active,
 #about a:focus,
 #about a:visited { 
 	color: #444;
 }
+
 
