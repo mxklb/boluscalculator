@@ -379,7 +379,7 @@ input[type="image"] {
 }
 
 #about {
-  font-size:0.75em;
+  font-size:x-small;
   color: #444;
   display: block;
   margin: -1.0em auto;
@@ -387,6 +387,8 @@ input[type="image"] {
 
 #about a { 
   text-decoration: none;
+  font-size:x-small;
+  color: #444;
 }
 
 #about a:active,
