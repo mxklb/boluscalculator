@@ -63,7 +63,8 @@ input:not([type='button']) {
 }
 
 form {
-  max-width: 300px;
+  max-width: 320px;
+  min-width: 270px;
   margin: 0em auto;
 }
 
@@ -85,13 +86,17 @@ input[type="number"] {
   font-size: 0.965em;
   line-height: 2em;
   height: 3em;
-  width: 66%;
+  width: 60%;
   margin-bottom: 1em;
   background: transparent;
   border: 1px solid #ccc;
   border-radius: 5em;
   -webkit-font-smoothing: antialiased;
   -moz-appearance: textfield;
+}
+
+input[type="number"] {
+  min-width: 150px;
 }
 
 #foodbe,
@@ -171,7 +176,7 @@ input[readonly='readonly']:valid::-webkit-input-placeholder {
 
 /* Styling the +/- buttons */
 input[type="button"] {
-  width: 14%;
+  width: 3em;
   color: #aaa;
   outline: 0 none !important;
   font-size: 0.9em;
@@ -254,10 +259,10 @@ input[type="button"]:active {
 
 #sum {
   color: #aaa;
-  padding: 0px 0.001em;
   line-height: 1em;
   height: 1em;
-  margin: -8.5% 25%;
+  margin: -2.25em 27%;
+  margin-left: 27%;
   white-space: nowrap;
 }
 
