@@ -1,4 +1,9 @@
-/// Global variable to identify already passed initialization
+/* 
+* IBC js
+* Author: Max Kalb - http://maxkalb.github.io/ 
+*/
+
+// Variable to identify already passed initialization
 var initialized = false;
 
 // Array holding the therapy settings
@@ -189,24 +194,40 @@ function toggleSettings() {
   return false;
 }
 
-function hideSettings(){
+function hideSettings() {
   document.getElementById('settings').style.opacity = 0;
   /* The following static delayed call to afterTransition 
      could/should be added as event listener to transitionend. */
   tTimeout = setTimeout(afterTransition, 500);
 }
 
-function afterTransition(){
+function afterTransition() {
   document.getElementById('settings').style.display = 'none';
 }
 
-function showSettings(){
+function showSettings() {
   document.getElementById('settings').style.display = 'block';
   tTimeout = setTimeout(timeoutShow, 10);
 }
 
-function timeoutShow(){
+function timeoutShow() {
   document.getElementById('settings').style.opacity = 1;
+}
+
+/*
+* Toggles (show/hide) the app setup page. 
+*/
+function toggleSetup() {
+  var about = document.getElementById('about');
+  var donate = document.getElementById('donateButton');
+  if ( about.style.display == 'block' ) {
+    about.style.display = 'none';
+    donate.style.display = 'none';
+  }
+  else {
+    about.style.display = 'block';
+    donate.style.display = 'block';
+  }
 }
 
 /*

@@ -1,3 +1,8 @@
+/* 
+IBC Stylesheet
+Author: Max Kalb - http://maxkalb.github.io/ 
+*/
+
 html {
   -webkit-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
@@ -12,7 +17,6 @@ body {
   font-family: sans-serif;
   font-size: 16px;
   line-height: 3em;
-  -webkit-font-smoothing: antialiased;
 }
 
 #main {
@@ -23,6 +27,7 @@ body {
   -ms-transform: translateY(-50%);
   -o-transform: translateY(-50%);
   transform: translateY(-50%);
+  overflow:hidden;
 }
 
 @media all and (max-height: 620px) {
@@ -33,6 +38,7 @@ body {
     -ms-transform: translateY(0%);
     -o-transform: translateY(0%);
     transform: translateY(0%);
+    overflow:auto;
   }
 }
 
@@ -45,6 +51,7 @@ body {
   user-select: none;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
   -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
 }
 input:not([type='button']) {
   -webkit-user-select: text;
@@ -91,7 +98,6 @@ input[type="number"] {
   background: transparent;
   border: 1px solid #ccc;
   border-radius: 5em;
-  -webkit-font-smoothing: antialiased;
   -moz-appearance: textfield;
 }
 
@@ -122,7 +128,7 @@ input::-moz-focus-inner {
 input[type="number"]:focus,
 input[type="number"]:valid {
   outline: none;
-  color: #212121;
+  color: #444;
 }
 input[type="number"]:focus {
   border: 1px solid #ccc;
@@ -139,6 +145,7 @@ input[type="number"]::-webkit-input-placeholder {
   -moz-transform-origin: left;
 }*/
 
+input:not([readonly='readonly']):hover::-webkit-input-placeholder,
 input[type="number"]:focus::-webkit-input-placeholder {
   color: #777;
 }
@@ -202,6 +209,7 @@ input[type="button"]:active {
   width: 18%;  
 }
 
+.setupButton,
 .selectButton {
   color: #aaa;
   text-align: center;
@@ -215,6 +223,14 @@ input[type="button"]:active {
   line-height: 3em;
   border-radius: 1.5em;
   border: 1px solid #aaa;
+}
+
+.setupButton {
+  font-size: 2.5em;
+  line-height: 1em;
+  max-width: 1em;
+  margin-top: 0.33em;
+  border: 1px solid transparent;
 }
 
 #header {
@@ -322,22 +338,24 @@ input[type="submit"],
   padding: 0.4em 0em;
   width: 75%;
   border-radius:1.5em;
-  font-size:1.1em;
+  font-size: 1.1em;
   color: #444;
-  line-height:1.5em;
-  text-align:center;
-  background:#eee;
+  line-height: 1.5em;
+  text-align: center;
+  background: #eee;
   text-decoration: none;
-  outline:0 none !important;
+  outline: 0 none !important;
   border: 1px solid transparent;
   white-space: nowrap;
 }
 
 input[type="submit"] {
-  width:50%;
+  width: 50%;
   margin-top: 1.2em;
-  font-size:small;
+  font-size: small;
   cursor: pointer; cursor: hand;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
 input[type="submit"]:focus,
@@ -354,7 +372,6 @@ input[type="image"] {
   filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
   filter: gray; /* IE6-9 */
   -webkit-filter: grayscale(100%); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
-  -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
   -webkit-tap-highlight-color: transparent;
   /* Hide button due to submit usage */
@@ -375,6 +392,8 @@ input[type="image"] {
 #buttonGroup {
   display: block;
   margin: 0em auto;
+  max-width: 320px;
+  min-width: 270px; 
 }
 
 #about {
