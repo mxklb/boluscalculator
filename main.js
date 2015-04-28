@@ -183,52 +183,59 @@ function toggleSettings() {
 	var e = document.getElementById('settings');
 	var btn = document.getElementById('settingsButton');
   if ( e.style.display == 'block' ) {
-    hideSettings();
+    hideElement(e);
     btn.style.border = "1px solid transparent";
   }
   else {
-    showSettings();
+    showElement(e);
     btn.style.border = "1px solid #ccc";
     window.scrollTo(0, document.body.scrollHeight);
   }
   return false;
 }
 
-function hideSettings() {
-  document.getElementById('settings').style.opacity = 0;
-  /* The following static delayed call to afterTransition 
-     could/should be added as event listener to transitionend. */
-  tTimeout = setTimeout(afterTransition, 500);
-}
-
-function afterTransition() {
-  document.getElementById('settings').style.display = 'none';
-}
-
-function showSettings() {
-  document.getElementById('settings').style.display = 'block';
-  tTimeout = setTimeout(timeoutShow, 10);
-}
-
-function timeoutShow() {
-  document.getElementById('settings').style.opacity = 1;
-}
-
 /*
 * Toggles (show/hide) the app setup page. 
 */
 function toggleSetup() {
-  var about = document.getElementById('about');
-  var donate = document.getElementById('donateButton');
-  if ( about.style.display == 'block' ) {
-    about.style.display = 'none';
-    donate.style.display = 'none';
+  var e = document.getElementById('setupGroup');
+  var btn = document.getElementById('setupButton');
+  if ( e.style.display == 'block' ) {
+    hideElement(e);
+    btn.style.border = "1px solid transparent";
   }
   else {
-    about.style.display = 'block';
-    donate.style.display = 'block';
+    showElement(e);
+    btn.style.border = "1px solid #ccc";
+    window.scrollTo(0, document.body.scrollHeight);
   }
 }
+
+/*
+* Hides the given element after opacity transition
+*/
+function hideElement(elem) {
+  elem.style.opacity = 0;
+  /* The following static delayed call to afterTransition 
+     could/should be added as event listener to transitionend. */
+  tTimeout = setTimeout(function() { afterTransition(elem); }, 500);
+}
+function afterTransition(elem) {
+  elem.style.display = 'none';
+}
+
+
+/*
+* Shows the given element after opacity transition
+*/
+function showElement(elem) {
+  elem.style.display = 'block';
+  tTimeout = setTimeout(function() { timeoutShow(elem); }, 1);
+}
+function timeoutShow(elem) {
+  elem.style.opacity = 1;
+}
+
 
 /*
 * Return the index of the select button elem.

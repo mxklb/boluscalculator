@@ -3,8 +3,7 @@
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" charset="UTF-8">
-  <meta name="msapplication-tap-highlight" content="no" />
-  <meta name="google-translate-customization" content="c4526a1c24f49e53-00c022f1e704d47a-g65c4377f4cd1dddb-22"></meta>
+  <meta name="msapplication-tap-highlight" content="no">
   <title>IBC</title>
   <script src="main.js"></script>
   <link rel="stylesheet" type="text/css" href="style.css">
@@ -83,20 +82,25 @@
   <hr style="width: 60%;">
 </form>
 
-<form action="https://www.paypal.com/cgi-bin/webscr" id="donateButton" method="post" target="_top" style="display:none;">
-  <input type="hidden" name="cmd" value="_s-xclick">
-  <input type="hidden" name="hosted_button_id" value="MBLVEVHTLPWA8">
-  <input type="submit" name="submit" value="Donate">
-  <input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
-</form>
-
-<p id="about" style="display:none;"><a href="https://github.com/maxkalb/boluscalculator">About IBC v1.0b</a></p>
-
-<div id="google_translate_element"></div><script type="text/javascript">
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
-}
-</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<div id="setupGroup" style="display:none;">
+  <p>Application Setup</p>
+  <small>Glucose and meal measurement units</small>
+  <div id="unitButtons">
+    <div id="singleButton"><a href="#" class="selectButton" onclick="return false;"><span style="font-size: 0.75em;">[mg/dl]</span></a></div>
+    <div id="singleButton"><a href="#" class="selectButton" onclick="return false;"><span style="font-size: 0.6em;">[mmol/L]</span></a></div>
+    <div id="singleButton"><a href="#" class="selectButton" onclick="return false;"><span style="font-size: 0.75em;">[BE]</span></a></div>
+    <div id="singleButton"><a href="#" class="selectButton" onclick="return false;"><span style="font-size: 0.75em;">Carbs</span></a></div>
+  </div>
+  <div style="line-height:1em; min-height:0.5em;"></div>
+  <hr style="width: 60%;">
+  <form action="https://www.paypal.com/cgi-bin/webscr" id="donateButton" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="hosted_button_id" value="MBLVEVHTLPWA8">
+    <input type="submit" name="submit" value="Donate">
+    <input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
+  </form>
+  <p id="about"><a href="https://github.com/maxkalb/boluscalculator">README IBC v1.0b</a></p>
+</div>
 
 <div id="buttonGroup">
   <div id="singleButton"><a href="#" id="setupButton" class="setupButton" onclick="toggleSetup();return false;">&#9775;</a></div>

@@ -233,7 +233,8 @@ input[type="button"]:active {
   border: 1px solid transparent;
 }
 
-#header {
+#header,
+#setupGroup {
   display: block;
   margin: 1em auto;
   width: 100%;
@@ -241,7 +242,13 @@ input[type="button"]:active {
   font-size: 1.0em;
 }
 
-#header p {
+#setupGroup {
+  max-width: 320px;
+  min-width: 270px;
+}
+
+#header p,
+#setupGroup p {
   font-size: 1.1em;
 }
 
@@ -378,7 +385,8 @@ input[type="image"] {
   display: none;  
 }
 
-.settings {
+.settings,
+#setupGroup {
   display: none;
   margin: 0.5em auto;
   padding: 0.5em 0em;
@@ -389,18 +397,23 @@ input[type="image"] {
   transition: opacity 500ms ease-in;
 }
 
-#buttonGroup {
+#buttonGroup,
+#unitButtons {
   display: block;
   margin: 0em auto;
   max-width: 320px;
   min-width: 270px; 
 }
 
+#unitButtons {
+  margin-top: 1em;
+}
+
 #about {
   font-size:x-small;
   color: #444;
   display: block;
-  margin: -1.0em auto;
+  margin: auto;
 }
 
 #about a { 
