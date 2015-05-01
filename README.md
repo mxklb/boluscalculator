@@ -1,29 +1,14 @@
-# Bolus Calculator
-Insulin Bolus & Correction Calculator HTML5 Webapp.
+# Insulin Bolus Calculator
+IBC - A Insulin Bolus Calculator HTML5 Webapp.
 
 A simple and tranparent calculator app for the intensive/flexibles insulin therapy.
 
-[Just try it out here](http://maxkalb.github.io/boluscalculator/)
+Just try it out here: [maxkalb.github.io/boluscalculator](http://maxkalb.github.io/boluscalculator/)
 
 ## About
-This is a bolus calculator app to estimate a single insulin dosis based on personalized therapy settings, the actual glucose level and a meal. I wrote this app because I couldn't find any free web/mobile app that let one calculate a insulin bolus depending on the meal to be eaten that implements the formulars I knew. Most of the apps I found did not clearly point out the formulars they use to perform the bolus calculation. So this is the result, hopefully someone will find it usable ... 
+This is a bolus calculator app to estimate a single insulin dose based on personalized therapy settings, the actual blood glucose level and a meal. I wrote this app because I couldn't find any free web/mobile app that let one calculate a insulin bolus that implements the formulars I knew. Most of the apps I found did not clearly point out the formulars they use to perform the calculations. So this is the result, hopefully someone will find it usable ... 
 
 This app comes with absolutely no warranty and may only be used at your own risk!
-
-I highly recommend to always discuss the personal therapy settings with a doctor. 
-
-## How to use it
-1. Open the [boluscalculator](http://maxkalb.github.io/boluscalculator/) in a modern HTML5 compatible web browser.
-2. Make sure the therapy settings are displayed according to your needs.
-3. Enter the actual _Glucose Level_ (soberly measured) --> _Correction_ [BE]
-4. Enter the amount of _Bread Units_ to be eaten --> _Effective Meal_ [BE]
-
-The resulting insulin which is needed for the meal - the _Final Bolus_ [BE] - is defined as the sum of the _Correction_ and the _Effective Meal_. All results are immediately recalculated if any input value got changed. Red colored numbers indicate that a correction is needed while green colored numbers indicate that one need to eat some food [BE].
-
-_Note:_ By setting the amount of _Bread Units_ to be eaten to "0", the result is the _Correction_ only.
-
-### Offline Usage
-To use this app without internet connection one can simpley download the _index.html_ and put it somewhere into the local file system. For example a dropbox (or other cloud sync'ed) folder could be a good choice to also feed multiple devices. Then just open the local file in the web browser et voila ...
 
 ## How is the Bolus calculated
 The equations used to calculate the resulting insulin dosis are simple ...
@@ -44,12 +29,35 @@ The _Correction_ is defined as the difference of the actual _Glucose Level_ and 
 
 <p align="center"><a href="" target="_blank"><img src="images/correction.png"/></a></p>
 
-_Note:_ Therapy settings (indexed i) may vary depending on the daytime! The calculation during the day can be adjusted by tweaking the therapy settings. This should always be discussed with a doctor!
+_Note:_ Therapy settings (indexed i) may vary depending on the daytime! The calculation during the day can be adjusted by tweaking the therapy settings.
+
+## How to use it
+This app works best with chrome or other webkit based browsers.
+
+1. Open the [boluscalculator](http://maxkalb.github.io/boluscalculator/) in a modern HTML5 compatible web browser.
+2. Make sure the therapy settings are displayed according to your needs.
+3. Enter the actual _Glucose Level_ (soberly measured) --> _Correction_ [BE]
+4. Enter the amount of _Meal_ to be eaten --> _Effective Meal_ [BE]
+5. Catch up the resulting insulin dose immediately
+
+All results are immediately recalculated if any input value got changed. Red colored numbers indicate that a correction is needed while green colored numbers indicate that one need to eat some food [BE].
+
+_Note:_ By setting the amount of meal to be eaten to zero, the result is the _Correction_ only.
+
+### Offline Usage
+This webapp is developed for on- and offline usage. No server is needed to run this app. All settings are always storred locally. You can alway execute it local just by using a suitable browser. Use the following best practice to do so ...
+
+1. If you are using chrome browser simple create an application shortcut to your desktop, finished.
+2. Clone or download this repository and place it somewhere locally
+
+    A dropbox (or other cloud sync'ed) folder could be a good choice to also feed multiple devices. 
+    
+    Then just open the local index.html file in the web browser et voila ...
 
 ## Implementation Details
-Think of something like a prototype or egineering app. It's developed as a kind of case study for myself, learning web development technologies and intensive insulin therapy calculations ... Actually all is strictly hardcoded. There is no dynamic content. All is implemented in a single html file. I'm sure it could be done more elegant. Feel free to send me pull requests or append the following todo entries. 
+Think of something like a prototype or egineering app. It's developed as a kind of case study for myself, to learn something about web development technologies and intensive insulin therapy calculations ... All is implemented from scratch, no libs where used. Plain html with css and java-script. For offline usage the app make heavy use of html5 technics such as _local storrage_ and _cache.manifest_.
 
-All calculations are performed using html5 forms _input_ and _output_ capabilities.
+I'm sure the implementation could be more elegant. Feel free to send me pull requests or append the following todo entries. 
 
 Actually the code is not tested, reviewed or validated!
 
@@ -62,6 +70,9 @@ Actually the code is not tested, reviewed or validated!
     - ~~Therapy settings should be separated (menu)~~
     - Steady changing therapy settings (curves)?
     - ~~Automated daytime detection~~
+- Redesign input elements (fix moz appearance)
+- Make final bolus editable .. calculate meal
+- Refactorings to become a multi-lingual app
 
 ## License
 Feel free to use, modify, comment or whatever ... this implementation is licensed under [MIT](https://github.com/maxkalb/boluscalculator/blob/master/LICENSE).
