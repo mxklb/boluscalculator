@@ -73,6 +73,7 @@ Actually the code is not tested, reviewed or validated!
 - Redesign input elements (fix moz appearance)
 - Make final bolus editable .. calculate meal
 - Refactorings to become a multi-lingual app
+- Validate the users number input
 
 ## License
 Feel free to use, modify, comment or whatever ... this implementation is licensed under [MIT](https://github.com/maxkalb/boluscalculator/blob/master/LICENSE).
