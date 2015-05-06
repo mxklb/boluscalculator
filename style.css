@@ -133,24 +133,15 @@ input[type="number"]:valid {
 input[type="number"]:focus {
   border: 1px solid #ccc;
 }
-input::-placeholder {
-  color: #F0F;
-}
+
 input[type="number"]::-webkit-input-placeholder {
   transition: all 0.2s cubic-bezier(0.55, -0.55, 1, 1.55);
   -webkit-transform-origin: left;
 }
-/*input[type="number"]::-moz-placeholder {
-  transition: all 0.2s cubic-bezier(0.55, -0.55, 1, 1.55);
-  -moz-transform-origin: left;
-}*/
 
 input:not([readonly='readonly']):hover::-webkit-input-placeholder,
 input[type="number"]:focus::-webkit-input-placeholder {
   color: #777;
-}
-input[type="number"]::-moz-placeholder {
-  border: 1px solid #00B;
 }
 
 input[type="number"]:focus::-webkit-input-placeholder,
@@ -160,15 +151,9 @@ input[type="number"]:valid::-webkit-input-placeholder {
   overflow: visible;
   text-shadow: -1px 0 #ffffff, -2px 0 #ffffff, -3px 0 #ffffff, -4px 0 #ffffff, -5px 0 #ffffff, 1px 0 #ffffff, 2px 0 #ffffff, 3px 0 #ffffff, 4px 0 #ffffff, 5px 0 #ffffff, -1px -1px #ffffff, -2px -2px #ffffff, -3px -3px #ffffff, -4px -4px #ffffff, -5px -5px #ffffff;
 }
-/*input[type="number"]:focus::-moz-placeholder,
-input[type="number"]:valid::-moz-placeholder { 
-  -moz-transform: translate(5%, -75%) scale(0.9, 0.9);
-  visibility: visible !important;
-  overflow: visible;
-  text-shadow: -1px 0 #ffffff, -2px 0 #ffffff, -3px 0 #ffffff, -4px 0 #ffffff, -5px 0 #ffffff, 1px 0 #ffffff, 2px 0 #ffffff, 3px 0 #ffffff, 4px 0 #ffffff, 5px 0 #ffffff, -1px -1px #ffffff, -2px -2px #ffffff, -3px -3px #ffffff, -4px -4px #ffffff, -5px -5px #ffffff;
-}*/
 
-/* Special style for read only input (final bolus output) */
+
+/* Styling input type read only (output: final bolus) */
 input[readonly='readonly']:focus::-webkit-input-placeholder {
   color: #aaa;
 }
@@ -180,6 +165,7 @@ input[readonly='readonly']:valid::-webkit-input-placeholder {
   overflow: visible;
   text-shadow: -1px 0 #ffffff, -2px 0 #ffffff, -3px 0 #ffffff, -4px 0 #ffffff, -5px 0 #ffffff, 1px 0 #ffffff, 2px 0 #ffffff, 3px 0 #ffffff, 4px 0 #ffffff, 5px 0 #ffffff, -1px -1px #ffffff, -2px -2px #ffffff, -3px -3px #ffffff, -4px -4px #ffffff, -5px -5px #ffffff;
 }
+
 
 /* Styling the +/- buttons */
 input[type="button"] {
@@ -360,7 +346,7 @@ input[type="submit"] {
   width: 50%;
   margin-top: 1.2em;
   font-size: small;
-  cursor: pointer; cursor: hand;
+  cursor: hand;
   -webkit-appearance: none;
   -moz-appearance: none;
 }
@@ -395,6 +381,12 @@ input[type="image"] {
   -moz-transition: opacity 500ms ease-in;
   -o-transition: opacity 500ms ease-in;
   transition: opacity 500ms ease-in;
+}
+
+#settingsSvg {
+  opacity: .15;
+  width: 70%; 
+  height: 70%;
 }
 
 #buttonGroup,
