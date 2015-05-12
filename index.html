@@ -1,21 +1,35 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" manifest="cache.manifest">
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" charset="UTF-8">
+  
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="white" />
+  
+  <link rel="home" href="index.html">
+  <meta name="msapplication-starturl" content="index.html" />
   <meta name="msapplication-tap-highlight" content="no">
-  <title>IBC</title>
-  <script src="main.js"></script>
+  
   <link rel="stylesheet" type="text/css" href="style.css">
+  
+  <title>IBC - Insulin Bolus Calculator</title>
+  <meta name="application-name" content="IBC">
+  <meta name="apple-mobile-web-app-title" content="IBC">
+  
   <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
   <!-- For IE 9 and below. ICO should be 32x32 pixels in size -->
   <!--[if IE]><link rel="shortcut icon" href="images/favicon.ico"><![endif]-->
-
-  <!-- Touch Icons - iOS and Android 2.1+ 180x180 pixels in size. --> 
-  <link rel="apple-touch-icon-precomposed" href="iamges/favicon-apple.png">
-
+  <!-- Touch Icons - iOS and Android 2.1+ 180x180 pixels in size. -->
+  <link rel="apple-touch-icon" href="images/favicon-apple.png"/>
+  <link rel="apple-touch-icon-precomposed" href="images/favicon-apple.png">
+  <link rel="apple-touch-startup-image" href="images/favicon-apple.png" />
   <!-- Firefox, Chrome, Safari, IE 11+ and Opera. 196x196 pixels in size. -->
   <link rel="icon" href="images/favicon.png"> 
+  <link rel="shortcut icon" sizes="196x196" href="images/favicon.png">
+  
+  <script src="main.js"></script>
 </head>
 
 <body>
@@ -99,7 +113,7 @@
     <input type="submit" name="submit" value="Donate">
     <input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
   </form>
-  <p id="about"><a href="https://github.com/maxkalb/boluscalculator">README IBC v1.0b</a></p>
+  <p id="about"><a href="https://github.com/maxkalb/boluscalculator" target=”_blank”>README IBC v1.0b</a></p>
 </div>
 
 <div id="buttonGroup">

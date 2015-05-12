@@ -3,6 +3,14 @@
 * Author: Max Kalb - http://maxkalb.github.io/ 
 */
 
+/* Check if the app is executed as webapp */
+navigator.standalone = navigator.standalone || (screen.height-document.documentElement.clientHeight<40);
+if( navigator.standalone == false ) {
+  console.log("IBC browser version");
+} else { 
+  console.log("IBC webapp version"); 
+}
+
 // Variable to identify already passed initialization
 var initialized = false;
 
@@ -58,7 +66,6 @@ window.onload = function () {
   initLocalSettings();
   autoTherapySetting();
   updateTime();
-  hideSettings();
   initialized = true;
 }
 
