@@ -2,14 +2,15 @@
 <html lang="en" manifest="cache.manifest">
 
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
   
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="white" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="white">
   
   <link rel="home" href="index.html">
-  <meta name="msapplication-starturl" content="index.html" />
+  <meta name="msapplication-starturl" content="index.html">
   <meta name="msapplication-tap-highlight" content="no">
   
   <link rel="stylesheet" type="text/css" href="style.css">
@@ -22,9 +23,9 @@
   <!-- For IE 9 and below. ICO should be 32x32 pixels in size -->
   <!--[if IE]><link rel="shortcut icon" href="images/favicon.ico"><![endif]-->
   <!-- Touch Icons - iOS and Android 2.1+ 180x180 pixels in size. -->
-  <link rel="apple-touch-icon" href="images/favicon-apple.png"/>
+  <link rel="apple-touch-icon" href="images/favicon-apple.png">
   <link rel="apple-touch-icon-precomposed" href="images/favicon-apple.png">
-  <link rel="apple-touch-startup-image" href="images/favicon-apple.png" />
+  <link rel="apple-touch-startup-image" href="images/favicon-apple.png">
   <!-- Firefox, Chrome, Safari, IE 11+ and Opera. 196x196 pixels in size. -->
   <link rel="icon" href="images/favicon.png"> 
   <link rel="shortcut icon" sizes="196x196" href="images/favicon.png">
@@ -38,8 +39,8 @@
 
 <form>
   <div id="header">
-    <p>Insulin Bolus Calculator</p>
-    <small>Enter glucose level and meal to be eaten</small>
+    <p id="title">Insulin Bolus Calculator</p>
+    <small id="subtitle">Enter glucose level and meal to be eaten</small>
   </div>
   
   <div class="inputs">
@@ -50,22 +51,22 @@
   
   <div class="inputs">
     <input type="button" id="lastButton" value="-" onmousedown="mouseDown(this.form.foodbe, -0.5, 0, 1);" onmouseup="mouseUp();" ontouchstart="touchDown(this.form.foodbe, -0.5, 0, 1);" ontouchend="touchUp();" onclick="incrementElement(this.form.foodbe.id, -0.1, 0, 1);"/>
-    <input type="number" name="foodbe" id="foodbe" class="number" step="any" min="0" placeholder="Bread Units [BE]" onClick="this.select();" onchange="updateCalculations()"/>
+    <input type="number" name="foodbe" id="foodbe" class="number" step="any" min="0" placeholder="Amount of Meal [BE]" onClick="this.select();" onchange="updateCalculations()"/>
     <input type="button" id="lastButton" value="+" onmousedown="mouseDown(this.form.foodbe,  0.5, 0, 1);" onmouseup="mouseUp();" ontouchstart="touchDown(this.form.foodbe,  0.5, 0, 1);" ontouchend="touchUp();" onclick="incrementElement(this.form.foodbe.id,  0.1, 0, 1);"/>
   </div>
     
   <div class="output">
     <input type="number" name="finalBolus" id="finalBolus" readonly="readonly" step="any" placeholder="Final Bolus [BE]"/>
-    <span id="sum"/>
+    <span id="sum">
   </div>
   
   <div style="line-height:2em; min-height:0.8em;"></div><hr>
   
-  <div style="display:none;"><span id="time"/></div>
-  <div class="therapyTime">Active Therapy Setting<span id="therapyTime" style="display:none;"/></div>
+  <div style="display:none;"><span id="time"></div>
+  <div class="therapyTime">Active Therapy Setting<span id="therapyTime" style="display:none;"></div>
   
-  <div class="therapySetup"><span id="therapySetup"/></div>
-  <a href="#" id="settingsButton" onclick="toggleSettings();return false;"><span id="therapyInfo"/></a>
+  <div class="therapySetup"><span id="therapySetup"></div>
+  <a href="#" id="settingsButton" onclick="toggleSettings();return false;"><span id="therapyInfo"></a>
     
   <div class="settings" id="settings">
     <div class="outer">
@@ -79,17 +80,17 @@
       <input type="button" value="+" onmousedown="mouseDown(this.form.settingsCorr,  10, 0, 0);" onmouseup="mouseUp();changeTherapySettings();" ontouchstart="touchDown(this.form.settingsCorr,  10, 0, 0);" ontouchend="touchUp();changeTherapySettings();" onclick="incrementElement(this.form.settingsCorr.id,  1, 0, 0);changeTherapySettings();"/>
     </div>
     <div class="outer">
-      <input type="button" id="lastButton" value="-" onmousedown="mouseDown(this.form.settingsBolus, -0.1, 0, 1);" onmouseup="mouseUp();changeTherapySettings();" ontouchstart="touchDown(this.form.settingsBolus, -0.1, 0, 1);" ontouchend="touchUp();changeTherapySettings();" onclick="incrementElement(this.form.settingsBolus.id, -0.1, 0, 1);changeTherapySettings();"/>
+      <input type="button" class="lastButton" value="-" onmousedown="mouseDown(this.form.settingsBolus, -0.1, 0, 1);" onmouseup="mouseUp();changeTherapySettings();" ontouchstart="touchDown(this.form.settingsBolus, -0.1, 0, 1);" ontouchend="touchUp();changeTherapySettings();" onclick="incrementElement(this.form.settingsBolus.id, -0.1, 0, 1);changeTherapySettings();"/>
       <input type="number" name="settingsBolus" id="settingsBolus" class="number" step="any" min="0" required='' placeholder="Bolus [IE/BE]" onClick="this.select();" onchange="changeTherapySettings();"/>
-      <input type="button" id="lastButton" value="+" onmousedown="mouseDown(this.form.settingsBolus,  0.1, 0, 1);" onmouseup="mouseUp();changeTherapySettings();" ontouchstart="touchDown(this.form.settingsBolus,  0.1, 0, 1);" ontouchend="touchUp();changeTherapySettings();" onclick="incrementElement(this.form.settingsBolus.id,  0.1, 0, 1);changeTherapySettings();"/>
+      <input type="button" class="lastButton" value="+" onmousedown="mouseDown(this.form.settingsBolus,  0.1, 0, 1);" onmouseup="mouseUp();changeTherapySettings();" ontouchstart="touchDown(this.form.settingsBolus,  0.1, 0, 1);" ontouchend="touchUp();changeTherapySettings();" onclick="incrementElement(this.form.settingsBolus.id,  0.1, 0, 1);changeTherapySettings();"/>
     </div>
   </div>  
     
-  <div id="buttonGroup">
-    <div id="singleButton"><a href="#" class="selectButton" onclick="selectTherapy(this);return false;"><span>I</span></a></div>
-    <div id="singleButton"><a href="#" class="selectButton" onclick="selectTherapy(this);return false;"><span>II</span></a></div>
-    <div id="singleButton"><a href="#" class="selectButton" onclick="selectTherapy(this);return false;"><span>III</span></a></div>
-    <div id="singleButton"><a href="#" class="selectButton" onclick="selectTherapy(this);return false;"><span>IV</span></a></div>
+  <div class="buttonGroup">
+    <div class="singleButton"><a href="#" class="selectButton" onclick="selectTherapy(this);return false;"><span>I</span></a></div>
+    <div class="singleButton"><a href="#" class="selectButton" onclick="selectTherapy(this);return false;"><span>II</span></a></div>
+    <div class="singleButton"><a href="#" class="selectButton" onclick="selectTherapy(this);return false;"><span>III</span></a></div>
+    <div class="singleButton"><a href="#" class="selectButton" onclick="selectTherapy(this);return false;"><span>IV</span></a></div>
   </div>
   
   <div style="line-height:1em; min-height:0.5em;"></div>
@@ -100,10 +101,10 @@
   <p>Application Setup</p>
   <small>Glucose and meal measurement units</small>
   <div id="unitButtons">
-    <div id="singleButton"><a href="#" class="selectButton" onclick="return false;"><span style="font-size: 0.75em;">[mg/dl]</span></a></div>
-    <div id="singleButton"><a href="#" class="selectButton" onclick="return false;"><span style="font-size: 0.6em;">[mmol/L]</span></a></div>
-    <div id="singleButton"><a href="#" class="selectButton" onclick="return false;"><span style="font-size: 0.75em;">[BE]</span></a></div>
-    <div id="singleButton"><a href="#" class="selectButton" onclick="return false;"><span style="font-size: 0.75em;">Carbs</span></a></div>
+    <div class="singleButton"><a href="#" class="selectButton" onclick="return false;"><span style="font-size: 0.75em;">[mg/dl]</span></a></div>
+    <div class="singleButton"><a href="#" class="selectButton" onclick="return false;"><span style="font-size: 0.6em;">[mmol/L]</span></a></div>
+    <div class="singleButton"><a href="#" class="selectButton" onclick="return false;"><span style="font-size: 0.75em;">[BE]</span></a></div>
+    <div class="singleButton"><a href="#" class="selectButton" onclick="return false;"><span style="font-size: 0.75em;">Carbs</span></a></div>
   </div>
   <div style="line-height:1em; min-height:0.5em;"></div>
   <hr style="width: 60%;">
@@ -116,8 +117,8 @@
   <p id="about"><a href="https://github.com/maxkalb/boluscalculator" target=”_blank”>README IBC v1.0b</a></p>
 </div>
 
-<div id="buttonGroup">
-  <div id="singleButton">
+<div class="buttonGroup">
+  <div class="singleButton">
     <a href="#" id="setupButton" class="setupButton" onclick="toggleSetup();return false;">
       <img src="images/gears10.svg" id="settingsSvg" alt="&#9775;">
     </a>

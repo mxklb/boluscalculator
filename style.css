@@ -126,7 +126,7 @@ input[type="number"] {
 }
 
 #foodbe,
-#lastButton,
+.lastButton,
 #settingsBolus {
   margin-bottom: 0em;
 }
@@ -208,7 +208,7 @@ input[type="button"]:active {
   border: 1px solid #ccc;
 }
 
-#singleButton {
+.singleButton {
   display : inline-block;
   position: relative;
   margin: auto;
@@ -390,7 +390,7 @@ input[type="image"] {
   height: 70%;
 }
 
-#buttonGroup,
+.buttonGroup,
 #unitButtons {
   display: block;
   margin: 0em auto;

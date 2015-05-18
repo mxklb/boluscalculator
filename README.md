@@ -3,7 +3,7 @@ IBC - A Insulin Bolus Calculator HTML5 Webapp.
 
 A simple and tranparent calculator app for the intensive/flexibles insulin therapy.
 
-Just try it out here: [maxkalb.github.io/boluscalculator](http://maxkalb.github.io/boluscalculator/)
+This project is deployed using gh-pages. Just try it out here: [maxkalb.github.io/boluscalculator](http://maxkalb.github.io/boluscalculator/)
 
 ## About
 This is a bolus calculator app to estimate a single insulin dose based on personalized therapy settings, the actual blood glucose level and a meal. I wrote this app because I couldn't find any free web/mobile app that let one calculate a insulin bolus that implements the formulars I knew. Most of the apps I found did not clearly point out the formulars they use to perform the calculations. So this is the result, hopefully someone will find it usable ... 
@@ -11,7 +11,7 @@ This is a bolus calculator app to estimate a single insulin dose based on person
 This app comes with absolutely no warranty and may only be used at your own risk!
 
 ## How is the Bolus calculated
-The equations used to calculate the resulting insulin dosis are simple ...
+The equations used to calculate the resulting insulin dose are simple ...
 
 ### The Final Result
 The _Final Bolus_ is defined as the sum of the _Effective Meal_ and the _Correction_.
@@ -36,11 +36,11 @@ This app works best with chrome or other webkit based browsers.
 
 1. Open the [boluscalculator](http://maxkalb.github.io/boluscalculator/) in a modern HTML5 compatible web browser.
 2. Make sure the therapy settings are displayed according to your needs.
-3. Enter the actual _Glucose Level_ (soberly measured) --> _Correction_ [BE]
-4. Enter the amount of _Meal_ to be eaten --> _Effective Meal_ [BE]
+3. Enter the actual _Glucose Level_ (soberly measured) --> _Correction_
+4. Enter the amount of _Meal_ to be eaten --> _Effective Meal_
 5. Catch up the resulting insulin dose immediately
 
-All results are immediately recalculated if any input value got changed. Red colored numbers indicate that a correction is needed while green colored numbers indicate that one need to eat some food [BE].
+All results are immediately recalculated if any input value got changed. Red colored numbers indicate that a correction is needed while green colored numbers indicate that one need to eat some food.
 
 _Note:_ By setting the amount of meal to be eaten to zero, the result is the _Correction_ only.
 
