@@ -125,7 +125,6 @@ input[type="number"] {
 }
 
 #foodbe,
-.lastButton,
 #settingsBolus {
   margin-bottom: 0em;
 }
@@ -236,16 +235,6 @@ input[type="button"]:active {
   max-width: 1em;
   margin-top: 0.33em;
   border: 1px solid transparent;
-}
-
-.inputs {
-  display: block;
-  margin: auto;
-}
-
-.output {
-  display: block;
-  margin: 1.5em auto;
 }
 
 #time {  
