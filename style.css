@@ -106,7 +106,6 @@ hr {
 }
 
 p#output,
-#finalBolus,
 input[type="button"],
 input[type="number"] {
   text-align: center;
@@ -239,15 +238,6 @@ input[type="button"]:active {
   border: 1px solid transparent;
 }
 
-#finalBolus {
-  display: block;
-  margin: 1em auto;
-  width: 85%;
-  height: 3.2em;
-  font-size: 1.2em;
-  white-space: nowrap;
-}
-
 .inputs {
   display: block;
   margin: auto;
@@ -258,22 +248,12 @@ input[type="button"]:active {
   margin: 1.5em auto;
 }
 
-#sum,
 #time {  
   display: block;
   position: relative;
   background: transparent;
   font-size: 0.7em;  
   margin: 3em 0em;
-}
-
-#sum {
-  color: #aaa;
-  line-height: 1em;
-  height: 1em;
-  margin: -2.25em 27%;
-  margin-left: 27%;
-  white-space: nowrap;
 }
 
 #time,
@@ -370,7 +350,7 @@ input[type="image"] {
   -webkit-tap-highlight-color: transparent;
   /* Hide button due to submit usage */
   display: none;  
-}
+} 
 
 .settings,
 #setupGroup {
@@ -422,5 +402,167 @@ input[type="image"] {
 #about a:visited { 
 	color: #444;
 }
+
+/* Input/Output ----> */
+
+.inputDiv,
+.outputDiv {
+  display: block;
+  position: relative;
+  #margin-top: 1em;
+  #margin-bottom: .5em;
+  margin: 1.5em auto;
+  height: 3.25em;
+  white-space: nowrap;
+  #border: 1px solid green;
+}
+
+.inputDiv > input,
+.outputDiv > input {
+  position: relative;
+  display: inline-block;
+  width: 200px;
+  text-align: center;
+  font-size: 1em;
+  line-height: 2em;
+  height: 3em;
+  border: 1px solid #ddd;
+  border-radius: 5em;
+  outline: none;
+  -moz-appearance: textfield;
+}
+.outputDiv > input {
+  margin: 0em auto;
+  height: 3.2em;
+  font-size: 1.2em;
+  white-space: nowrap;
+  min-width: 270px;
+}
+
+.inputDiv > input:hover,
+.inputDiv > input:focus,
+.outputDiv > input:hover,
+.outputDiv > input:focus {
+  border: 1px solid #bbb;
+}
+
+.inputDiv > input::-webkit-outer-spin-button,
+.inputDiv > input::-webkit-inner-spin-button,
+.outputDiv > input::-webkit-outer-spin-button,
+.outputDiv > input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.inputDiv > .inputTitle,
+.inputDiv > .inputFooter,
+.outputDiv > .inputTitle,
+.outputDiv > .inputFooter {
+  position: absolute;
+  display: inline-block;
+  font-size: small;
+  line-height: 18px;
+  color: #aaa;
+  background: white;
+  border-radius: .75em;
+  padding: 0% .5em;
+  white-space: nowrap;
+  margin-top: -0.7em;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+  margin-left: -8.175em;
+}
+
+.inputDiv > .inputFooter,
+.outputDiv > .inputFooter {
+  color: #aaa;
+  background: white;
+  font-weight: normal;
+  margin-top: 3.25em;
+  #border: 1px solid #ddd;
+}
+.outputDiv > .inputTitle {
+  font-size: 1em;
+  margin-top: -0.5em;
+}
+.outputDiv > .inputFooter {
+  margin-top: 4.2em;
+  border: 1px hidden #Fdd;
+  margin-left: -10.1em;
+}
+
+.inputDiv > .incrementButton {
+  text-align: center;
+  color: #aaa;
+  background: #eee;
+  text-decoration: none;
+  outline:0 none !important;
+  display : inline-block;
+  position: relative;
+  margin: auto;
+  width: 3em;
+  line-height: 3em;
+  border-radius: 1.5em;
+  border: 1px solid #eee;
+}
+
+.inputDiv > .incrementButton:hover {
+  border: 1px solid #bbb;
+}
+
+.selectDiv {
+  overflow: hidden;
+}
+.selectDiv > select {
+  border: none;
+  border: 0 !important;
+  color: #aaa;
+  #text-align: center;
+  background: transparent;
+  margin: -.2em 0;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  text-decoration: none;
+  outline:0 none !important;
+}
+.selectDiv > select:hover {
+  color: #444;
+  text-decoration: none;
+}
+.selectDiv > select:-moz-focusring {
+  color: transparent;
+  text-shadow:0 0 0 #444;
+}
+.selectDiv > select:-moz-focusring * {
+  color: #444;
+  text-shadow: none;
+}
+.selectDiv > select > option {
+  color: #444;
+  background: transparent;
+  border: 0 !important;
+  border: 0px solid transparent;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+}
+.selectDiv > select {} option::checked { 
+  background-color: #FFF; 
+}
+
+/* ----< Input/Output */
 
 

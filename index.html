@@ -43,21 +43,40 @@
     <small id="subtitle">Enter glucose level and meal to be eaten</small>
   </div>
   
-  <div class="inputs">
-    <input type="button" value="-" onmousedown="mouseDown(this.form.glucose, -10, 0, 0);" onmouseup="mouseUp();" ontouchstart="touchDown(this.form.glucose, -10, 0, 0);" ontouchend="touchUp();" onclick="incrementElement(this.form.glucose.id, -1, 0, 0);"/>
-    <input type="number" name="glucose" id="glucose" class="number" step="any" min="0" placeholder="Glucose Level [mg/dl]" onClick="this.select();" onchange="updateCalculations()"/> 
-    <input type="button" value="+" onmousedown="mouseDown(this.form.glucose,  10, 0, 0);" onmouseup="mouseUp();" ontouchstart="touchDown(this.form.glucose,  10, 0, 0);" ontouchend="touchUp();" onclick="incrementElement(this.form.glucose.id,  1, 0, 0);"/>
+  <div class="inputDiv">
+    <input class="incrementButton" type="button" value="-" onmousedown="mouseDown(this.form.glucose, -10, 0, 0);" onmouseup="mouseUp();" ontouchstart="touchDown(this.form.glucose, -10, 0, 0);" ontouchend="touchUp();" onclick="incrementElement(this.form.glucose.id, -1, 0, 0);"/>
+    <input class="number" type="number" name="glucose" id="glucose" step="any" min="0" onClick="this.select();" onchange="updateCalculations()"/>
+    <label class="inputTitle" for="glucose"><span>Blood Glucose</span></label>
+    <label class="inputFooter" for="glucose">
+      <div class="selectDiv">
+        <select>
+          <option class="units" selected>&nbsp;[mg/dl]</option>
+          <option class="units">[mmol/l]</option>
+        </select>
+      </div>
+    </label>
+    <input class="incrementButton" type="button" value="+" onmousedown="mouseDown(this.form.glucose,  10, 0, 0);" onmouseup="mouseUp();" ontouchstart="touchDown(this.form.glucose,  10, 0, 0);" ontouchend="touchUp();" onclick="incrementElement(this.form.glucose.id,  1, 0, 0);"/>
   </div>
   
-  <div class="inputs">
-    <input type="button" class="lastButton" value="-" onmousedown="mouseDown(this.form.foodbe, -0.5, 0, 1);" onmouseup="mouseUp();" ontouchstart="touchDown(this.form.foodbe, -0.5, 0, 1);" ontouchend="touchUp();" onclick="incrementElement(this.form.foodbe.id, -0.1, 0, 1);"/>
-    <input type="number" name="foodbe" id="foodbe" class="number" step="any" min="0" placeholder="Amount of Meal [BE]" onClick="this.select();" onchange="updateCalculations()"/>
-    <input type="button" class="lastButton" value="+" onmousedown="mouseDown(this.form.foodbe,  0.5, 0, 1);" onmouseup="mouseUp();" ontouchstart="touchDown(this.form.foodbe,  0.5, 0, 1);" ontouchend="touchUp();" onclick="incrementElement(this.form.foodbe.id,  0.1, 0, 1);"/>
+  <div class="inputDiv">
+    <input class="incrementButton" type="button" value="-" onmousedown="mouseDown(this.form.foodbe, -0.5, 0, 1);" onmouseup="mouseUp();" ontouchstart="touchDown(this.form.foodbe, -0.5, 0, 1);" ontouchend="touchUp();" onclick="incrementElement(this.form.foodbe.id, -0.1, 0, 1);"/>
+    <input class="number" type="number" name="foodbe" id="foodbe" step="any" min="0" onClick="this.select();" onchange="updateCalculations()"/>
+    <label class="inputTitle" for="foodbe"><span>Amount of Meal</span></label>
+    <label class="inputFooter" for="foodbe">
+      <div class="selectDiv">
+        <select>
+          <option class="units" selected>[bread units]</option>
+          <option class="units">[gram carbs]</option>
+        </select>
+      </div>
+    </label>
+    <input class="incrementButton" type="button" value="+" onmousedown="mouseDown(this.form.foodbe,  0.5, 0, 1);" onmouseup="mouseUp();" ontouchstart="touchDown(this.form.foodbe,  0.5, 0, 1);" ontouchend="touchUp();" onclick="incrementElement(this.form.foodbe.id,  0.1, 0, 1);"/>
   </div>
-    
-  <div class="output">
-    <input type="number" name="finalBolus" id="finalBolus" readonly="readonly" step="any" placeholder="Final Bolus [BE]"/>
-    <span id="sum"></span>
+  
+  <div class="outputDiv">
+    <input class="number" type="number" name="output" id="finalBolus" step="any" min="0" onClick="this.select();" onchange="updateCalculations()"/>
+    <label class="inputTitle" for="finalBolus"><span>Final Bolus [IU]</span></label>
+    <label class="inputFooter" for="finalBolus"><span id="sum"></span></label>
   </div>
   
   <div style="line-height:2em; min-height:0.8em;"></div><hr>
