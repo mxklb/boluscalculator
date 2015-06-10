@@ -508,6 +508,9 @@ input[type="image"] {
   border: 1px solid #eee;
 }
 
+.inputDiv > .incrementButton:focus {
+  border: 1px hidden #bbb;
+}
 .inputDiv > .incrementButton:hover {
   border: 1px solid #bbb;
 }
