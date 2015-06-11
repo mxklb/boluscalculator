@@ -142,67 +142,13 @@ input::-moz-focus-inner {
   border: 0; 
 }
 
-/* Styling input type numbers & placeholders */
+/* Styling input type numbers */
 input[type="number"]:focus,
 input[type="number"]:valid {
   outline: none;
   color: #444;
 }
 input[type="number"]:focus {
-  border: 1px solid #ccc;
-}
-
-input[type="number"]::-webkit-input-placeholder {
-  transition: all 0.2s cubic-bezier(0.55, -0.55, 1, 1.55);
-  -webkit-transform-origin: left;
-}
-
-input:not([readonly='readonly']):hover::-webkit-input-placeholder,
-input[type="number"]:focus::-webkit-input-placeholder {
-  color: #777;
-}
-
-input[type="number"]:focus::-webkit-input-placeholder,
-input[type="number"]:valid::-webkit-input-placeholder {
-  -webkit-transform: translate(5%, -75%) scale(0.9, 0.9);
-  visibility: visible !important;
-  overflow: visible;
-  text-shadow: -1px 0 #ffffff, -2px 0 #ffffff, -3px 0 #ffffff, -4px 0 #ffffff, -5px 0 #ffffff, 1px 0 #ffffff, 2px 0 #ffffff, 3px 0 #ffffff, 4px 0 #ffffff, 5px 0 #ffffff, -1px -1px #ffffff, -2px -2px #ffffff, -3px -3px #ffffff, -4px -4px #ffffff, -5px -5px #ffffff;
-}
-
-
-/* Styling input type read only (output: final bolus) */
-input[readonly='readonly']:focus::-webkit-input-placeholder {
-  color: #aaa;
-}
-input[readonly='readonly']::-webkit-input-placeholder,
-input[readonly='readonly']:focus::-webkit-input-placeholder,
-input[readonly='readonly']:valid::-webkit-input-placeholder {
-  -webkit-transform: translate(5%, -75%) scale(0.9, 0.9);
-  visibility: visible !important;
-  overflow: visible;
-  text-shadow: -1px 0 #ffffff, -2px 0 #ffffff, -3px 0 #ffffff, -4px 0 #ffffff, -5px 0 #ffffff, 1px 0 #ffffff, 2px 0 #ffffff, 3px 0 #ffffff, 4px 0 #ffffff, 5px 0 #ffffff, -1px -1px #ffffff, -2px -2px #ffffff, -3px -3px #ffffff, -4px -4px #ffffff, -5px -5px #ffffff;
-}
-
-
-/* Styling the +/- buttons */
-input[type="button"] {
-  width: 3em;
-  color: #aaa;
-  outline: 0 none !important;
-  font-size: 0.9em;
-  font-weight: bold;
-  padding: 0em 0em;
-  margin-bottom: 0em; 
-  border-radius: 1.5em;
-  background: #eee;
-  border: 0px solid #ccc;
-  cursor: pointer; cursor: hand;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-}
-
-input[type="button"]:active {
   border: 1px solid #ccc;
 }
 
@@ -324,7 +270,8 @@ input[type="submit"] {
 input[type="submit"]:focus,
 input[type="submit"]:active,
 #settingsButton:focus,
-#settingsButton:active {
+#settingsButton:active,
+#settingsButton:visited {
   outline: 0 none !important;
   text-decoration: none;
   border: 1px solid #ccc;
@@ -500,6 +447,9 @@ input[type="image"] {
   line-height: 3em;
   border-radius: 1.5em;
   border: 1px solid #eee;
+  cursor: pointer; cursor: hand;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
 .inputDiv > .incrementButton:focus {
