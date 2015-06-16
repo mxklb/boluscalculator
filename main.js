@@ -520,27 +520,37 @@ function getTherapyDaytime() {
   return daytime;  
 }
 
-
+/*
+* Settings related to the value incrementation buttons
+*/
 var tid = 0;      /* Active timer id for incrementation */
 var speed = 250;  /* Time between incrementations [ms] */
 var start = 0;    /* Starting time of mouse down */
 var duration = 0; /* Duration of mouse down */
 
+// Setup default inrementations for +/- buttons
+var glucoseStepsMgDl = {high:10, low:1, dec:0};
+var glucoseStepsMmoll = {high:0.25, low:0.01, dec:2};
+var mealUnitStepsBU = {high:0.5, low:0.1, dec:1};
+var mealUnitStepsKH = {high:5, low:1, dec:0}; 
+
+// Initialize increment variable
+var increment = {step:1, dec:0};
+
 // Check if the device has touch enabled
 var isTouch = 'ontouchstart' in window;
-
 
 /*
 * Touchstart and mousedown event equalization.
 * Ignore any mouse down event on touch devices. 
 */
-function mouseDown(element, value, minimum, decimals) {
+function mouseDown(element, negative, smallstep) {
   if( !isTouch ) { 
-    touchDown(element, value, minimum, decimals);
+    touchDown(element, negative, smallstep);
   }
 }
-function touchDown(element, value, minimum, decimals) {
-  toggleOn(element, value, minimum, decimals);
+function touchDown(element, negative, smallstep) {
+  toggleOn(element, negative, smallstep);
 }
 
 /*
@@ -552,25 +562,25 @@ function mouseUp() {
     touchUp();
   }
 }
-function touchUp(element, value, minimum, decimals) {
+function touchUp() {
   toggleOff();
 }
 
 /*
-* Starts a timer for continous incrementation on mouse down
+* Starts a timer for continous incrementation during mouse down
 */
-function toggleOn(element, value, minimum, decimals) {
+function toggleOn(element, negative, smallstep) {
   duration = 0;
   var id = element.id;
   if( tid == 0 ) {
     start = new Date().getTime();
-    tid = setInterval('incrementElement("'+id+'", '+value+', '+minimum+', '+decimals+')', speed);
+    tid = setInterval('incrementElement("'+id+'", '+negative+', '+smallstep+')', speed);
   }
   else toggleOff();
 }
 
 /*
-* Starts a timer for continous incrementation on mouse down
+* Resets the timer used for mouse down
 */
 function toggleOff() {
   if( tid !=0 ) {
@@ -584,26 +594,60 @@ function toggleOff() {
 /*
 * Helper function to increment values of input field elemId.
 */
-function incrementElement(elemId, value, minimum, decimals) {
+function incrementElement(elemId, negative, smallstep) {
   // Dismiss onclick event while releasing pressed down button  
   if( duration > speed ) return false; 
-
-  var element = document.getElementById(elemId);
-  var min = parseFloat(minimum);
-  var old = parseFloat(element.value);
-  var add = parseFloat(value);
-  var dec = parseInt(decimals);
   
-  if( isNaN(min) ) min = -Number.MAX_VALUE;
+  // Initialize element specific incrementation
+  initIncrement(elemId, negative, smallstep);
+  
+  var element = document.getElementById(elemId);
+  
+  var old = parseFloat(element.value);
+  var add = parseFloat(increment.step);
+  var dec = parseInt(increment.dec);
+  
   if( isNaN(old) ) old = 0; 
   if( isNaN(add) ) add = 0;
   if( isNaN(dec) ) dec = 0;
   
   var out = old + add;
   
-  if( out <= min ) element.value = "";
+  if( out <= 0 ) element.value = "";
   else element.value = out.toFixed(dec);
   
   updateCalculations();
+}
+
+/*
+* Initialize the 'increment' var according to the given element id and setup. 
+*/
+function initIncrement(elemId, negative, smallstep) {
+  if( elemId == 'glucose' || elemId == 'settingsCorr' || elemId == 'settingsAim' ) {
+    if( glucoseUnits == 0 ) {
+      if( smallstep ) increment.step = glucoseStepsMgDl.low;
+      else increment.step = glucoseStepsMgDl.high;
+      increment.dec = glucoseStepsMgDl.dec;
+    }
+    else {
+      if( smallstep ) increment.step = glucoseStepsMmoll.low;
+      else increment.step = glucoseStepsMmoll.high;
+      increment.dec = glucoseStepsMmoll.dec;
+    }
+  }
+  else if( elemId == 'foodbe' ) {
+    // TODO decide which steps to take .. 
+    if( smallstep ) increment.step = mealUnitStepsBU.low;
+    else increment.step = mealUnitStepsBU.high;
+    increment.dec = mealUnitStepsBU.dec;
+  }
+  else {
+    increment.step = 0.1;
+    increment.dec = 1;
+  }
+  
+  if( negative ) { 
+    increment.step *= -1.0;
+  }
 }
 
