@@ -1,6 +1,6 @@
 /* 
 * IBC js
-* Author: Max Kalb - http://maxkalb.github.io/ 
+* Author: http://maxkalb.github.io/ 
 */
 
 /* Check if the app is executed as webapp */
@@ -23,7 +23,12 @@ var localNames = [];
 // Holds the active therapy setting
 var selectedTherapy = 0;
 
-// Some simplyfing getter methods
+// 0 = [mg/dl] ; 1 = [mmol/l]
+var glucoseUnits = 0;
+
+/* 
+* Some simplyfing getter methods
+*/
 function getTherapyAim(therapyId) {
   return settings[therapyId].aim;
 }
@@ -32,6 +37,17 @@ function getTherapyCorrection(therapyId) {
 }
 function getTherapyBolus(therapyId) {
   return settings[therapyId].bolus;
+}
+
+/*
+* Set default therapy settings and initialize local variable names.
+*/
+function initDefaultSettings() {
+  settings[0] = {aim:100, corr:50, bolus:1.0};
+	settings[1] = {aim:100, corr:50, bolus:1.0};
+	settings[2] = {aim:120, corr:50, bolus:1.0};
+	settings[3] = {aim:120, corr:50, bolus:1.0};
+  initLocalNames(); 
 }
 
 /*
@@ -48,31 +64,28 @@ function initLocalNames() {
 }
 
 /*
-* Set default therapy settings and initialize local variable names.
+* Initializes the settings array with local stored values and the user inputs. 
 */
-function initDefaultSettings() {
-  settings[0] = {aim:100, corr:50, bolus:1.0};
-	settings[1] = {aim:100, corr:50, bolus:1.0};
-	settings[2] = {aim:120, corr:50, bolus:1.0};
-	settings[3] = {aim:120, corr:50, bolus:1.0};
-  initLocalNames(); 
-}
-
-/*
-* Gets called if the page gets loaded (used as initialization).
-*/
-window.onload = function () {
-  initDefaultSettings();
-  initLocalSettings();
-  autoTherapySetting();
-  updateTime();
-  initialized = true;
+function initLocalSettings() {
+  var therapyId;
+  for( therapyId = 0; therapyId < settings.length; therapyId++ ) {
+    loadTherapySettings(therapyId);
+  }
+  
+  if( localStorage.getItem("glucose") != null ) {
+    var bg = localStorage.getItem("glucose");
+    document.getElementById('glucose').value = bg;
+  }
+    
+  if( localStorage.getItem("meal") != null ) {
+    document.getElementById('foodbe').value = localStorage.getItem("meal");
+  }
 }
 
 /*
 * Overwrites the therapy setting with local storage values (if exist).
 */
-function loadTherapySettings(therapyId) {
+function loadTherapySettings( therapyId ) {
   var stringAimName = localNames[therapyId].aim;
   var stringCorrName = localNames[therapyId].corr;
   var stringBolusName = localNames[therapyId].bolus;
@@ -86,12 +99,42 @@ function loadTherapySettings(therapyId) {
 }
 
 /*
+* Overwrites the default blood glucose unit with local storage (if exist)
+* and selects the correspondig units select option.  
+*/
+function initLocalUnits() {
+  if( localStorage.getItem('bgunits') != null )
+    glucoseUnits = localStorage.getItem('bgunits'); 
+  setSelectedGlucoseUnit();
+}
+
+/*
+* Gets called if the page gets loaded (used as initialization).
+*/
+window.onload = function () {
+  initDefaultSettings();
+  initLocalSettings();
+  initLocalUnits();
+  autoTherapySetting();
+  updateTime();
+  initialized = true;
+}
+
+
+/*
 * Writes the therapy settings of the given id into local storage. 
 */
-function saveTherapySettings(therapyId) {
+function saveTherapySettings( therapyId ) {
   localStorage.setItem(localNames[therapyId].aim, getTherapyAim(therapyId));
   localStorage.setItem(localNames[therapyId].corr, getTherapyCorrection(therapyId));
   localStorage.setItem(localNames[therapyId].bolus, getTherapyBolus(therapyId));
+}
+
+/*
+* Writes the blood glucose units into local storage. 
+*/
+function saveLocalUnits() {
+  localStorage.setItem('bgunits', glucoseUnits);
 }
 
 /*
@@ -103,20 +146,92 @@ function saveGlucoseAndMeal() {
 }
 
 /*
-* Initializes the settings array with local stored values and the user inputs. 
+* Transforms a value from [mg/dl] to [mmol/l].
 */
-function initLocalSettings() {
-  var therapyId;
-  for( therapyId = 0; therapyId < settings.length; therapyId++ ) {
-    loadTherapySettings(therapyId);
+function mgDl2mmoll( mgDlVal ) {
+  return parseFloat( mgDlVal ) / 18.0;
+}
+
+/*
+* Transforms a value from [mmol/l] to [mg/dl].
+*/
+function mmoll2mgDl( mmolVal ) {
+  return parseFloat( mmolVal ) * 18.0;
+}
+
+/* 
+ * Called when the user changes the glucose measurement unit. 
+ */
+function glucoseUnitChanged() {
+  glucoseUnits = document.getElementById('selectGlucoseUnit').selectedIndex;
+  transformGlucoseUnits();
+  saveLocalUnits();
+}
+
+/*
+* Transfroms all glucose inputs into the given unit, updates ui and local storage. 
+*/
+function transformGlucoseUnits() {
+
+  // Changed displayed units
+  setSelectedGlucoseUnit();
+
+  // Change displayed values
+  var glucoseInput = document.getElementById('glucose');
+  var settingsAim  = document.getElementById('settingsAim');
+  var settingsCorr = document.getElementById('settingsCorr');
+  
+  // Transfrom values from [mmol/l] to [mg/dl]
+  if( glucoseUnits == 0 ) {
+    glucoseInput.value = mmoll2mgDl( glucoseInput.value ).toFixed(0);
+    settingsAim.value  = mmoll2mgDl( settingsAim.value ).toFixed(0);
+    settingsCorr.value = mmoll2mgDl( settingsCorr.value ).toFixed(0);
+    
+    for( var i=0; i<4; i++ ) {
+      settings[i].aim = mmoll2mgDl( settings[i].aim ).toFixed(0);
+      settings[i].corr = mmoll2mgDl( settings[i].corr ).toFixed(0);
+      
+      saveTherapySettings(i);
+    }
+  } // Transfrom values from [mg/dl] to [mmol/l]
+  else {
+    glucoseInput.value = mgDl2mmoll( glucoseInput.value ).toFixed(2);
+    settingsAim.value  = mgDl2mmoll( settingsAim.value ).toFixed(2);
+    settingsCorr.value = mgDl2mmoll( settingsCorr.value ).toFixed(2);
+    
+    for( var i=0; i<4; i++ ) {
+      settings[i].aim = mgDl2mmoll( settings[i].aim ).toFixed(2);
+      settings[i].corr = mgDl2mmoll( settings[i].corr ).toFixed(2);
+      
+      saveTherapySettings(i);
+    }
+  }
+  saveGlucoseAndMeal();
+  updateTherapySettings();
+}
+
+/* 
+ * Sets the selected index of the blood glucose units option to 'glucoseUnits'. 
+ */
+function setSelectedGlucoseUnit() {
+  var select = document.getElementById('selectGlucoseUnit');
+  var settingsAim  = document.getElementById('settingsAim');
+  var settingsCorr = document.getElementById('settingsCorr');
+  
+  if( select.selectedIndex != glucoseUnits ) {
+    select.selectedIndex = glucoseUnits;
   }
   
-  if( localStorage.getItem("glucose") != null )
-    document.getElementById('glucose').value = localStorage.getItem("glucose");
-    
-  if( localStorage.getItem("meal") != null )
-    document.getElementById('foodbe').value = localStorage.getItem("meal");
+  if( glucoseUnits == 0 ) {
+    document.getElementById('glucoseAimUnit').innerHTML = "mg/dl";
+    document.getElementById('correctionUnit').innerHTML = "mg/dl";
+  }
+  else {
+    document.getElementById('glucoseAimUnit').innerHTML = "mmol/l";
+    document.getElementById('correctionUnit').innerHTML = "mmol/l";
+  }
 }
+
 
 /*
 * Returns a string with the main therapy informations.
@@ -124,7 +239,7 @@ function initLocalSettings() {
 function getTherapyInfoText(therapyId) {
   var infoText = "Aim " + getTherapyAim(therapyId) + " "
 							 + "Corr " + getTherapyCorrection(therapyId) + " "
-  						 + "Bolus " + getTherapyBolus(therapyId);
+  						 + "Meal " + getTherapyBolus(therapyId);
   return infoText;
 }
 
@@ -266,18 +381,21 @@ function selectTherapy(elem) {
 * Sets the border color of the therapy buttons.
 */
 function updateTherapyColor() {
-  var isWrongSetting = false;
-  var ele = document.getElementById("therapySetup");
-  var sub = document.getElementsByClassName("selectButton");
-  for(var i=0; i<sub.length; i++) {
-    if( i == selectedTherapy ) { 
-      if( i == getTherapyDaytime() ) sub[i].style.border = "0.1em solid #ccc";
-      else { sub[i].style.border = "0.1em solid #FAA"; isWrongSetting = true; }
-    }
-    else sub[i].style.border = "0em dashed #ccc";
+  var badSelection = false;
+  var infotext = document.getElementById("therapySetup");
+  var buttons = document.getElementsByClassName("selectButton");
+  for( var i=0; i<buttons.length; i++ ) {
+    if( i == selectedTherapy && i != getTherapyDaytime() ) badSelection = true;
+    else buttons[i].style.border = "0.1em solid transparent";
   }
-  if( isWrongSetting == true ) ele.style.color = "#D00";
-  else ele.style.color = "#444";
+  if( badSelection == true ) {
+    buttons[ selectedTherapy ].style.border = "0.1em solid #FAA";
+    infotext.style.color = "#D00";
+  }
+  else { 
+    buttons[ selectedTherapy ].style.border = "0.1em solid #ccc";
+    infotext.style.color = "#444";
+  }
 }
 
 /*
@@ -293,9 +411,8 @@ function setTherapy(id) {
 /*
 * Calculate correction
 */
-function calcCorrection(therapyId)
-{
-  var glu = document.getElementById("glucose").value;
+function calcCorrection(therapyId) {
+  var glu = document.getElementById('glucose').value;
   var gluAim = getTherapyAim(therapyId);
   var corr = getTherapyCorrection(therapyId);
   var result = (glu - gluAim) / corr;
@@ -306,8 +423,7 @@ function calcCorrection(therapyId)
 /*
 * Calculate meal
 */
-function calcEffectiveFood(therapyId)
-{
+function calcEffectiveFood(therapyId) {
   var food = document.getElementById("foodbe").value;
   var factor = getTherapyBolus(therapyId);
   var result = food * factor;
@@ -318,8 +434,7 @@ function calcEffectiveFood(therapyId)
 /*
 * Recalculate results and save user input settings.
 */
-function updateCalculations() 
-{
+function updateCalculations() {
   var bolusElement = document.getElementById('finalBolus');
     
   var correction = calcCorrection( selectedTherapy );
@@ -357,8 +472,7 @@ function updateCalculations()
 /*
 * Checks if the given elements value is a number.
 */
-function validateInputNumber(elementID) 
-{
+function validateInputNumber(elementID) {
   var x = document.getElementById(elementID).value;
   if (isNaN(x)) // this is the code I need to change
   {
@@ -445,8 +559,7 @@ function touchUp(element, value, minimum, decimals) {
 /*
 * Starts a timer for continous incrementation on mouse down
 */
-function toggleOn(element, value, minimum, decimals) 
-{
+function toggleOn(element, value, minimum, decimals) {
   duration = 0;
   var id = element.id;
   if( tid == 0 ) {
@@ -471,8 +584,7 @@ function toggleOff() {
 /*
 * Helper function to increment values of input field elemId.
 */
-function incrementElement(elemId, value, minimum, decimals) 
-{
+function incrementElement(elemId, value, minimum, decimals) {
   // Dismiss onclick event while releasing pressed down button  
   if( duration > speed ) return false; 
 
