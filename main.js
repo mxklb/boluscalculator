@@ -26,6 +26,12 @@ var selectedTherapy = 0;
 // 0 = [mg/dl] ; 1 = [mmol/l]
 var glucoseUnits = 0;
 
+// 0 = [bread units]; 1 = [carbs]
+var foodUnits = 0;
+
+// Initial carbs factor: [g] for one [IU]
+var carbsFactor = 12.0;
+
 /* 
 * Some simplyfing getter methods
 */
@@ -99,13 +105,21 @@ function loadTherapySettings( therapyId ) {
 }
 
 /*
-* Overwrites the default blood glucose unit with local storage (if exist)
-* and selects the correspondig units select option.  
+* Overwrites local settings with local storage (if exist)
+* And changes the correspondig html elements accordingly.  
 */
 function initLocalUnits() {
   if( localStorage.getItem('bgunits') != null )
     glucoseUnits = localStorage.getItem('bgunits'); 
   setSelectedGlucoseUnit();
+  
+  if( localStorage.getItem('foodunits') != null )
+    foodUnits = localStorage.getItem('foodunits');
+  setSelectedFoodUnit();
+  
+  if( localStorage.getItem('gcarbs') != null )
+    carbsFactor = localStorage.getItem('gcarbs');
+  setCarbsFactor();
 }
 
 /*
@@ -131,10 +145,12 @@ function saveTherapySettings( therapyId ) {
 }
 
 /*
-* Writes the blood glucose units into local storage. 
+* Writes the local settings into local storage. 
 */
 function saveLocalUnits() {
   localStorage.setItem('bgunits', glucoseUnits);
+  localStorage.setItem('foodunits', foodUnits);
+  localStorage.setItem('gcarbs', carbsFactor);
 }
 
 /*
@@ -159,6 +175,20 @@ function mmoll2mgDl( mmolVal ) {
   return parseFloat( mmolVal ) * 18.0;
 }
 
+/*
+* Transforms a value from [g] to [bread units].
+*/
+function carbs2breadUnits( gramValue ) {
+  return parseFloat( gramValue ) / carbsFactor;
+}
+
+/*
+* Transforms a value from [bread units] to [g].
+*/
+function breadUnits2carbs( breadUnitValue ) {
+  return parseFloat( breadUnitValue ) * carbsFactor;
+}
+
 /* 
  * Called when the user changes the glucose measurement unit. 
  */
@@ -168,12 +198,29 @@ function glucoseUnitChanged() {
   saveLocalUnits();
 }
 
+/* 
+ * Called when the user changes the meal measurement unit. 
+ */
+function foodUnitChanged() {
+  foodUnits = document.getElementById('selectFoodUnit').selectedIndex;
+  transformFoodUnits();
+  saveLocalUnits();
+}
+
+/* 
+ * Called when the user changes the carbs factor. 
+ */
+function carbsFactorChanged() {
+  carbsFactor = document.getElementById('carbsunit').value;
+  saveLocalUnits();
+}
+
 /*
-* Transfroms all glucose inputs into the given unit, updates ui and local storage. 
+* Transfroms all glucose inputs according to 'glucoseUnits', updates ui and local storage. 
 */
 function transformGlucoseUnits() {
 
-  // Changed displayed units
+  // Change displayed units
   setSelectedGlucoseUnit();
 
   // Change displayed values
@@ -210,6 +257,22 @@ function transformGlucoseUnits() {
   updateTherapySettings();
 }
 
+/*
+* Transfroms the meal input according to 'foodUnits', updates ui and local storage.
+*/
+function transformFoodUnits() {
+  var foodInput = document.getElementById('foodbe');
+  setSelectedFoodUnit();
+  if( foodUnits > 0 ) {
+    foodInput.value = breadUnits2carbs( foodInput.value ).toFixed(0);
+  }
+  else {
+    foodInput.value = carbs2breadUnits( foodInput.value ).toFixed(1);
+  }
+  saveLocalUnits();
+  updateCalculations();
+}
+
 /* 
  * Sets the selected index of the blood glucose units option to 'glucoseUnits'. 
  */
@@ -230,6 +293,24 @@ function setSelectedGlucoseUnit() {
     document.getElementById('glucoseAimUnit').innerHTML = "mmol/l";
     document.getElementById('correctionUnit').innerHTML = "mmol/l";
   }
+}
+
+/* 
+ * Sets the selected index of the blood glucose units option to 'foodUnits'. 
+ */
+function setSelectedFoodUnit() {
+  var select = document.getElementById('selectFoodUnit');
+  
+  if( select.selectedIndex != foodUnits ) {
+    select.selectedIndex = foodUnits;
+  }
+}
+
+/* 
+ * Sets the selected index of the blood glucose units option to 'foodUnits'. 
+ */
+function setCarbsFactor() {
+  document.getElementById('carbsunit').value = carbsFactor;
 }
 
 
@@ -427,6 +508,7 @@ function calcEffectiveFood(therapyId) {
   var food = document.getElementById("foodbe").value;
   var factor = getTherapyBolus(therapyId);
   var result = food * factor;
+  if( foodUnits > 0 ) result /= carbsFactor;
   if( food = "" || factor == "" ) result = NaN;
   return result;
 }
@@ -636,7 +718,18 @@ function initIncrement(elemId, negative, smallstep) {
     }
   }
   else if( elemId == 'foodbe' ) {
-    // TODO decide which steps to take .. 
+    if( foodUnits > 0 ) {
+      if( smallstep ) increment.step = mealUnitStepsKH.low;
+      else increment.step = mealUnitStepsKH.high;
+      increment.dec = mealUnitStepsKH.dec;
+    }
+    else {
+      if( smallstep ) increment.step = mealUnitStepsBU.low;
+      else increment.step = mealUnitStepsBU.high;
+      increment.dec = mealUnitStepsBU.dec;
+    }
+  }
+  else if( elemId == 'carbsunit' ){
     if( smallstep ) increment.step = mealUnitStepsBU.low;
     else increment.step = mealUnitStepsBU.high;
     increment.dec = mealUnitStepsBU.dec;

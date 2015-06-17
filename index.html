@@ -64,7 +64,7 @@
     <label class="inputTitle" for="foodbe"><span>Amount of Meal</span></label>
     <label class="inputFooter" for="foodbe">
       <div class="selectDiv">
-        <select>
+        <select id="selectFoodUnit" onChange="foodUnitChanged();">
           <option class="units" selected>[bread units]</option>
           <option class="units">[gram carbs]</option>
         </select>
@@ -120,35 +120,39 @@
   
   <div style="line-height:1em; min-height:0.5em;"></div>
   <hr style="width: 60%;">
+
+  <div id="setupGroup" style="display:none;">
+    
+    <p>Application Setup</p>
+    <small>Set amount of carbs for one insulin unit</small>
+    <div class="inputDiv">
+      <input class="incrementButton" type="button" value="-" onmousedown="mouseDown(this.form.carbsunit, true, false);" onmouseup="mouseUp();carbsFactorChanged();" ontouchstart="touchDown(this.form.carbsunit,  true, false);" ontouchend="touchUp();carbsFactorChanged();" onclick="incrementElement(this.form.carbsunit.id, true, true);carbsFactorChanged();"/>
+      <input class="inputNumber" type="number" name="carbsunit" id="carbsunit" step="any" pattern="[-+]?[0-9]*[.,]?[0-9]+" onClick="this.select();" onchange="carbsFactorChanged();"/>
+      <label class="inputTitle" for="carbsunit"><span>Carbs Factor</span></label>
+      <label class="inputFooter" for="carbsunit"><span>[g]</span></label>    
+      <input class="incrementButton" type="button" value="+" onmousedown="mouseDown(this.form.carbsunit, false, false);" onmouseup="mouseUp();carbsFactorChanged();" ontouchstart="touchDown(this.form.carbsunit, false, false);" ontouchend="touchUp();carbsFactorChanged();" onclick="incrementElement(this.form.carbsunit.id, false, true);carbsFactorChanged();"/>
+    </div>
+      
+    <div style="line-height:1em; min-height:0.5em;"></div>
+    <hr style="width: 60%;">
+      
+    <form action="https://www.paypal.com/cgi-bin/webscr" id="donateButton" method="post" target="_top">
+      <input type="hidden" name="cmd" value="_s-xclick">
+      <input type="hidden" name="hosted_button_id" value="MBLVEVHTLPWA8">
+      <input type="submit" name="submit" value="Donate">
+      <input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
+    </form>
+    <p id="about"><a href="https://github.com/maxkalb/boluscalculator" target=”_blank”>README IBC v1.0 (beta)</a></p>
+  </div>
+
+  <div class="buttonGroup">
+    <div class="singleButton">
+      <a href="#" id="setupButton" class="setupButton" onclick="toggleSetup();return false;">
+        <img src="images/gears10.svg" id="settingsSvg" alt="&#9775;">
+      </a>
+    </div>
+  </div>
 </form>
-
-<div id="setupGroup" style="display:none;">
-  <p>Application Setup</p>
-  <small>Glucose and meal measurement units</small>
-  <div id="unitButtons">
-    <div class="singleButton"><a href="#" class="selectButton" onclick="return false;"><span style="font-size: 0.75em;">[mg/dl]</span></a></div>
-    <div class="singleButton"><a href="#" class="selectButton" onclick="return false;"><span style="font-size: 0.6em;">[mmol/L]</span></a></div>
-    <div class="singleButton"><a href="#" class="selectButton" onclick="return false;"><span style="font-size: 0.75em;">[BE]</span></a></div>
-    <div class="singleButton"><a href="#" class="selectButton" onclick="return false;"><span style="font-size: 0.75em;">Carbs</span></a></div>
-  </div>
-  <div style="line-height:1em; min-height:0.5em;"></div>
-  <hr style="width: 60%;">
-  <form action="https://www.paypal.com/cgi-bin/webscr" id="donateButton" method="post" target="_top">
-    <input type="hidden" name="cmd" value="_s-xclick">
-    <input type="hidden" name="hosted_button_id" value="MBLVEVHTLPWA8">
-    <input type="submit" name="submit" value="Donate">
-    <input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
-  </form>
-  <p id="about"><a href="https://github.com/maxkalb/boluscalculator" target=”_blank”>README IBC v1.0 (beta)</a></p>
-</div>
-
-<div class="buttonGroup">
-  <div class="singleButton">
-    <a href="#" id="setupButton" class="setupButton" onclick="toggleSetup();return false;">
-      <img src="images/gears10.svg" id="settingsSvg" alt="&#9775;">
-    </a>
-  </div>
-</div>
 
 </div>
 </body>

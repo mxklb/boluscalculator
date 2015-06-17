@@ -311,16 +311,11 @@ input[type="image"] {
   height: 70%;
 }
 
-.buttonGroup,
-#unitButtons {
+.buttonGroup {
   display: block;
   margin: 0em auto;
   max-width: 320px;
   min-width: 270px; 
-}
-
-#unitButtons {
-  margin-top: 1em;
 }
 
 #about {
