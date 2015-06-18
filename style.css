@@ -448,15 +448,14 @@ input[type="image"] {
   -o-appearance: none;
   appearance: none;
 }
-
 .inputDiv > .incrementButton:focus {
   border: 1px solid transparent;
 }
-
 .inputDiv > .incrementButton:active {
   border: 1px solid #bbb;
 }
 
+/* Styling units selection */
 .selectDiv {
   overflow: hidden;
 }
@@ -479,8 +478,14 @@ input[type="image"] {
 }
 .selectDiv > select:hover {
   color: #444;
-  text-decoration: none;
 }
+.selectDiv > .select:focus {
+  color: #aaa;
+}
+.selectDiv > .select:active {
+  color: #444;
+}
+
 .selectDiv > select:-moz-focusring {
   color: transparent;
   text-shadow:0 0 0 #444;
