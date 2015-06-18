@@ -106,7 +106,6 @@ hr {
 }
 
 p#output,
-input[type="button"],
 input[type="number"] {
   text-align: center;
   font-size: 0.965em;
@@ -286,7 +285,7 @@ input[type="image"] {
   -webkit-tap-highlight-color: transparent;
   /* Hide button due to submit usage */
   display: none;  
-} 
+}
 
 .settings,
 #setupGroup {
@@ -448,6 +447,10 @@ input[type="image"] {
   -ms-appearance: none;
   -o-appearance: none;
   appearance: none;
+}
+
+.inputDiv > .incrementButton:focus {
+  border: 1px solid transparent;
 }
 
 .inputDiv > .incrementButton:active {
