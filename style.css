@@ -450,11 +450,7 @@ input[type="image"] {
   appearance: none;
 }
 
-.inputDiv > .incrementButton:active,
-.inputDiv > .incrementButton:focus {
-  border: 0px solid #bbb;
-}
-.inputDiv > .incrementButton:hover {
+.inputDiv > .incrementButton:active {
   border: 1px solid #bbb;
 }
 
