@@ -428,26 +428,31 @@ input[type="image"] {
   margin-left: -10.45em;
 }
 
+/* Styling the +/- buttons */
 .inputDiv > .incrementButton {
-  text-align: center;
-  color: #aaa;
-  background: #eee;
-  text-decoration: none;
-  outline:0 none !important;
-  display : inline-block;
-  position: relative;
-  margin: auto;
   width: 3em;
+  color: #aaa;
+  outline:0 none !important;
+  background: #eee;
+  text-align: center;
+  text-decoration: none;
   line-height: 3em;
+  position: relative;
+  display: inline-block;
+  margin: auto;
   border-radius: 1.5em;
-  border: 1px solid #eee;
+  border: 0px solid #eee;
   cursor: pointer; cursor: hand;
   -webkit-appearance: none;
   -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
 }
 
+.inputDiv > .incrementButton:active,
 .inputDiv > .incrementButton:focus {
-  border: 1px hidden #bbb;
+  border: 0px solid #bbb;
 }
 .inputDiv > .incrementButton:hover {
   border: 1px solid #bbb;
@@ -464,14 +469,14 @@ input[type="image"] {
   background: transparent;
   margin: -.2em auto;
   padding: 0 0;
+  text-decoration: none;
+  outline: none;
+  outline: 0 none !important;
   -webkit-appearance: none;
   -moz-appearance: none;
   -ms-appearance: none;
   -o-appearance: none;
   appearance: none;
-  text-decoration: none;
-  outline: none;
-  outline: 0 none !important;
 }
 .selectDiv > select:hover {
   color: #444;
