@@ -541,7 +541,7 @@ function updateCalculations() {
  
   var calcString = "";
   if( !bolusInvalid ){
-    calcString = "Corr (" + correction.toFixed(2) + ") + Meal (" + effectiveFood.toFixed(2) + ")";
+    calcString = "Meal (" + effectiveFood.toFixed(2) + ") + Corr (" + correction.toFixed(2) + ")";
     elemSum.style.background = "#fff";
   }
   else { elemSum.style.background = "transparent"; }
