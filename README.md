@@ -16,12 +16,12 @@ The equations used to calculate the resulting insulin dose are simple ...
 ### The Final Result
 The _Final Bolus_ is defined as the sum of the _Effective Meal_ and the _Correction_.
 
-<p align="center"><a href="" target="_blank"><img src="images/finalbolus.png"/></a></p>
+<p align="center"><a href="" starget="_blank"><img src="images/finalbolus.png"/></a></p>
 
-The _Correction_ and the _Effective Meal_ are provisional results which are calculated as described in the following chapter. These results depend on the therapy settings and the daytime, which is indicated by the index i.
+The _Correction_ and the _Effective Meal_ are provisional results. These results depend on the therapy setting per daytime, which is indicated by the index _i_. All values are always calculated in [insulin units](https://en.wikipedia.org/wiki/Insulin_%28medication%29#Dosage_and_timing) [U].
 
 ### The Provisional Results
-The _Effective Meal_ is defined as the product of the _Meal to eaten_ and the _Bolus_ factor.
+The _Effective Meal_ is defined as the product of the _Amount of Meal_ and the _Meal Factor_.
 
 <p align="center"><a href="" target="_blank"><img src="images/effmeal.png"/></a></p>
 
@@ -29,12 +29,12 @@ The _Correction_ is defined as the difference of the actual _Glucose Level_ and 
 
 <p align="center"><a href="" target="_blank"><img src="images/correction.png"/></a></p>
 
-_Note:_ Therapy settings (indexed i) may vary depending on the daytime! The calculation during the day can be adjusted by tweaking the therapy settings.
+_Note:_ Therapy settings (indexed _i_) may vary depending on the daytime! The calculation during the day can be adjusted by tweaking the therapy settings.
 
 ## How to use it
 This app works best with chrome or other webkit based browsers.
 
-1. Open the [boluscalculator](http://maxkalb.github.io/boluscalculator/) in a modern HTML5 compatible web browser.
+1. Open the [boluscalculator](http://mxklb.github.io/boluscalculator/) in a modern HTML5 compatible web browser.
 2. Make sure the therapy settings are displayed according to your needs.
 3. Enter the actual _Glucose Level_ (soberly measured) --> _Correction_
 4. Enter the amount of _Meal_ to be eaten --> _Effective Meal_
@@ -63,14 +63,14 @@ Actually the code is not tested, reviewed or validated!
 
 ### Todo
 - ~~Add therapy settings for daytime _Late_~~
-- Make different measurement units available
+- ~~Make different measurement units available~~
 - ~~Form entries should remember/cache values!?~~
 - ~~Default therapy settings should be configureable~~
 - ~~Develop a new more modern, scalable or mobile app~~
     - ~~Therapy settings should be separated (menu)~~
     - Steady changing therapy settings (curves)?
     - ~~Automated daytime detection~~
-- Redesign input elements (fix moz appearance)
+- ~~Redesign input elements (fix moz appearance)~~
 - Make final bolus editable .. calculate meal
 - Refactorings to become a multi-lingual app
 - Validate the users number input
