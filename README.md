@@ -3,7 +3,7 @@ IBC - A Insulin Bolus Calculator HTML5 Webapp.
 
 A simple and tranparent calculator app for the intensive/flexibles insulin therapy.
 
-This project is deployed using gh-pages. Just try it out here: [maxkalb.github.io/boluscalculator](http://maxkalb.github.io/boluscalculator/)
+This project is deployed using gh-pages. Just try it out here: [mxklb.github.io/boluscalculator](http://mxklb.github.io/boluscalculator/)
 
 ## About
 This is a bolus calculator app to estimate a single insulin dose based on personalized therapy settings, the actual blood glucose level and a meal. I wrote this app because I couldn't find any free web/mobile app that let one calculate a insulin bolus that implements the formulars I knew. Most of the apps I found did not clearly point out the formulars they use to perform the calculations. So this is the result, hopefully someone will find it usable ... 
@@ -76,4 +76,4 @@ Actually the code is not tested, reviewed or validated!
 - Validate the users number input
 
 ## License
-Feel free to use, modify, comment or whatever ... this implementation is licensed under [MIT](https://github.com/maxkalb/boluscalculator/blob/master/LICENSE).
+Feel free to use, modify, comment or whatever ... this implementation is licensed under [MIT](https://github.com/mxklb/boluscalculator/blob/master/LICENSE).
