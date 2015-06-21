@@ -535,7 +535,7 @@ function updateCalculations() {
 }
 
 /*
-* Updates the footer of the final bolus using the given values.
+* Updates the displayed residual results footer of the final bolus.
 */
 function updateResidualResults( effectiveFood, correction ) {  
   var elemSum = document.getElementById('sum');
@@ -552,14 +552,14 @@ function updateResidualResults( effectiveFood, correction ) {
 * Called if the user changes the bolus output. Set corresponding amount of meal.
 */
 function bolusChanged() {
-  var bolus = document.getElementById('finalBolus').value;
+  var bolus = Number(document.getElementById('finalBolus').value);
   var factor = getTherapyBolus( selectedTherapy );
   var correction = calcCorrection( selectedTherapy );
   
   var food = bolus - correction;
   var neededFood = food/factor;
   
-  if( !isNaN(neededFood) ) {
+  if( !isNaN(neededFood) && neededFood > 0 ) {
     initIncrement('foodbe', false, false);
     if( foodUnits != 0 ) neededFood *= carbsFactor;
     document.getElementById("foodbe").value = neededFood.toFixed(increment.dec);    
