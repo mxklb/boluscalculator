@@ -384,11 +384,9 @@ function toggleSettings() {
 	var btn = document.getElementById('settingsButton');
   if ( e.style.display == 'block' ) {
     hideElement(e);
-    btn.style.border = "1px solid transparent";
   }
   else {
     showElement(e);
-    btn.style.border = "1px solid #ccc";
     window.scrollTo(0, document.body.scrollHeight);
   }
   return false;
@@ -399,14 +397,12 @@ function toggleSettings() {
 */
 function toggleSetup() {
   var e = document.getElementById('setupGroup');
-  var btn = document.getElementById('setupButton');
+  //var btn = document.getElementById('setupButton');
   if ( e.style.display == 'block' ) {
     hideElement(e);
-    btn.style.border = "1px solid transparent";
   }
   else {
     showElement(e);
-    btn.style.border = "1px solid #ccc";
     window.scrollTo(0, document.body.scrollHeight);
   }
 }
@@ -466,7 +462,7 @@ function updateTherapyColor() {
   }
   if( badSelection == true ) {
     buttons[ selectedTherapy ].style.border = "0.1em solid #FAA";
-    infotext.style.color = "#D00";
+    infotext.style.color = "#C11";
   }
   else { 
     buttons[ selectedTherapy ].style.border = "0.1em solid #ccc";

@@ -206,20 +206,26 @@ input[type="number"]:focus {
 
 .therapyTime,
 .therapySetup {
-  display: block;
-  position: relative;
-  margin: auto;
-  padding: .75em 0em;
-  line-height: 1em;
+  display: inline-block;
+  position: absolute;
+  padding: .75em 0.2em;
+  line-height: 0em;
+  white-space: nowrap;
+  background: white;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+  #border: 1px solid red;
 }
 
 .therapyTime {
-  padding: 1em 0em;
-  line-height: 0em;
+  margin: -0.75em 0em;
 }
 
 .therapySetup {
-  line-height: 0em;
+  margin-top: -1.9em;
 }
 
 .therapySetup span {
@@ -227,9 +233,15 @@ input[type="number"]:focus {
 }
 
 #therapyInfo {
-  display: block;
-  line-height: 2.5em;
-  font-size: small;
+  display: inline-block;
+  line-height: 1.5em;
+  color: #aaa;
+  padding: .05em 0.2em;
+  -webkit-transform: translateY(0.5em);
+  -moz-transform: translateY(0.5em);
+  -ms-transform: translateY(0.5em);
+  -o-transform: translateY(0.5em);
+  transform: translateY(0.5em);
 }
 
 #therapyLink {
@@ -252,9 +264,23 @@ input[type="submit"],
   text-align: center;
   background: #eee;
   text-decoration: none;
-  outline: 0 none !important;
   border: 1px solid transparent;
   white-space: nowrap;
+}
+
+#settingsButton {
+  height: 2.5em;
+  font-size: 1.2em;
+  border-radius: 5em;
+  min-width: 270px;
+  margin-bottom: 0.75em;
+  padding: 0.4em 0em;
+  background: transparent;
+  border: 1px solid #ddd !important;
+}
+
+#settingsButton:hover {
+  border: 1px solid #bbb !important;
 }
 
 input[type="submit"] {
@@ -291,17 +317,11 @@ input[type="image"] {
 #setupGroup {
   display: none;
   margin: 0.5em auto;
-  padding: 0.5em 0em;
   opacity: 0;
   -webkit-transition: opacity 500ms ease-in;
   -moz-transition: opacity 500ms ease-in;
   -o-transition: opacity 500ms ease-in;
   transition: opacity 500ms ease-in;
-}
-
-.settings {
-  margin: 0 auto;
-  padding: 0em 0em;
 }
 
 #settingsSvg {
@@ -347,6 +367,10 @@ input[type="image"] {
   margin: 1.25em auto;
   height: 3.25em;
   white-space: nowrap;
+}
+
+.setupDiv {
+  margin: 1.5em auto;
 }
 
 .inputDiv > input,
