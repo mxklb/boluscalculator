@@ -509,7 +509,9 @@ input[type="image"] {
 .selectDiv > select {} option::checked { 
   background-color: #FFF; 
 }
-
-/* ----< Input/Output */
+/* Remove arrow IE */
+.selectDiv > select::-ms-expand {
+  display: none;
+}
 
 
