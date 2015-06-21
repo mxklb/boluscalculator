@@ -1,6 +1,6 @@
 /* 
 * IBC js
-* Author: http://maxkalb.github.io/ 
+* Author: http://mxklb.github.io/ 
 */
 
 /* Check if the app is executed as webapp */
@@ -23,7 +23,7 @@ var localNames = [];
 // Holds the active therapy setting
 var selectedTherapy = 0;
 
-// 0 = [mg/dl] ; 1 = [mmol/l]
+// 0 = [mg/dL] ; 1 = [mmol/L]
 var glucoseUnits = 0;
 
 // 0 = [bread units]; 1 = [carbs]
@@ -31,19 +31,6 @@ var foodUnits = 0;
 
 // Initial carbs factor: [g] for one [IU]
 var carbsFactor = 12.0;
-
-/* 
-* Some simplyfing getter methods
-*/
-function getTherapyAim(therapyId) {
-  return settings[therapyId].aim;
-}
-function getTherapyCorrection(therapyId) {
-  return settings[therapyId].corr;
-}
-function getTherapyBolus(therapyId) {
-  return settings[therapyId].bolus;
-}
 
 /*
 * Set default therapy settings and initialize local variable names.
@@ -61,12 +48,25 @@ function initDefaultSettings() {
 */
 function initLocalNames() {
 	var therapyId;
-  for	(therapyId = 0; therapyId < settings.length; therapyId++) {
+  for( therapyId = 0; therapyId < settings.length; therapyId++ ) {
     var name1 = "aim" + therapyId;
   	var name2 = "corr" + therapyId;
   	var name3 = "bolus" + therapyId;
     localNames[therapyId] = {aim:name1, corr:name2, bolus:name3};
   }
+}
+
+/* 
+* Some simplyfing getter methods
+*/
+function getTherapyAim( therapyId ) {
+  return settings[therapyId].aim;
+}
+function getTherapyCorrection( therapyId ) {
+  return settings[therapyId].corr;
+}
+function getTherapyBolus( therapyId ) {
+  return settings[therapyId].bolus;
 }
 
 /*
@@ -129,11 +129,10 @@ window.onload = function () {
   initDefaultSettings();
   initLocalSettings();
   initLocalUnits();
-  autoTherapySetting();
+  autoTherapySelection();
   updateTime();
   initialized = true;
 }
-
 
 /*
 * Writes the therapy settings of the given id into local storage. 
@@ -162,14 +161,14 @@ function saveGlucoseAndMeal() {
 }
 
 /*
-* Transforms a value from [mg/dl] to [mmol/l].
+* Transforms a value from [mg/dL] to [mmol/L].
 */
 function mgDl2mmoll( mgDlVal ) {
   return parseFloat( mgDlVal ) / 18.0;
 }
 
 /*
-* Transforms a value from [mmol/l] to [mg/dl].
+* Transforms a value from [mmol/L] to [mg/dL].
 */
 function mmoll2mgDl( mmolVal ) {
   return parseFloat( mmolVal ) * 18.0;
@@ -219,16 +218,15 @@ function carbsFactorChanged() {
 * Transfroms all glucose inputs according to 'glucoseUnits', updates ui and local storage. 
 */
 function transformGlucoseUnits() {
-
   // Change displayed units
   setSelectedGlucoseUnit();
 
-  // Change displayed values
+  // Change displayed values ...
   var glucoseInput = document.getElementById('glucose');
   var settingsAim  = document.getElementById('settingsAim');
   var settingsCorr = document.getElementById('settingsCorr');
   
-  // Transfrom values from [mmol/l] to [mg/dl]
+  // Transfrom values from [mmol/L] to [mg/dL]
   if( glucoseUnits == 0 ) {
     glucoseInput.value = mmoll2mgDl( glucoseInput.value ).toFixed(0);
     settingsAim.value  = mmoll2mgDl( settingsAim.value ).toFixed(0);
@@ -240,7 +238,7 @@ function transformGlucoseUnits() {
       
       saveTherapySettings(i);
     }
-  } // Transfrom values from [mg/dl] to [mmol/l]
+  } // Transfrom values from [mg/dL] to [mmol/L]
   else {
     glucoseInput.value = mgDl2mmoll( glucoseInput.value ).toFixed(2);
     settingsAim.value  = mgDl2mmoll( settingsAim.value ).toFixed(2);
@@ -286,17 +284,17 @@ function setSelectedGlucoseUnit() {
   }
   
   if( glucoseUnits == 0 ) {
-    document.getElementById('glucoseAimUnit').innerHTML = "mg/dl";
-    document.getElementById('correctionUnit').innerHTML = "mg/dl";
+    document.getElementById('glucoseAimUnit').innerHTML = "mg/dL";
+    document.getElementById('correctionUnit').innerHTML = "mg/dL";
   }
   else {
-    document.getElementById('glucoseAimUnit').innerHTML = "mmol/l";
-    document.getElementById('correctionUnit').innerHTML = "mmol/l";
+    document.getElementById('glucoseAimUnit').innerHTML = "mmol/L";
+    document.getElementById('correctionUnit').innerHTML = "mmol/L";
   }
 }
 
 /* 
- * Sets the selected index of the blood glucose units option to 'foodUnits'. 
+ * Sets the selected index of the food units option to 'foodUnits'. 
  */
 function setSelectedFoodUnit() {
   var select = document.getElementById('selectFoodUnit');
@@ -312,7 +310,6 @@ function setSelectedFoodUnit() {
 function setCarbsFactor() {
   document.getElementById('carbsunit').value = carbsFactor;
 }
-
 
 /*
 * Returns a string with the main therapy informations.
@@ -332,7 +329,7 @@ function getTherapyName(therapyId) {
   if( therapyId == 0 ) therapyName = "Morning (06:00-12:00)";
   if( therapyId == 1 ) therapyName = "Noontime (12:00-18:00)";
   if( therapyId == 2 ) therapyName = "Evening (18:00-24:00)";
-  if( therapyId == 3 ) therapyName = "Late (00:00-06:00)";
+  if( therapyId == 3 ) therapyName = "Night (00:00-06:00)";
   return therapyName;
 }
 
@@ -374,7 +371,7 @@ function refreshSettings(therapyId) {
 /*
 * Automaticly choose the therapy setting depending on the actual daytime.
 */
-function autoTherapySetting() {
+function autoTherapySelection() {
   var daytimeId = getTherapyDaytime();
   setTherapy( daytimeId );
 }
@@ -427,7 +424,6 @@ function afterTransition(elem) {
   elem.style.display = 'none';
 }
 
-
 /*
 * Shows the given element after opacity transition
 */
@@ -439,16 +435,15 @@ function timeoutShow(elem) {
   elem.style.opacity = 1;
 }
 
-
 /*
 * Return the index of the select button elem.
 */
-function getIndexOfSelectButton(elem) {
+function getIndexOfSelectButton( elem ) {
   var sub = document.getElementsByClassName("selectButton");
-  for(var i=0; i<sub.length; i++)
+  for( var i=0; i<sub.length; i++ )
     if( sub[i] == elem )
       return i;
-  return -1; 
+  return -1;
 }
 
 /*
@@ -482,7 +477,7 @@ function updateTherapyColor() {
 /*
 * Switches to the given therapy setting id.
 */
-function setTherapy(id) {
+function setTherapy( id ) {
   selectedTherapy = id;
   updateTherapyColor();
   refreshSettings(id);
@@ -492,25 +487,25 @@ function setTherapy(id) {
 /*
 * Calculate correction
 */
-function calcCorrection(therapyId) {
+function calcCorrection( therapyId ) {
   var glu = document.getElementById('glucose').value;
   var gluAim = getTherapyAim(therapyId);
   var corr = getTherapyCorrection(therapyId);
   var result = (glu - gluAim) / corr;
-  if( glu == "" || gluAim == "" || corr == "" ) result = NaN;
-  return result;
+  if( glu == "" || gluAim == "" || corr == "" ) return NaN;
+  return Number(result);
 }
 
 /*
 * Calculate meal
 */
-function calcEffectiveFood(therapyId) {
+function calcEffectiveFood( therapyId ) {
   var food = document.getElementById("foodbe").value;
   var factor = getTherapyBolus(therapyId);
   var result = food * factor;
   if( foodUnits > 0 ) result /= carbsFactor;
-  if( food = "" || factor == "" ) result = NaN;
-  return result;
+  if( food = "" || factor == "" ) return NaN;
+  return Number(result);
 }
 
 /*
@@ -536,11 +531,11 @@ function updateCalculations() {
   else if( finalBolus <= 0 ) bolusElement.style.color = "darkgreen";
   else bolusElement.style.color = "#D00";
   
-  /* Update residual results (correction and meal) */
+  /* Update residual results (meal and correction) */
   var elemSum = document.getElementById('sum');
  
   var calcString = "";
-  if( !bolusInvalid ){
+  if( !bolusInvalid ) {
     calcString = "Meal (" + effectiveFood.toFixed(2) + ") + Corr (" + correction.toFixed(2) + ")";
     elemSum.style.background = "#fff";
   }
@@ -554,10 +549,9 @@ function updateCalculations() {
 /*
 * Checks if the given elements value is a number.
 */
-function validateInputNumber(elementID) {
+function validateInputNumber( elementID ) {
   var x = document.getElementById(elementID).value;
-  if (isNaN(x)) // this is the code I need to change
-  {
+  if( isNaN(x) ) {
     alert("Must input numbers");
     return false;
   }
@@ -572,12 +566,8 @@ function updateTime() {
   var hours = currentTime.getHours();
   var minutes = currentTime.getMinutes();
   var seconds = currentTime.getSeconds();
-  if (minutes < 10){
-      minutes = "0" + minutes;
-  }
-  if (seconds < 10){
-      seconds = "0" + seconds;
-  }
+  if( minutes < 10 ) minutes = "0" + minutes;
+  if( seconds < 10 ) seconds = "0" + seconds;
   var v = " " + hours + ":" + minutes + " ";
   setTimeout("updateTime()", timeOutMs);
   document.getElementById('therapyTime').innerHTML = v;
@@ -589,7 +579,7 @@ function updateTime() {
 
 /*
 * Returns an ID for the daytime depending on the actual time.
-* Return values: 0 = morning, 1 = noontime, 2 = evening, 3 = late.
+* Return values: 0 = morning, 1 = noontime, 2 = evening, 3 = night.
 */
 function getTherapyDaytime() {
 	var daytime = 0;
@@ -611,10 +601,10 @@ var start = 0;    /* Starting time of mouse down */
 var duration = 0; /* Duration of mouse down */
 
 // Setup default inrementations for +/- buttons
-var glucoseStepsMgDl = {high:10, low:1, dec:0};
+var glucoseStepsMgDl =  {high:10,   low:1,    dec:0};
 var glucoseStepsMmoll = {high:0.25, low:0.01, dec:2};
-var mealUnitStepsBU = {high:0.5, low:0.1, dec:1};
-var mealUnitStepsKH = {high:5, low:1, dec:0}; 
+var mealUnitStepsBU =   {high:0.5,  low:0.1,  dec:1};
+var mealUnitStepsKH =   {high:5,    low:1,    dec:0}; 
 
 // Initialize increment variable
 var increment = {step:1, dec:0};
