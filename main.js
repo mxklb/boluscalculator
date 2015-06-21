@@ -305,7 +305,7 @@ function setSelectedFoodUnit() {
 }
 
 /* 
- * Sets the selected index of the blood glucose units option to 'foodUnits'. 
+ * Sets the selected index of the carbs units option to 'carbsunits'. 
  */
 function setCarbsFactor() {
   document.getElementById('carbsunit').value = carbsFactor;
@@ -528,18 +528,45 @@ function updateCalculations() {
   else bolusElement.style.color = "#D00";
   
   /* Update residual results (meal and correction) */
+  updateResidualResults(effectiveFood, correction);
+  
+  /* Always store inputs */
+  saveGlucoseAndMeal();
+}
+
+/*
+* Updates the footer of the final bolus using the given values.
+*/
+function updateResidualResults( effectiveFood, correction ) {  
   var elemSum = document.getElementById('sum');
- 
   var calcString = "";
-  if( !bolusInvalid ) {
+  if( !isNaN(effectiveFood + correction) ) {
     calcString = "Meal (" + effectiveFood.toFixed(2) + ") + Corr (" + correction.toFixed(2) + ")";
     elemSum.style.background = "#fff";
   }
   else { elemSum.style.background = "transparent"; }
   elemSum.innerHTML = calcString;
+}
+
+/*
+* Called if the user changes the bolus output. Set corresponding amount of meal.
+*/
+function bolusChanged() {
+  var bolus = document.getElementById('finalBolus').value;
+  var factor = getTherapyBolus( selectedTherapy );
+  var correction = calcCorrection( selectedTherapy );
   
-  /* Always store inputs */
-  saveGlucoseAndMeal();
+  var food = bolus - correction;
+  var neededFood = food/factor;
+  
+  if( !isNaN(neededFood) ) {
+    initIncrement('foodbe', false, false);
+    if( foodUnits != 0 ) neededFood *= carbsFactor;
+    document.getElementById("foodbe").value = neededFood.toFixed(increment.dec);    
+    updateResidualResults(food, correction);
+    saveGlucoseAndMeal();
+  }  
+  else updateCalculations();
 }
 
 /*

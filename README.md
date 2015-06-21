@@ -71,7 +71,7 @@ Actually the code is not tested, reviewed or validated!
     - Steady changing therapy settings (curves)?
     - ~~Automated daytime detection~~
 - ~~Redesign input elements (fix moz appearance)~~
-- Make final bolus editable .. calculate meal
+- ~~Make final bolus editable .. calculate meal~~
 - Refactorings to become a multi-lingual app
 - Validate the users number input
 

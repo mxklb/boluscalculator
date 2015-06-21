@@ -74,7 +74,7 @@
   </div>
   
   <div class="outputDiv">
-    <input class="inputNumber" type="number" name="output" id="finalBolus" step="any" pattern="[-+]?[0-9]*[.,]?[0-9]+" onClick="this.select();" onchange="updateCalculations()"/>
+    <input class="inputNumber" type="number" name="finalBolus" id="finalBolus" step="any" pattern="[-+]?[0-9]*[.,]?[0-9]+" onClick="this.select();" oninput="bolusChanged();"/>
     <label class="inputTitle" for="finalBolus"><span>Final Bolus [U]</span></label>
     <label class="inputFooter" for="finalBolus"><span id="sum"></span></label>
   </div>
