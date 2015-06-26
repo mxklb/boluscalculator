@@ -381,7 +381,6 @@ function autoTherapySelection() {
 */
 function toggleSettings() {
 	var e = document.getElementById('settings');
-	var btn = document.getElementById('settingsButton');
   if ( e.style.display == 'block' ) {
     hideElement(e);
   }
@@ -397,7 +396,6 @@ function toggleSettings() {
 */
 function toggleSetup() {
   var e = document.getElementById('setupGroup');
-  //var btn = document.getElementById('setupButton');
   if ( e.style.display == 'block' ) {
     hideElement(e);
   }
@@ -418,6 +416,7 @@ function hideElement(elem) {
 }
 function afterTransition(elem) {
   elem.style.display = 'none';
+  updateMenuButtonsBorderColor();  
 }
 
 /*
@@ -429,6 +428,31 @@ function showElement(elem) {
 }
 function timeoutShow(elem) {
   elem.style.opacity = 1;
+  updateMenuButtonsBorderColor();
+}
+
+/*
+* Updates hidden menu buttons (settingsButton & setupButton) border color.
+*/
+function updateMenuButtonsBorderColor() {
+  var setup = document.getElementById('setupGroup');
+  var settings = document.getElementById('settings');
+  var setupBtn = document.getElementById('setupButton');
+  var settingsBtn = document.getElementById('settingsButton');
+  
+  if ( settings.style.display == 'block' ) {
+    settingsBtn.style.border = "1px solid #bbb";
+  } 
+  else {
+    settingsBtn.style.border = "1px solid #ddd";
+  }
+  
+  if( setup.style.display == 'block' ) {
+    setupBtn.style.border = "1px solid #bbb";
+  } 
+  else {
+    setupBtn.style.border = "1px solid white";
+  }
 }
 
 /*

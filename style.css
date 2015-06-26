@@ -132,6 +132,10 @@ input[type="number"] {
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
   margin: 0;
 }
 
@@ -180,6 +184,10 @@ input[type="number"]:focus {
   max-width: 1em;
   margin-top: 0.33em;
   border: 1px solid transparent;
+}
+
+.setupButton:hover {
+  border: 1px solid #bbb !important;
 }
 
 #time {  
@@ -250,15 +258,16 @@ input[type="number"]:focus {
   border:0 none;
 }
 
-input[type="submit"],
-#settingsButton {
+input[type="submit"] {
   display: block;
   margin: 0.5em auto;
   margin-bottom: 0.75em;
+  margin-top: 1.2em;
+  font-size: small;
+  cursor: pointer;
   padding: 0.4em 0em;
-  width: 75%;
+  width: 50%;
   border-radius:1.5em;
-  font-size: 1.1em;
   color: #444;
   line-height: 1.5em;
   text-align: center;
@@ -266,34 +275,40 @@ input[type="submit"],
   text-decoration: none;
   border: 1px solid transparent;
   white-space: nowrap;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+}
+
+input[type="submit"]:hover {
+  border: 1px solid #bbb;
 }
 
 #settingsButton {
-  height: 2.5em;
-  font-size: 1.2em;
-  border-radius: 5em;
-  min-width: 270px;
+  display: block;
+  margin: 0.5em auto;
   margin-bottom: 0.75em;
   padding: 0.4em 0em;
+  width: 75%;
+  min-width: 270px;
+  height: 2.5em;
+  border-radius: 5em;
+  font-size: 1.2em;
+  color: #444;
+  line-height: 1.5em;
+  text-align: center;
   background: transparent;
-  border: 1px solid #ddd !important;
+  border: 1px solid #ddd;
+  text-decoration: none;
+  white-space: nowrap;
 }
 
 #settingsButton:hover {
   border: 1px solid #bbb !important;
 }
 
-input[type="submit"] {
-  width: 50%;
-  margin-top: 1.2em;
-  font-size: small;
-  cursor: hand;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-}
-
-input[type="submit"]:focus,
-input[type="submit"]:active,
 #settingsButton:focus,
 #settingsButton:active,
 #settingsButton:visited {
@@ -407,6 +422,10 @@ input[type="image"] {
 .outputDiv > input::-webkit-outer-spin-button,
 .outputDiv > input::-webkit-inner-spin-button {
   -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
 }
 
 .inputDiv > .inputTitle,
@@ -487,7 +506,6 @@ input[type="image"] {
   border: none;
   border: 0 !important;
   color: #aaa;
-  #text-align: center;
   background: transparent;
   margin: -.2em auto;
   padding: 0 0;
