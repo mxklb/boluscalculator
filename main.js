@@ -408,13 +408,13 @@ function toggleSetup() {
 /*
 * Hides the given element after opacity transition
 */
-function hideElement(elem) {
+function hideElement( elem ) {
   elem.style.opacity = 0;
   /* The following static delayed call to afterTransition 
      could/should be added as event listener to transitionend. */
   setTimeout(function() { afterTransition(elem); }, 500);
 }
-function afterTransition(elem) {
+function afterTransition( elem ) {
   elem.style.display = 'none';
   setTimeout(function() { updateMenuButtonsBorderColor(); }, 500);  
 }
@@ -422,13 +422,21 @@ function afterTransition(elem) {
 /*
 * Shows the given element after opacity transition
 */
-function showElement(elem) {
+function showElement( elem ) {
   elem.style.display = 'block';
   setTimeout(function() { timeoutShow(elem); }, 1);
 }
-function timeoutShow(elem) {
+function timeoutShow( elem ) {
   elem.style.opacity = 1;
   updateMenuButtonsBorderColor();
+}
+
+/*
+* Returns true if the given element has display property 'block'. 
+*/
+function isElementDisplayBlock( elem ) {
+  var display = elem.currentStyle ? elem.currentStyle.display : getComputedStyle(elem, null).display;
+  return display === 'block';
 }
 
 /*
@@ -440,14 +448,14 @@ function updateMenuButtonsBorderColor() {
   var setupBtn = document.getElementById('setupButton');
   var settingsBtn = document.getElementById('settingsButton');
   
-  if ( settings.style.display == 'block' ) {
+  if( isElementDisplayBlock(settings) ) {
     settingsBtn.style.border = "1px solid #bbb";
   } 
   else {
     settingsBtn.style.border = "1px solid #ddd";
   }
   
-  if( setup.style.display == 'block' ) {
+  if( isElementDisplayBlock(setup) ) {
     setupBtn.style.border = "1px solid #bbb";
   } 
   else {
