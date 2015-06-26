@@ -38,8 +38,8 @@ This app is designed for actual versions of firefox and webkit based browsers (l
 
 However:
 
-1. Open [mxklb.github.io/boluscalculator](http://mxklb.github.io/boluscalculator/) in a modern web browser.
-2. Make sure the therapy settings are displayed according to your needs.
+1. Open [mxklb.github.io/boluscalculator](http://mxklb.github.io/boluscalculator/) in a modern web browser
+2. Make sure the therapy settings are displayed according to your needs
 3. Enter the actual _Glucose Level_ (soberly measured) --> _Correction_
 4. Enter the _Amount of Meal_ to be eaten --> _Effective Meal_
 5. Catch up the resulting insulin units [U] immediately
@@ -59,7 +59,7 @@ The default _Blood Glucose_ measurement unit is [mg/dL]. It may be changed to in
 The default measurement unit for the _Amount of Meal_ is [bread units]. It may be changed to [gram carbs]. The default amount of carbs [g] needed for on insuline unit [U] is 12g. This factor can be adjusted in the application setup.
 
 ### Offline Usage
-This webapp is developed for on- and offline usage. No server is needed to run this app. All settings are always storred locally. You can alway execute it local just by using a suitable browser. Use the following best practice to do so ...
+This webapp is developed for on- and offline usage. No server is needed to run this app. All settings are always storred locally. You can always execute it locally by just using a suitable browser. To do so, use the following best practice ...
 
 1. If you are using chrome browser simple create an application shortcut to your desktop, finished.
 2. Clone or download this repository and place it somewhere locally
@@ -69,7 +69,7 @@ This webapp is developed for on- and offline usage. No server is needed to run t
     Then just open the local index.html file in the web browser et voila ...
 
 ## Implementation Details
-Think of something like a prototype or egineering app. It's developed as a kind of case study for myself, to learn something about web development technologies and intensive insulin therapy calculations ... All is implemented from scratch, no libs where used. Plain html with css and java-script. For offline usage the app make heavy use of html5 technics such as _local storrage_ and _cache.manifest_.
+Think of something like a prototype or egineering app. It's developed as a kind of case study for myself, to learn something about web development technologies and intensive insulin therapy calculations ... All is implemented from scratch, no libs where used. Plain html with css and java-script. For offline usage the app makes heavy use of technics such as _local storrage_ and _cache.manifest_.
 
 I'm sure the implementation could be more elegant. Feel free to send me pull requests or append the following todo entries. 
 
@@ -82,10 +82,11 @@ Actually the code is not tested, reviewed or validated!
 - ~~Default therapy settings should be configureable~~
 - ~~Develop a new more modern, scalable or mobile app~~
     - ~~Therapy settings should be separated (menu)~~
-    - Steady changing therapy settings (curves)?
+    - Steady changing therapy settings (curves/splines)?
     - ~~Automated daytime detection~~
 - ~~Redesign input elements (fix moz appearance)~~
 - ~~Make final bolus editable .. calculate meal~~
+- Make the daytimes time spans user adjustable
 - Refactorings to become a multi-lingual app
 - Validate the users number input
 
