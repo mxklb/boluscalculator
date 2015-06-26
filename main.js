@@ -412,7 +412,7 @@ function hideElement(elem) {
   elem.style.opacity = 0;
   /* The following static delayed call to afterTransition 
      could/should be added as event listener to transitionend. */
-  tTimeout = setTimeout(function() { afterTransition(elem); }, 500);
+  setTimeout(function() { afterTransition(elem); }, 500);
 }
 function afterTransition(elem) {
   elem.style.display = 'none';
@@ -424,7 +424,7 @@ function afterTransition(elem) {
 */
 function showElement(elem) {
   elem.style.display = 'block';
-  tTimeout = setTimeout(function() { timeoutShow(elem); }, 1);
+  setTimeout(function() { timeoutShow(elem); }, 1);
 }
 function timeoutShow(elem) {
   elem.style.opacity = 1;
