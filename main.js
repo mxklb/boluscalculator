@@ -416,7 +416,7 @@ function hideElement(elem) {
 }
 function afterTransition(elem) {
   elem.style.display = 'none';
-  updateMenuButtonsBorderColor();  
+  setTimeout(function() { updateMenuButtonsBorderColor(); }, 500);  
 }
 
 /*
