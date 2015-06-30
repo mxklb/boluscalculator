@@ -88,7 +88,11 @@ Actually the code is not tested, reviewed or validated!
 - ~~Make final bolus editable .. calculate meal~~
 - Make the daytimes time spans user adjustable
 - Refactorings to become a multi-lingual app
-- Validate the users number input
+- Setup an optional high contrast theme
+- Use more icons to improve setup menue
+- Validate the users input numbers
+- Add active insulin features
+- Restructure show-/hide things
 
 ## License
 Feel free to use, modify, comment or whatever ... this implementation is licensed under [MIT](https://github.com/mxklb/boluscalculator/blob/master/LICENSE).
