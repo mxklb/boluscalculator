@@ -43,46 +43,72 @@
     <small id="subtitle">Enter glucose level and meal to be eaten</small>
   </div>
   
-  <div class="inputs">
-    <input type="button" value="-" onmousedown="mouseDown(this.form.glucose, -10, 0, 0);" onmouseup="mouseUp();" ontouchstart="touchDown(this.form.glucose, -10, 0, 0);" ontouchend="touchUp();" onclick="incrementElement(this.form.glucose.id, -1, 0, 0);"/>
-    <input type="number" name="glucose" id="glucose" class="number" step="any" min="0" placeholder="Glucose Level [mg/dl]" onClick="this.select();" onchange="updateCalculations()"/> 
-    <input type="button" value="+" onmousedown="mouseDown(this.form.glucose,  10, 0, 0);" onmouseup="mouseUp();" ontouchstart="touchDown(this.form.glucose,  10, 0, 0);" ontouchend="touchUp();" onclick="incrementElement(this.form.glucose.id,  1, 0, 0);"/>
+  <div class="inputDiv">
+    <input class="incrementButton" type="button" value="-" onmousedown="mouseDown(this.form.glucose, true, false);" onmouseup="mouseUp();" ontouchstart="touchDown(this.form.glucose, true, false);" ontouchend="touchUp();" onclick="incrementElement(this.form.glucose.id, true, true);"/>
+    <input class="inputNumber" type="number" name="glucose" id="glucose" step="any" pattern="[-+]?[0-9]*[.,]?[0-9]+" onClick="this.select();" onchange="updateCalculations()"/>
+    <label class="inputTitle" for="glucose"><span>Blood Glucose</span></label>
+    <label class="inputFooter" for="glucose">
+      <div class="selectDiv">
+        <select id="selectGlucoseUnit" onChange="glucoseUnitChanged();">
+          <option class="units" selected>&nbsp;[mg/dL]</option>
+          <option class="units">[mmol/L]</option>
+        </select>
+      </div>
+    </label>
+    <input class="incrementButton" type="button" value="+" onmousedown="mouseDown(this.form.glucose, false, false);" onmouseup="mouseUp();" ontouchstart="touchDown(this.form.glucose, false, false);" ontouchend="touchUp();" onclick="incrementElement(this.form.glucose.id, false, true);"/>
   </div>
   
-  <div class="inputs">
-    <input type="button" class="lastButton" value="-" onmousedown="mouseDown(this.form.foodbe, -0.5, 0, 1);" onmouseup="mouseUp();" ontouchstart="touchDown(this.form.foodbe, -0.5, 0, 1);" ontouchend="touchUp();" onclick="incrementElement(this.form.foodbe.id, -0.1, 0, 1);"/>
-    <input type="number" name="foodbe" id="foodbe" class="number" step="any" min="0" placeholder="Amount of Meal [BE]" onClick="this.select();" onchange="updateCalculations()"/>
-    <input type="button" class="lastButton" value="+" onmousedown="mouseDown(this.form.foodbe,  0.5, 0, 1);" onmouseup="mouseUp();" ontouchstart="touchDown(this.form.foodbe,  0.5, 0, 1);" ontouchend="touchUp();" onclick="incrementElement(this.form.foodbe.id,  0.1, 0, 1);"/>
+  <div class="inputDiv">
+    <input class="incrementButton" type="button" value="-" onmousedown="mouseDown(this.form.foodbe, true, false);" onmouseup="mouseUp();" ontouchstart="touchDown(this.form.foodbe,  true, false);" ontouchend="touchUp();" onclick="incrementElement(this.form.foodbe.id, true, true);"/>
+    <input class="inputNumber" type="number" name="foodbe" id="foodbe" step="any" pattern="[-+]?[0-9]*[.,]?[0-9]+" onClick="this.select();" onchange="updateCalculations()"/>
+    <label class="inputTitle" for="foodbe"><span>Amount of Meal</span></label>
+    <label class="inputFooter" for="foodbe">
+      <div class="selectDiv">
+        <select id="selectFoodUnit" onChange="foodUnitChanged();">
+          <option class="units" selected>[bread units]</option>
+          <option class="units">[gram carbs]</option>
+        </select>
+      </div>
+    </label>
+    <input class="incrementButton" type="button" value="+" onmousedown="mouseDown(this.form.foodbe, false, false);" onmouseup="mouseUp();" ontouchstart="touchDown(this.form.foodbe, false, false);" ontouchend="touchUp();" onclick="incrementElement(this.form.foodbe.id, false, true);"/>
   </div>
-    
-  <div class="output">
-    <input type="number" name="finalBolus" id="finalBolus" readonly="readonly" step="any" placeholder="Final Bolus [BE]"/>
-    <span id="sum"></span>
+  
+  <div class="outputDiv">
+    <input class="inputNumber" type="number" name="finalBolus" id="finalBolus" step="any" pattern="[-+]?[0-9]*[.,]?[0-9]+" onClick="this.select();" oninput="bolusChanged();"/>
+    <label class="inputTitle" for="finalBolus"><span>Final Bolus [U]</span></label>
+    <label class="inputFooter" for="finalBolus"><span id="sum"></span></label>
   </div>
   
-  <div style="line-height:2em; min-height:0.8em;"></div><hr>
+  <hr>
   
-  <div style="display:none;"><span id="time"></span></div>
-  <div class="therapyTime">Active Therapy Setting<span id="therapyTime" style="display:none;"></span></div>
-  
-  <div class="therapySetup"><span id="therapySetup"></span></div>
-  <a href="#" id="settingsButton" onclick="toggleSettings();return false;"><span id="therapyInfo"></span></a>
+  <div class="setupDiv">
+    <div style="display:none;"><span id="time"></span></div>
+    <div class="therapyTime">Therapy Setting<span id="therapyTime" style="display:none;"></span></div>
+    <a href="#" id="settingsButton" onclick="toggleSettings();return false;"><span id="therapyInfo"></span></a>
+    <div class="therapySetup"><span id="therapySetup"></span></div>
+  </div>
     
   <div class="settings" id="settings">
-    <div class="outer">
-      <input type="button" value="-" onmousedown="mouseDown(this.form.settingsAim, -10, 0, 0);" onmouseup="mouseUp();changeTherapySettings();" ontouchstart="touchDown(this.form.settingsAim, -10, 0, 0);" ontouchend="touchUp();changeTherapySettings();" onclick="incrementElement(this.form.settingsAim.id, -1, 0, 0);changeTherapySettings();"/>
-      <input type="number" name="settingsAim" id="settingsAim" class="number" step="any" min="0" required='' placeholder="Glucose Aim [mg/dl]" onClick="this.select();" onchange="changeTherapySettings();"/>
-      <input type="button" value="+" onmousedown="mouseDown(this.form.settingsAim,  10, 0, 0);" onmouseup="mouseUp();changeTherapySettings();" ontouchstart="touchDown(this.form.settingsAim,  10, 0, 0);" ontouchend="touchUp();changeTherapySettings();" onclick="incrementElement(this.form.settingsAim.id,  1, 0, 0);changeTherapySettings();"/>
+    <div class="inputDiv">
+      <input class="incrementButton" type="button" value="-" onmousedown="mouseDown(this.form.settingsAim, true, false);" onmouseup="mouseUp();changeTherapySettings();" ontouchstart="touchDown(this.form.settingsAim, true, false);" ontouchend="touchUp();changeTherapySettings();" onclick="incrementElement(this.form.settingsAim.id, true, true);changeTherapySettings();"/>
+      <input class="inputNumber" type="number" name="settingsAim" id="settingsAim" step="any" min="0" pattern="[-+]?[0-9]*[.,]?[0-9]+" required='' onClick="this.select();" onchange="changeTherapySettings();"/>
+      <label class="inputTitle" for="settingsAim"><span>Glucose Aim</span></label>
+      <label class="inputFooter" for="settingsAim"><span id="glucoseAimUnit">[mg/dL]</span></label>
+      <input class="incrementButton" type="button" value="+" onmousedown="mouseDown(this.form.settingsAim, false, false);" onmouseup="mouseUp();changeTherapySettings();" ontouchstart="touchDown(this.form.settingsAim, false, false);" ontouchend="touchUp();changeTherapySettings();" onclick="incrementElement(this.form.settingsAim.id, false, true);changeTherapySettings();"/>
     </div>
-    <div class="outer">
-      <input type="button" value="-" onmousedown="mouseDown(this.form.settingsCorr, -10, 0, 0);" onmouseup="mouseUp();changeTherapySettings();" ontouchstart="touchDown(this.form.settingsCorr, -10, 0, 0);" ontouchend="touchUp();changeTherapySettings();" onclick="incrementElement(this.form.settingsCorr.id, -1, 0, 0);changeTherapySettings();"/>
-      <input type="number" name="settingsCorr" id="settingsCorr" class="number" step="any" min="0" required='' placeholder="Corr. Factor [mg/dl]" onClick="this.select();" onchange="changeTherapySettings();"/>
-      <input type="button" value="+" onmousedown="mouseDown(this.form.settingsCorr,  10, 0, 0);" onmouseup="mouseUp();changeTherapySettings();" ontouchstart="touchDown(this.form.settingsCorr,  10, 0, 0);" ontouchend="touchUp();changeTherapySettings();" onclick="incrementElement(this.form.settingsCorr.id,  1, 0, 0);changeTherapySettings();"/>
+    <div class="inputDiv">
+      <input class="incrementButton" type="button" value="-" onmousedown="mouseDown(this.form.settingsCorr, true, false);" onmouseup="mouseUp();changeTherapySettings();" ontouchstart="touchDown(this.form.settingsCorr, true, false);" ontouchend="touchUp();changeTherapySettings();" onclick="incrementElement(this.form.settingsCorr.id, true, true);changeTherapySettings();"/>
+      <input class="inputNumber" type="number" name="settingsCorr" id="settingsCorr" step="any" min="0" pattern="[-+]?[0-9]*[.,]?[0-9]+" required='' onClick="this.select();" onchange="changeTherapySettings();"/>
+      <label class="inputTitle" for="settingsCorr"><span>Corr. Factor</span></label>
+      <label class="inputFooter" for="settingsCorr"><span id="correctionUnit">[mg/dL]</span></label>
+      <input class="incrementButton" type="button" value="+" onmousedown="mouseDown(this.form.settingsCorr, false, false);" onmouseup="mouseUp();changeTherapySettings();" ontouchstart="touchDown(this.form.settingsCorr, false, false);" ontouchend="touchUp();changeTherapySettings();" onclick="incrementElement(this.form.settingsCorr.id, false, true);changeTherapySettings();"/>
     </div>
-    <div class="outer">
-      <input type="button" class="lastButton" value="-" onmousedown="mouseDown(this.form.settingsBolus, -0.1, 0, 1);" onmouseup="mouseUp();changeTherapySettings();" ontouchstart="touchDown(this.form.settingsBolus, -0.1, 0, 1);" ontouchend="touchUp();changeTherapySettings();" onclick="incrementElement(this.form.settingsBolus.id, -0.1, 0, 1);changeTherapySettings();"/>
-      <input type="number" name="settingsBolus" id="settingsBolus" class="number" step="any" min="0" required='' placeholder="Bolus [IE/BE]" onClick="this.select();" onchange="changeTherapySettings();"/>
-      <input type="button" class="lastButton" value="+" onmousedown="mouseDown(this.form.settingsBolus,  0.1, 0, 1);" onmouseup="mouseUp();changeTherapySettings();" ontouchstart="touchDown(this.form.settingsBolus,  0.1, 0, 1);" ontouchend="touchUp();changeTherapySettings();" onclick="incrementElement(this.form.settingsBolus.id,  0.1, 0, 1);changeTherapySettings();"/>
+    <div class="inputDiv">
+      <input class="incrementButton" type="button" value="-" onmousedown="mouseDown(this.form.settingsBolus, true, false);" onmouseup="mouseUp();changeTherapySettings();" ontouchstart="touchDown(this.form.settingsBolus, true, false);" ontouchend="touchUp();changeTherapySettings();" onclick="incrementElement(this.form.settingsBolus.id, true, true);changeTherapySettings();"/>
+      <input class="inputNumber" type="number" name="settingsBolus" id="settingsBolus" step="any" min="0" pattern="[-+]?[0-9]*[.,]?[0-9]+" required='' placeholder="Bolus [IE/BE]" onClick="this.select();" onchange="changeTherapySettings();"/>
+      <label class="inputTitle" for="settingsBolus"><span>Meal Factor</span></label>
+      <label class="inputFooter" for="settingsBolus"><span></span></label>
+      <input class="incrementButton" type="button" value="+" onmousedown="mouseDown(this.form.settingsBolus, false, false);" onmouseup="mouseUp();changeTherapySettings();" ontouchstart="touchDown(this.form.settingsBolus, false, false);" ontouchend="touchUp();changeTherapySettings();" onclick="incrementElement(this.form.settingsBolus.id, false, true);changeTherapySettings();"/>
     </div>
   </div>  
     
@@ -95,35 +121,37 @@
   
   <div style="line-height:1em; min-height:0.5em;"></div>
   <hr style="width: 60%;">
+
+  <div id="setupGroup" style="display:none;">    
+    <p>Application Setup</p>
+    <small>Set amount of carbs for one insulin unit</small>
+    <div class="inputDiv">
+      <input class="incrementButton" type="button" value="-" onmousedown="mouseDown(this.form.carbsunit, true, false);" onmouseup="mouseUp();carbsFactorChanged();" ontouchstart="touchDown(this.form.carbsunit,  true, false);" ontouchend="touchUp();carbsFactorChanged();" onclick="incrementElement(this.form.carbsunit.id, true, true);carbsFactorChanged();"/>
+      <input class="inputNumber" type="number" name="carbsunit" id="carbsunit" step="any" pattern="[-+]?[0-9]*[.,]?[0-9]+" onClick="this.select();" onchange="carbsFactorChanged();"/>
+      <label class="inputTitle" for="carbsunit"><span>Carbs Factor</span></label>
+      <label class="inputFooter" for="carbsunit"><span>[g]</span></label>    
+      <input class="incrementButton" type="button" value="+" onmousedown="mouseDown(this.form.carbsunit, false, false);" onmouseup="mouseUp();carbsFactorChanged();" ontouchstart="touchDown(this.form.carbsunit, false, false);" ontouchend="touchUp();carbsFactorChanged();" onclick="incrementElement(this.form.carbsunit.id, false, true);carbsFactorChanged();"/>
+    </div>
+      
+    <hr style="width: 60%;">
+      
+    <form action="https://www.paypal.com/cgi-bin/webscr" id="donateButton" method="post" target="_top">
+      <input type="hidden" name="cmd" value="_s-xclick">
+      <input type="hidden" name="hosted_button_id" value="MBLVEVHTLPWA8">
+      <input type="submit" name="submit" value="Donate">
+      <input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
+    </form>
+    <p id="about"><a href="https://github.com/mxklb/boluscalculator" target=”_blank”>README IBC v1.0 (beta)</a></p>
+  </div>
+
+  <div class="buttonGroup">
+    <div class="singleButton">
+      <a href="#" id="setupButton" class="setupButton" onclick="toggleSetup();return false;">
+        <img src="images/gears10.svg" id="settingsSvg" alt="&#9775;">
+      </a>
+    </div>
+  </div>
 </form>
-
-<div id="setupGroup" style="display:none;">
-  <p>Application Setup</p>
-  <small>Glucose and meal measurement units</small>
-  <div id="unitButtons">
-    <div class="singleButton"><a href="#" class="selectButton" onclick="return false;"><span style="font-size: 0.75em;">[mg/dl]</span></a></div>
-    <div class="singleButton"><a href="#" class="selectButton" onclick="return false;"><span style="font-size: 0.6em;">[mmol/L]</span></a></div>
-    <div class="singleButton"><a href="#" class="selectButton" onclick="return false;"><span style="font-size: 0.75em;">[BE]</span></a></div>
-    <div class="singleButton"><a href="#" class="selectButton" onclick="return false;"><span style="font-size: 0.75em;">Carbs</span></a></div>
-  </div>
-  <div style="line-height:1em; min-height:0.5em;"></div>
-  <hr style="width: 60%;">
-  <form action="https://www.paypal.com/cgi-bin/webscr" id="donateButton" method="post" target="_top">
-    <input type="hidden" name="cmd" value="_s-xclick">
-    <input type="hidden" name="hosted_button_id" value="MBLVEVHTLPWA8">
-    <input type="submit" name="submit" value="Donate">
-    <input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
-  </form>
-  <p id="about"><a href="https://github.com/maxkalb/boluscalculator" target=”_blank”>README IBC v1.0b</a></p>
-</div>
-
-<div class="buttonGroup">
-  <div class="singleButton">
-    <a href="#" id="setupButton" class="setupButton" onclick="toggleSetup();return false;">
-      <img src="images/gears10.svg" id="settingsSvg" alt="&#9775;">
-    </a>
-  </div>
-</div>
 
 </div>
 </body>

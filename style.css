@@ -1,6 +1,6 @@
 /* 
 IBC Stylesheet
-Author: Max Kalb - http://maxkalb.github.io/ 
+Author: Max Kalb - http://mxklb.github.io/ 
 */
 
 html {
@@ -44,14 +44,14 @@ body {
 
 /* Avoid user selection. Expect input buttons + remove tab highlight */
 * {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: -moz-none;
   -o-user-select: none;
   user-select: none;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
-  -webkit-tap-highlight-color: transparent;
-  -webkit-font-smoothing: antialiased;
 }
 input:not([type='button']) {
   -webkit-user-select: text;
@@ -71,7 +71,7 @@ input:not([type='button']) {
 
 form {
   max-width: 320px;
-  min-width: 270px;
+  min-width: 320px;
   margin: 0em auto;
 }
 
@@ -105,37 +105,9 @@ hr {
   font-size: 1.2em;
 }
 
-p#output,
-#finalBolus,
-input[type="button"],
-input[type="number"] {
-  text-align: center;
-  font-size: 0.965em;
-  line-height: 2em;
-  height: 3em;
-  width: 60%;
-  margin-bottom: 1em;
-  background: transparent;
-  border: 1px solid #ccc;
-  border-radius: 5em;
-  -moz-appearance: textfield;
-}
-
-input[type="number"] {
-  min-width: 150px;
-}
-
 #foodbe,
-.lastButton,
 #settingsBolus {
   margin-bottom: 0em;
-}
-
-/* Aviod appearance of up-/down buttons */
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
 }
 
 /* Remove moz dashed rect */
@@ -144,67 +116,39 @@ input::-moz-focus-inner {
   border: 0; 
 }
 
-/* Styling input type numbers & placeholders */
+/* Aviod appearance of up-/down buttons */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+/* Styling input type numbers */
+input[type="number"] {
+  text-align: center;
+  font-size: 0.965em;
+  line-height: 2em;
+  height: 3em;
+  width: 60%;
+  min-width: 150px;
+  margin-bottom: 1em;
+  background: transparent;
+  border: 1px solid #ccc;
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+  border-radius: 0;
+}
+
 input[type="number"]:focus,
 input[type="number"]:valid {
   outline: none;
   color: #444;
 }
 input[type="number"]:focus {
-  border: 1px solid #ccc;
-}
-
-input[type="number"]::-webkit-input-placeholder {
-  transition: all 0.2s cubic-bezier(0.55, -0.55, 1, 1.55);
-  -webkit-transform-origin: left;
-}
-
-input:not([readonly='readonly']):hover::-webkit-input-placeholder,
-input[type="number"]:focus::-webkit-input-placeholder {
-  color: #777;
-}
-
-input[type="number"]:focus::-webkit-input-placeholder,
-input[type="number"]:valid::-webkit-input-placeholder {
-  -webkit-transform: translate(5%, -75%) scale(0.9, 0.9);
-  visibility: visible !important;
-  overflow: visible;
-  text-shadow: -1px 0 #ffffff, -2px 0 #ffffff, -3px 0 #ffffff, -4px 0 #ffffff, -5px 0 #ffffff, 1px 0 #ffffff, 2px 0 #ffffff, 3px 0 #ffffff, 4px 0 #ffffff, 5px 0 #ffffff, -1px -1px #ffffff, -2px -2px #ffffff, -3px -3px #ffffff, -4px -4px #ffffff, -5px -5px #ffffff;
-}
-
-
-/* Styling input type read only (output: final bolus) */
-input[readonly='readonly']:focus::-webkit-input-placeholder {
-  color: #aaa;
-}
-input[readonly='readonly']::-webkit-input-placeholder,
-input[readonly='readonly']:focus::-webkit-input-placeholder,
-input[readonly='readonly']:valid::-webkit-input-placeholder {
-  -webkit-transform: translate(5%, -75%) scale(0.9, 0.9);
-  visibility: visible !important;
-  overflow: visible;
-  text-shadow: -1px 0 #ffffff, -2px 0 #ffffff, -3px 0 #ffffff, -4px 0 #ffffff, -5px 0 #ffffff, 1px 0 #ffffff, 2px 0 #ffffff, 3px 0 #ffffff, 4px 0 #ffffff, 5px 0 #ffffff, -1px -1px #ffffff, -2px -2px #ffffff, -3px -3px #ffffff, -4px -4px #ffffff, -5px -5px #ffffff;
-}
-
-
-/* Styling the +/- buttons */
-input[type="button"] {
-  width: 3em;
-  color: #aaa;
-  outline: 0 none !important;
-  font-size: 0.9em;
-  font-weight: bold;
-  padding: 0em 0em;
-  margin-bottom: 0em; 
-  border-radius: 1.5em;
-  background: #eee;
-  border: 0px solid #ccc;
-  cursor: pointer; cursor: hand;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-}
-
-input[type="button"]:active {
   border: 1px solid #ccc;
 }
 
@@ -235,45 +179,21 @@ input[type="button"]:active {
   font-size: 2.5em;
   line-height: 1em;
   max-width: 1em;
+  max-height: 1em;
   margin-top: 0.33em;
   border: 1px solid transparent;
 }
 
-#finalBolus {
-  display: block;
-  margin: 1em auto;
-  width: 85%;
-  height: 3.2em;
-  font-size: 1.2em;
-  white-space: nowrap;
+.setupButton:hover {
+  border: 1px solid #bbb !important;
 }
 
-.inputs {
-  display: block;
-  margin: auto;
-}
-
-.output {
-  display: block;
-  margin: 1.5em auto;
-}
-
-#sum,
 #time {  
   display: block;
   position: relative;
   background: transparent;
   font-size: 0.7em;  
   margin: 3em 0em;
-}
-
-#sum {
-  color: #aaa;
-  line-height: 1em;
-  height: 1em;
-  margin: -2.25em 27%;
-  margin-left: 27%;
-  white-space: nowrap;
 }
 
 #time,
@@ -292,70 +212,95 @@ input[type="button"]:active {
 
 .therapyTime,
 .therapySetup {
-  display: block;
-  position: relative;
-  margin: auto;
-  padding: .75em 0em;
-  line-height: 1em;
+  display: inline-block;
+  position: absolute;
+  z-index: 25;
+  padding: .75em 0.2em;
+  line-height: 0em;
+  white-space: nowrap;
+  background: white;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
 }
-
 .therapyTime {
-  padding: 1em 0em;
-  line-height: 0em;
+  margin: -0.75em 0em;
 }
-
 .therapySetup {
-  line-height: 0em;
+  margin-top: -1.9em;
 }
-
 .therapySetup span {
   font-size: small;
 }
 
 #therapyInfo {
+  display: inline-block;
+  line-height: 1.5em;
+  color: #aaa;
+  padding: .05em 0.2em;
+  -webkit-transform: translateY(0.5em);
+  -moz-transform: translateY(0.5em);
+  -ms-transform: translateY(0.5em);
+  -o-transform: translateY(0.5em);
+  transform: translateY(0.5em);
+}
+
+input[type="submit"] {
   display: block;
-  line-height: 2.5em;
+  margin: 0.5em auto;
+  margin-bottom: 0.75em;
+  margin-top: 1.2em;
   font-size: small;
-}
-
-#therapyLink {
+  cursor: pointer;
+  padding: 0.4em 0em;
+  width: 50%;
+  border-radius:1.5em;
+  color: #444;
+  line-height: 1.5em;
+  text-align: center;
+  background: #eee;
   text-decoration: none;
-  outline:0 none !important;
-  border:0 none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
 }
 
-input[type="submit"],
+input[type="submit"]:hover {
+  border: 1px solid #bbb;
+}
+
 #settingsButton {
   display: block;
   margin: 0.5em auto;
   margin-bottom: 0.75em;
   padding: 0.4em 0em;
   width: 75%;
-  border-radius:1.5em;
-  font-size: 1.1em;
+  min-width: 270px;
+  height: 2.5em;
+  border-radius: 5em;
+  font-size: 1.2em;
   color: #444;
   line-height: 1.5em;
   text-align: center;
-  background: #eee;
+  background: transparent;
+  border: 1px solid #ddd;
   text-decoration: none;
-  outline: 0 none !important;
-  border: 1px solid transparent;
   white-space: nowrap;
 }
 
-input[type="submit"] {
-  width: 50%;
-  margin-top: 1.2em;
-  font-size: small;
-  cursor: hand;
-  -webkit-appearance: none;
-  -moz-appearance: none;
+#settingsButton:hover {
+  border: 1px solid #bbb !important;
 }
 
-input[type="submit"]:focus,
-input[type="submit"]:active,
 #settingsButton:focus,
-#settingsButton:active {
+#settingsButton:active,
+#settingsButton:visited {
   outline: 0 none !important;
   text-decoration: none;
   border: 1px solid #ccc;
@@ -376,12 +321,14 @@ input[type="image"] {
 #setupGroup {
   display: none;
   margin: 0.5em auto;
-  padding: 0.5em 0em;
   opacity: 0;
   -webkit-transition: opacity 500ms ease-in;
   -moz-transition: opacity 500ms ease-in;
   -o-transition: opacity 500ms ease-in;
   transition: opacity 500ms ease-in;
+}
+.settings {
+  margin-bottom: 0em;
 }
 
 #settingsSvg {
@@ -390,16 +337,11 @@ input[type="image"] {
   height: 70%;
 }
 
-.buttonGroup,
-#unitButtons {
+.buttonGroup {
   display: block;
   margin: 0em auto;
   max-width: 320px;
   min-width: 270px; 
-}
-
-#unitButtons {
-  margin-top: 1em;
 }
 
 #about {
@@ -421,6 +363,194 @@ input[type="image"] {
 #about a:focus,
 #about a:visited { 
 	color: #444;
+}
+
+/* Input/Output ----> */
+
+.setupDiv,
+.inputDiv,
+.outputDiv {
+  display: block;
+  position: relative;
+  margin: 1.25em auto;
+  height: 3.25em;
+  white-space: nowrap;
+}
+.outputDiv {
+  height: 4.1em;
+}
+.setupDiv {
+  margin: 1.5em auto;
+  margin-bottom: 2em;
+}
+
+.inputDiv > input,
+.outputDiv > input {
+  position: relative;
+  display: inline-block;
+  width: 200px;
+  text-align: center;
+  font-size: 1em;
+  line-height: 2em;
+  height: 3em;
+  border: 1px solid #ddd;
+  border-radius: 5em;
+  outline: none;
+  -moz-appearance: textfield;
+}
+.outputDiv > input {
+  margin: 0em auto;
+  height: 3.2em;
+  font-size: 1.2em;
+  white-space: nowrap;
+  min-width: 270px;
+}
+
+.inputDiv > input:hover,
+.inputDiv > input:focus,
+.outputDiv > input:hover,
+.outputDiv > input:focus {
+  border: 1px solid #bbb;
+}
+
+.inputDiv > input::-webkit-outer-spin-button,
+.inputDiv > input::-webkit-inner-spin-button,
+.outputDiv > input::-webkit-outer-spin-button,
+.outputDiv > input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+}
+
+.inputDiv > .inputTitle,
+.inputDiv > .inputFooter,
+.outputDiv > .inputTitle,
+.outputDiv > .inputFooter {
+  position: absolute;
+  display: inline-block;
+  z-index: 25;
+  font-size: small;
+  line-height: 18px;
+  color: #444;
+  background: white;
+  border-radius: .75em;
+  padding: 0% .5em;
+  white-space: nowrap;
+  margin-top: -0.7em;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+  margin-left: -8.175em;
+}
+
+.inputDiv > .inputFooter {
+  color: #aaa;
+  background: white;
+  font-weight: normal;
+  margin-top: 3.1em;
+}
+.outputDiv > .inputTitle {
+  font-size: 1em;
+  margin-top: -0.5em;
+  margin-left: -42.5%;
+}
+.outputDiv > .inputFooter {
+  color: #aaa;
+  background: white;
+  font-weight: normal;
+  margin-top: 4.2em;
+  border: 1px hidden #Fdd;
+  margin-left: -10.45em;
+}
+
+/* Styling the +/- buttons */
+.inputDiv > .incrementButton {
+  width: 3em;
+  color: #aaa;
+  outline:0 none !important;
+  background: #eee;
+  text-align: center;
+  text-decoration: none;
+  line-height: 3em;
+  position: relative;
+  display: inline-block;
+  margin: auto;
+  border-radius: 1.5em;
+  border: 0px solid #eee;
+  cursor: pointer; cursor: hand;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+}
+.inputDiv > .incrementButton:focus {
+  border: 1px solid transparent;
+}
+.inputDiv > .incrementButton:active {
+  border: 1px solid #bbb;
+}
+
+/* Styling units selection */
+.selectDiv {
+  overflow: hidden;
+}
+.selectDiv > select {
+  border: none;
+  border: 0 !important;
+  color: #aaa;
+  background: transparent;
+  margin: -.2em auto;
+  padding: 0 0;
+  text-decoration: none;
+  outline: none;
+  outline: 0 none !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+}
+.selectDiv > select:hover {
+  color: #444;
+}
+.selectDiv > .select:focus {
+  color: #aaa;
+}
+.selectDiv > .select:active {
+  color: #444;
+}
+
+.selectDiv > select:-moz-focusring {
+  color: transparent;
+  text-shadow:0 0 0 #444;
+}
+.selectDiv > select:-moz-focusring * {
+  color: #444;
+  text-shadow: none;
+}
+.selectDiv > select > option {
+  color: #444;
+  background: transparent;
+  border: 0 !important;
+  border: 0px solid transparent;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+}
+.selectDiv > select {} option::checked { 
+  background-color: #FFF; 
+}
+/* Remove arrow IE */
+.selectDiv > select::-ms-expand {
+  display: none;
 }
 
 

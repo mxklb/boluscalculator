@@ -1,0 +1,3 @@
+\text{Final Bolus}_{i}  =  \text{Effective Meal}_{i} + \text{Correction}_{i}
+\text{Effective Meal}_{i}  = \text{Amount of Meal}  \times \text{Meal Factor}_{i}
+\text{Correction}_{i}  =  \frac{ \text{Glucose Level} - \text{Glucose Aim}_{i} }{ \text{Corr. Factor}_{i}  }
