@@ -1,0 +1,3 @@
+[submodule "rjs"]
+	path = rjs
+	url = https://github.com/mxklb/R.js.git

@@ -1,4 +1,12 @@
 CACHE MANIFEST
+rjs/package.json
+rjs/R.enderBridge.js
+rjs/R.js
+rjs/README.md
+tr/multilang.js
+tr/de_DE.js
+tr/en_GB.js
+tr/langdef.js
 main.js
 style.css
 images/favicon.svg

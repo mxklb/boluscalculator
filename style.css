@@ -130,7 +130,7 @@ input[type="number"]::-webkit-inner-spin-button {
 /* Styling input type numbers */
 input[type="number"] {
   text-align: center;
-  font-size: 0.965em;
+  font-size: 1em;
   line-height: 2em;
   height: 3em;
   width: 60%;
@@ -518,11 +518,11 @@ input[type="image"] {
 .selectDiv > select:hover {
   color: #444;
 }
-.selectDiv > .select:focus {
+.selectDiv > select:focus {
   color: #aaa;
 }
-.selectDiv > .select:active {
-  color: #444;
+.selectDiv > select:active {
+  color: #aaa;
 }
 
 .selectDiv > select:-moz-focusring {
@@ -553,4 +553,73 @@ input[type="image"] {
   display: none;
 }
 
+/* Style for the language selection */
+.appLanguage {
+  position: absolute;
+  display: inline-block;
+  z-index: 50 !important; 
+  margin: -0.5em 0em;
+  padding: 0% 0.5em;
+  white-space: nowrap;
+  background: white;
+  font-size: small;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.roundedCorner {
+  position: absolute;
+  display: inline-block;
+  z-index: 10;
+  width: 200px;
+  min-width: 260px;
+  text-align: center;
+  font-size: 1em;
+  line-height: 2em;
+  height: 3em;
+  border: 1px solid #ddd;
+  border-radius: 5em;
+  outline: none;
+  -moz-appearance: textfield;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.appSetupItem {
+  margin-bottom: 0em; 
+}
+
+#selectLanguage {
+  color: #aaa;
+  outline:0 none !important;
+  background: white;
+  text-align: center;
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  margin: auto;
+  margin-top: 1.25em; 
+  border-radius: 1.5em;
+  border: 0px solid #eee;
+  cursor: pointer; cursor: hand;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+}
+#selectLanguage:-moz-focusring {
+  color: transparent;
+  text-shadow:0 0 0 #444;
+}
+#selectLanguage:-moz-focusring * {
+  color: #444;
+  text-shadow: none;
+}
 

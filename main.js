@@ -129,9 +129,8 @@ window.onload = function () {
   initDefaultSettings();
   initLocalSettings();
   initLocalUnits();
+  initLanguages();
   autoTherapySelection();
-  updateTime();
-  initialized = true;
 }
 
 /*
@@ -312,24 +311,14 @@ function setCarbsFactor() {
 }
 
 /*
-* Returns a string with the main therapy informations.
-*/
-function getTherapyInfoText(therapyId) {
-  var infoText = "Aim " + getTherapyAim(therapyId) + " "
-							 + "Corr " + getTherapyCorrection(therapyId) + " "
-  						 + "Meal " + getTherapyBolus(therapyId);
-  return infoText;
-}
-
-/*
 * Returns the therapy name of the given id. 
 */
 function getTherapyName(therapyId) {
   var therapyName = "";
-  if( therapyId == 0 ) therapyName = "Morning (06:00-12:00)";
-  if( therapyId == 1 ) therapyName = "Noontime (12:00-18:00)";
-  if( therapyId == 2 ) therapyName = "Evening (18:00-24:00)";
-  if( therapyId == 3 ) therapyName = "Night (00:00-06:00)";
+  if( therapyId == 0 ) therapyName = R('therapyName0', "06:00", "12:00");
+  if( therapyId == 1 ) therapyName = R('therapyName1', "12:00", "18:00");
+  if( therapyId == 2 ) therapyName = R('therapyName2', "18:00", "24:00");
+  if( therapyId == 3 ) therapyName = R('therapyName3', "00:00", "06:00");
   return therapyName;
 }
 
@@ -356,11 +345,9 @@ function changeTherapySettings() {
 * Takes the settings and applies them to the gui.
 */
 function refreshSettings(therapyId) {
-  var therapyInfo = document.getElementById('therapyInfo');
-  var therapySetup = document.getElementById('therapySetup');
-  
-  therapyInfo.innerHTML = getTherapyInfoText(therapyId);
-  therapySetup.innerHTML = getTherapyName(therapyId);
+  updateTranslation('therapyInfo', R('therapyInfo', getTherapyAim(therapyId), getTherapyCorrection(therapyId), getTherapyBolus(therapyId))); 
+  document.getElementById('therapySetup').innerHTML = getTherapyName(therapyId);
+
   document.getElementById('settingsAim').value = getTherapyAim(therapyId);
   document.getElementById('settingsCorr').value = getTherapyCorrection(therapyId);
   document.getElementById('settingsBolus').value = getTherapyBolus(therapyId);
@@ -374,6 +361,8 @@ function refreshSettings(therapyId) {
 function autoTherapySelection() {
   var daytimeId = getTherapyDaytime();
   setTherapy( daytimeId );
+  updateTime();
+  initialized = true;
 }
 
 /*
@@ -571,13 +560,11 @@ function updateCalculations() {
 */
 function updateResidualResults( effectiveFood, correction ) {  
   var elemSum = document.getElementById('sum');
-  var calcString = "";
   if( !isNaN(effectiveFood + correction) ) {
-    calcString = "Meal (" + effectiveFood.toFixed(2) + ") + Corr (" + correction.toFixed(2) + ")";
+    updateTranslation('sum', R('sum', effectiveFood.toFixed(2), correction.toFixed(2)));
     elemSum.style.background = "#fff";
   }
   else { elemSum.style.background = "transparent"; }
-  elemSum.innerHTML = calcString;
 }
 
 /*
@@ -788,4 +775,3 @@ function initIncrement(elemId, negative, smallstep) {
     increment.step *= -1.0;
   }
 }
-
