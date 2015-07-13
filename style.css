@@ -17,6 +17,7 @@ body {
   font-family: sans-serif;
   font-size: 16px;
   line-height: 3em;
+  margin-top: 0em;
 }
 
 #main {
@@ -32,13 +33,45 @@ body {
 
 @media all and (max-height: 620px) {
   #main {
-    top: 1em;
+    top: 0em;
     -webkit-transform: translateY(0%);
     -moz-transform: translateY(0%);
     -ms-transform: translateY(0%);
     -o-transform: translateY(0%);
     transform: translateY(0%);
     overflow:auto;
+  }
+}
+@media all and (max-height: 595px) {
+  #subtitle {
+    display: none;
+  }
+}
+@media all and (max-height: 550px) {
+  #line1, #line2 {
+    display: none;
+  }
+}
+
+@media all and (max-height: 520px) {
+  #title {
+    margin-top: 0.5em;
+  }
+  body {
+    -webkit-transform: scale(.9);
+    -moz-transform:    scale(.9);
+    -ms-transform:     scale(.9);
+    -o-transform:      scale(.9);
+    transform:         scale(.9);
+  }
+}
+@media all and (max-width: 315px) {
+  body {
+    -webkit-transform: scale(.9);
+    -moz-transform:    scale(.9);
+    -ms-transform:     scale(.9);
+    -o-transform:      scale(.9);
+    transform:         scale(.9);
   }
 }
 
@@ -88,7 +121,6 @@ hr {
 #header,
 #setupGroup {
   display: block;
-  margin: 1em auto;
   width: 100%;
   line-height: 1em;
   font-size: 1.0em;
@@ -133,7 +165,6 @@ input[type="number"] {
   font-size: 1em;
   line-height: 2em;
   height: 3em;
-  width: 60%;
   min-width: 150px;
   margin-bottom: 1em;
   background: transparent;
@@ -180,7 +211,6 @@ input[type="number"]:focus {
   line-height: 1em;
   max-width: 1em;
   max-height: 1em;
-  margin-top: 0.33em;
   border: 1px solid transparent;
 }
 
@@ -337,18 +367,27 @@ input[type="image"] {
   height: 70%;
 }
 
+
+#controls {
+  display: inline-block;
+  margin: 0em auto;
+  min-width: 320px;
+  max-width: 320px;
+}
+
 .buttonGroup {
   display: block;
   margin: 0em auto;
   max-width: 320px;
-  min-width: 270px; 
+  min-width: 320px; 
 }
 
 #about {
   font-size:x-small;
   color: #444;
   display: block;
-  margin: auto;
+  margin-top: 0em;
+  line-height: 1.5em;
 }
 
 #about a { 
@@ -357,7 +396,8 @@ input[type="image"] {
   color: #444;
 }
 
-#about a:link { color: #FAA }
+#about a:link { color: #444 }
+
 #about a:hover,
 #about a:active,
 #about a:focus,
@@ -388,7 +428,8 @@ input[type="image"] {
 .outputDiv > input {
   position: relative;
   display: inline-block;
-  width: 200px;
+  width: 170px;
+  max-width: 200px;
   text-align: center;
   font-size: 1em;
   line-height: 2em;
@@ -444,7 +485,7 @@ input[type="image"] {
   -ms-transform: translateX(-50%);
   -o-transform: translateX(-50%);
   transform: translateX(-50%);
-  margin-left: -8.175em;
+  margin-left: -7.0em;
 }
 
 .inputDiv > .inputFooter {
@@ -456,7 +497,7 @@ input[type="image"] {
 .outputDiv > .inputTitle {
   font-size: 1em;
   margin-top: -0.5em;
-  margin-left: -42.5%;
+  margin-left: -8.65em;
 }
 .outputDiv > .inputFooter {
   color: #aaa;
@@ -574,8 +615,8 @@ input[type="image"] {
   position: absolute;
   display: inline-block;
   z-index: 10;
-  width: 200px;
-  min-width: 260px;
+  width: 250px;
+  min-width: 250px;
   text-align: center;
   font-size: 1em;
   line-height: 2em;

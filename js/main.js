@@ -3,6 +3,8 @@
 * Author: http://mxklb.github.io/ 
 */
 
+var version = "v1.0 (beta)";
+
 /* Check if the app is executed as webapp */
 navigator.standalone = navigator.standalone || (screen.height-document.documentElement.clientHeight<40);
 if( navigator.standalone == false ) {
@@ -774,4 +776,13 @@ function initIncrement(elemId, negative, smallstep) {
   if( negative ) { 
     increment.step *= -1.0;
   }
+}
+
+/*
+ * Update custom translations (Overwriten multilang function: ASF-feature).
+ */
+function translateCustomTexts() { 
+  updateTranslation('therapyInfo', R('therapyInfo', getTherapyAim(selectedTherapy), getTherapyCorrection(selectedTherapy), getTherapyBolus(selectedTherapy)));
+  updateTranslation('aboutLink', R('aboutLink', version));
+  updateCalculations();
 }

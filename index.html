@@ -82,7 +82,7 @@
     <label class="inputFooter" for="finalBolus"><span class="multilang" id="sum"></span></label>
   </div>
   
-  <hr>
+  <hr id="line1">
   
   <div class="setupDiv">
     <div style="display:none;"><span id="time"></span></div>
@@ -123,7 +123,7 @@
   </div>
   
   <div style="line-height:1em; min-height:0.5em;"></div>
-  <hr style="width: 60%;">
+  <hr id="line2" style="width: 60%;">
 </form>
 
 <div id="setupGroup" style="display:none;">    
@@ -152,14 +152,16 @@
     <input type="submit" name="submit" class="multilang" id="donate">
     <input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
   </form>
-  <p id="about"><a href="https://github.com/mxklb/boluscalculator" target=”_blank”>README IBC v1.0 (beta)</a></p>
 </div>
 
-<div class="buttonGroup">
-  <div class="singleButton">
-    <a href="#" id="setupButton" class="setupButton" onclick="toggleSetup();return false;">
-      <img src="images/gears10.svg" id="settingsSvg" alt="&#9775;">
-    </a>
+<div id="controls">
+  <p id="about"><a href="https://github.com/mxklb/boluscalculator" target=”_blank” class="multilang" id="aboutLink">About IBC</a></p>
+  <div class="buttonGroup">
+    <div class="singleButton">
+      <a href="#" id="setupButton" class="setupButton" onclick="toggleSetup();return false;">
+        <img src="images/gears10.svg" id="settingsSvg" alt="&#9775;">
+      </a>
+    </div>
   </div>
 </div>
 
