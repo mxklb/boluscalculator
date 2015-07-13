@@ -1,12 +1,12 @@
 # Insulin Bolus Calculator
 IBC - An Insulin Bolus Calculator - A HTML5 App.
 
-A simple and tranparent calculator app for the intensive/flexibles insulin therapy.
+A simple and transparent calculator app for the intensive/flexible insulin therapy.
 
 This app is deployed using gh-pages. Check out IBC here: [mxklb.github.io/boluscalculator](http://mxklb.github.io/boluscalculator/)
 
 ## About this App
-This is a bolus calculator app to estimate a single insulin dose based on personalized therapy settings, the actual blood glucose level and a meal. I wrote this app because I could not find any free web/mobile app that let one calculate an insulin bolus using the formulars I knew. Most of the apps I found did not clearly point out the formulars they use to perform the calculations. So this is the result ... 
+This is a bolus calculator app to estimate a single insulin dose based on personalized therapy settings, the actual blood glucose level and a meal. I wrote this app because I could not find any free web/mobile app that let one calculate an insulin bolus using the formulas I knew. Most of the apps I found did not clearly point out the formulas they use to perform the calculations. So this is the result ... 
 
 This app comes with absolutely no warranty and may only be used at your own risk!
 
@@ -44,22 +44,22 @@ However:
 4. Enter the _Amount of Meal_ to be eaten --> _Effective Meal_
 5. Catch up the resulting insulin units [U] immediately
 
-All results are always recalculated if any input value got changed. Red colored bolus numbers indicate that a correction is needed while green colored bolus numbers indicate that one need to eat some food. Just play around with the buttons. I'm sure you'll quickly find out how it works ..
+All results are always recalculated if any input value got changed. Red colored bolus numbers indicate that insulin is needed while green colored bolus numbers indicate that one need to eat some food. Just play around with the buttons. I'm sure you'll quickly find out how it works ..
 
-_Note:_ By setting the _Amount of Meal_ to zero, the result is the _Correction_ only. Setting the _Blood Glucose_ to the _Glucose Aim_, the result is the _Effectice Meal_ only.
+_Note:_ By setting the _Amount of Meal_ to zero, the result is the _Correction_ only. Setting the _Blood Glucose_ to the _Glucose Aim_, the result is the _Effective Meal_ only.
 
 ### Therapy Settings
-The 24h day is devided into 4 pieces; morning, noontime, evening and night. For each daytime the therapy settings _Glucose Aim_, _Corr. Factor_ and _Meal Factor_ can be adjusted separately by toggeling the _Therapy Settings_ button. 
+The 24h day is divided into 4 pieces; morning, noontime, evening and night. For each daytime the therapy settings _Glucose Aim_, _Corr. Factor_ and _Meal Factor_ can be adjusted separately by toggling the _Therapy Settings_ button. 
 
 On load IBC automatically detects the correct therapy setting depending on the browsers daytime. To manually switch between different daytimes use the labeled buttons. The color red indicates that the selected setting does not match the IBC's detected daytime.
 
 ### Measurement Units
-The default _Blood Glucose_ measurement unit is [mg/dL]. It may be changed to international units [mmol/L]. Releated therapy settings will change accordingly. This does not have any effect on the equations above. The transformation from [mmol/L] to [mg/dL] is just a factor of 18.
+The default _Blood Glucose_ measurement unit is [mg/dL]. It may be changed to international units [mmol/L]. Related therapy settings will change accordingly. This does not have any effect on the equations above. The transformation from [mmol/L] to [mg/dL] is just a factor of 18.
 
-The default measurement unit for the _Amount of Meal_ is [bread units]. It may be changed to [gram carbs]. The default amount of carbs [g] needed for on insuline unit [U] is 12g. This factor can be adjusted in the application setup.
+The default measurement unit for the _Amount of Meal_ is [bread units]. It may be changed to [gram carbs]. The default amount of carbs [g] needed for on insulin unit [U] is 12g. This factor can be adjusted in the application setup.
 
 ### Offline Usage
-This webapp is developed for on- and offline usage. No server is needed to run this app. All settings are always storred locally. You can always execute it locally by just using a suitable browser. To do so, use the following best practice ...
+This webapp is developed for on- and offline usage. No server is needed to run this app. All settings are always stored locally. You can always execute it locally by just using a suitable browser. To do so, use the following best practice ...
 
 1. If you are using chrome browser simple create an application shortcut to your desktop, finished.
 2. Clone or download this repository and place it somewhere locally
@@ -69,30 +69,28 @@ This webapp is developed for on- and offline usage. No server is needed to run t
     Then just open the local index.html file in the web browser et voila ...
 
 ## Implementation Details
-Think of something like a prototype or egineering app. It's developed as a kind of case study for myself, to learn something about web development technologies and intensive insulin therapy calculations ... All is implemented from scratch, no libs where used. Plain html with css and java-script. For offline usage the app makes heavy use of technics such as _local storrage_ and _cache.manifest_.
+Think of something like a prototype or engineering app. It's developed as a kind of case study for myself, to learn something about web development technologies and intensive insulin therapy calculations ... All is implemented from scratch, just one lib [R.js](https://github.com/keithamus/R.js) is used. It's all plain html with css and java-script. For offline usage the app makes heavy use of techniques such as _local storage_ and _cache.manifest_.
 
-I'm sure the implementation could be more elegant. Feel free to send me pull requests or append the following todo entries. 
+Actually the code is not tested, reviewed or validated! I'm sure the implementation could be done more elegant, unit-tests are missing .. nothing is optimized .. Nevertheless for the actual purpose everything shall work as expected ;) 
 
-Actually the code is not tested, reviewed or validated!
+Feel free to contribute,
+ 
+- report - open issues 
+- generate new translations
+- send me feature requests or
+- better send pull requests
 
-### Todo
-- ~~Add therapy settings for daytime _Late_~~
-- ~~Make different measurement units available~~
-- ~~Form entries should remember/cache values!?~~
-- ~~Default therapy settings should be configureable~~
-- ~~Develop a new more modern, scalable or mobile app~~
-    - ~~Therapy settings should be separated (menu)~~
-    - Steady changing therapy settings (curves/splines)?
-    - ~~Automated daytime detection~~
-- ~~Redesign input elements (fix moz appearance)~~
-- ~~Make final bolus editable .. calculate meal~~
-- Make the daytimes time spans user adjustable
-- Refactorings to become a multi-lingual app
+### Translations
+To contribute translations for your favorite language refer to the [multilang](https://github.com/mxklb/multilang) project. IBC uses _multilang_ to generate the all its translations. _multilang_'s documentation is straight forward, it's as easy as generating one and slightly editing two files ..
+
+### Nice to have ..
+- Make the daytime time-spans user adjustable
+- Interpolate therapy settings (curves/splines)
 - Setup an optional high contrast theme
-- Use more icons to improve setup menue
+- Use more icons to improve setup menu
 - Validate the users input numbers
+- Restructure show-/hide layout
 - Add active insulin features
-- Restructure show-/hide things
 
 ## License
 Feel free to use, modify, comment or whatever ... this implementation is licensed under [MIT](https://github.com/mxklb/boluscalculator/blob/master/LICENSE).
