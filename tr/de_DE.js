@@ -21,5 +21,6 @@ R.registerLocale('de-DE',
   "appSetupTitle": 'Software Einstellungen',
   "carbsFactor": 'KH / Insulin Einheit',
   "appLanguage": 'Angezeigte Sprache',
+  "aboutLink": 'Über %s',
   "donate": 'Spenden'
 });

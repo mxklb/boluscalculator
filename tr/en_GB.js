@@ -21,5 +21,6 @@ R.registerLocale('en-GB',
   "appSetupTitle": 'Application Setup',
   "carbsFactor": 'Carbs / Insulin Unit',
   "appLanguage": 'Displayed Language',
+  "aboutLink": 'About %s',
   "donate": 'Donate'
 });
