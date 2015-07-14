@@ -63,8 +63,12 @@ if( asfEnable && loadCustomjs ) loadjsfile( langdirectory + 'custom.js' );
  * Set 'defaultlang' from local storage (if existing). 
  */
 function getLocalLanguage() {
-  if( localStorage.getItem('lang') != null )
-    defaultlang = localStorage.getItem('lang');
+  try {
+    if( localStorage.getItem('lang') != null )
+      defaultlang = localStorage.getItem('lang');
+  } catch(e) {
+    console.log("Failed to access local storrage: %s", e);
+  }
 }
 
 /* 
@@ -120,7 +124,11 @@ function selectedLanguageChanged() {
   var select = document.getElementById( langSelectId );
   if( select != null ) {
     defaultlang = select.options[select.selectedIndex].value;
-    localStorage.setItem('lang', defaultlang);
+    try {
+      localStorage.setItem('lang', defaultlang);
+    } catch(e) {
+      console.log("Failed to write local storrage: %s", e);
+    }
     updateLanguage();
   }
 }

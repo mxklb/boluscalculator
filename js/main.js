@@ -3,9 +3,27 @@
 * Author: http://mxklb.github.io/ 
 */
 
+// Initial startup settings
+var carbsFactor = 12.0;      // Initial carbs factor: [g] for one [U]
+var selectedTherapy = 0;     // Holds the active therapy setting
+var glucoseUnits = 0;        // 0 = [mg/dL] ; 1 = [mmol/L]
+var foodUnits = 0;           // 0 = [bread units]; 1 = [carbs]
+
+// The version of this app
 var version = "v1.0 (beta)";
 
-/* Check if the app is executed as webapp */
+// Variable to identify already passed initialization
+var initialized = false;
+
+// Helper array holding the therapy settings
+var settings = [];
+
+// Helper array holding local storage variable names
+var localNames = [];
+
+/* 
+ * Check if the app is executed as webapp 
+ */
 navigator.standalone = navigator.standalone || (screen.height-document.documentElement.clientHeight<40);
 if( navigator.standalone == false ) {
   console.log("IBC browser version");
@@ -13,35 +31,25 @@ if( navigator.standalone == false ) {
   console.log("IBC webapp version"); 
 }
 
-// Variable to identify already passed initialization
-var initialized = false;
-
-// Array holding the therapy settings
-var settings = [];
-
-// Array holding local storage variable names
-var localNames = [];
-
-// Holds the active therapy setting
-var selectedTherapy = 0;
-
-// 0 = [mg/dL] ; 1 = [mmol/L]
-var glucoseUnits = 0;
-
-// 0 = [bread units]; 1 = [carbs]
-var foodUnits = 0;
-
-// Initial carbs factor: [g] for one [IU]
-var carbsFactor = 12.0;
+/*
+ * Detect if local storage is available 
+ */
+function supportsLocalStorage() {
+  try {
+    return 'localStorage' in window && window['localStorage'] !== null;
+  } catch(e) {
+    return false;
+  }
+}
 
 /*
 * Set default therapy settings and initialize local variable names.
 */
 function initDefaultSettings() {
   settings[0] = {aim:100, corr:50, bolus:1.0};
-	settings[1] = {aim:100, corr:50, bolus:1.0};
-	settings[2] = {aim:120, corr:50, bolus:1.0};
-	settings[3] = {aim:120, corr:50, bolus:1.0};
+  settings[1] = {aim:100, corr:50, bolus:1.0};
+  settings[2] = {aim:120, corr:50, bolus:1.0};
+  settings[3] = {aim:120, corr:50, bolus:1.0};
   initLocalNames(); 
 }
 
@@ -49,7 +57,7 @@ function initDefaultSettings() {
 * Initializes the local storage variable names used for therapies.
 */
 function initLocalNames() {
-	var therapyId;
+  var therapyId;
   for( therapyId = 0; therapyId < settings.length; therapyId++ ) {
     var name1 = "aim" + therapyId;
   	var name2 = "corr" + therapyId;
@@ -80,14 +88,25 @@ function initLocalSettings() {
     loadTherapySettings(therapyId);
   }
   
-  if( localStorage.getItem("glucose") != null ) {
-    var bg = localStorage.getItem("glucose");
-    document.getElementById('glucose').value = bg;
-  }
+  var bg = 125;
+  var meal = 4.75;
+  
+  try {
+    if( localStorage.getItem("glucose") != null ) {
+      var tmp = localStorage.getItem("glucose").toString();
+      if( tmp.length ) bg = tmp;
+    }
     
-  if( localStorage.getItem("meal") != null ) {
-    document.getElementById('foodbe').value = localStorage.getItem("meal");
+    if( localStorage.getItem("meal") != null ) {
+      var tmp = localStorage.getItem("meal").toString();
+      if( tmp.length ) meal = tmp;
+    }
+  } catch(e) {
+    console.log("Failed to access local storrage: %s", e);
   }
+  
+  document.getElementById('glucose').value = bg;
+  document.getElementById('foodbe').value = meal;
 }
 
 /*
@@ -98,12 +117,17 @@ function loadTherapySettings( therapyId ) {
   var stringCorrName = localNames[therapyId].corr;
   var stringBolusName = localNames[therapyId].bolus;
   
-  if( localStorage.getItem(stringAimName) != null )
-    settings[therapyId].aim = localStorage.getItem(stringAimName);
-  if( localStorage.getItem(stringCorrName) != null )
-    settings[therapyId].corr = localStorage.getItem(stringCorrName);
-  if( localStorage.getItem(stringBolusName) != null )
-    settings[therapyId].bolus = localStorage.getItem(stringBolusName);
+  try {
+    if( localStorage.getItem(stringAimName) != null )
+      settings[therapyId].aim = localStorage.getItem(stringAimName);
+    if( localStorage.getItem(stringCorrName) != null )
+      settings[therapyId].corr = localStorage.getItem(stringCorrName);
+    if( localStorage.getItem(stringBolusName) != null )
+      settings[therapyId].bolus = localStorage.getItem(stringBolusName);
+  } catch(e) {
+    console.log("Failed to access local storrage: %s", e);
+    saveTherapySettings(therapyId);
+  }
 }
 
 /*
@@ -111,23 +135,30 @@ function loadTherapySettings( therapyId ) {
 * And changes the correspondig html elements accordingly.  
 */
 function initLocalUnits() {
-  if( localStorage.getItem('bgunits') != null )
-    glucoseUnits = localStorage.getItem('bgunits'); 
-  setSelectedGlucoseUnit();
+  try {
+    if( localStorage.getItem('bgunits') != null )
+      glucoseUnits = localStorage.getItem('bgunits'); 
+    setSelectedGlucoseUnit();
   
-  if( localStorage.getItem('foodunits') != null )
-    foodUnits = localStorage.getItem('foodunits');
-  setSelectedFoodUnit();
+    if( localStorage.getItem('foodunits') != null )
+      foodUnits = localStorage.getItem('foodunits');
+    setSelectedFoodUnit();
   
-  if( localStorage.getItem('gcarbs') != null )
-    carbsFactor = localStorage.getItem('gcarbs');
-  setCarbsFactor();
+    if( localStorage.getItem('gcarbs') != null )
+      carbsFactor = localStorage.getItem('gcarbs');
+    setCarbsFactor();
+  } catch(e) {
+    console.log("Failed to access local storrage: %s", e);
+  }
 }
 
 /*
 * Gets called if the page gets loaded (used as initialization).
 */
 window.onload = function () {
+  if( supportsLocalStorage() === false ) {
+    alert("Warning: IBC may misbehave!\n\nLocal storage support is missing!");
+  }
   initDefaultSettings();
   initLocalSettings();
   initLocalUnits();
@@ -139,26 +170,38 @@ window.onload = function () {
 * Writes the therapy settings of the given id into local storage. 
 */
 function saveTherapySettings( therapyId ) {
-  localStorage.setItem(localNames[therapyId].aim, getTherapyAim(therapyId));
-  localStorage.setItem(localNames[therapyId].corr, getTherapyCorrection(therapyId));
-  localStorage.setItem(localNames[therapyId].bolus, getTherapyBolus(therapyId));
+  try {
+    localStorage.setItem(localNames[therapyId].aim, getTherapyAim(therapyId));
+    localStorage.setItem(localNames[therapyId].corr, getTherapyCorrection(therapyId));
+    localStorage.setItem(localNames[therapyId].bolus, getTherapyBolus(therapyId));
+  } catch(e) {
+    console.log("Failed to write local storrage: %s", e);
+  }
 }
 
 /*
 * Writes the local settings into local storage. 
 */
 function saveLocalUnits() {
-  localStorage.setItem('bgunits', glucoseUnits);
-  localStorage.setItem('foodunits', foodUnits);
-  localStorage.setItem('gcarbs', carbsFactor);
+  try {
+    localStorage.setItem('bgunits', glucoseUnits);
+    localStorage.setItem('foodunits', foodUnits);
+    localStorage.setItem('gcarbs', carbsFactor);
+  } catch(e) {
+    console.log("Failed to write local storrage");
+  }
 }
 
 /*
 * Writes the user inputs, glucose and meal, into the local storage.
 */
 function saveGlucoseAndMeal() {
-  localStorage.setItem("glucose", document.getElementById('glucose').value);
-  localStorage.setItem("meal", document.getElementById('foodbe').value);
+  try {
+    localStorage.setItem("glucose", document.getElementById('glucose').value);
+    localStorage.setItem("meal", document.getElementById('foodbe').value);
+  } catch(e) {
+    console.log("Failed to write local storrage: %s", e);
+  }
 }
 
 /*
@@ -347,12 +390,16 @@ function changeTherapySettings() {
 * Takes the settings and applies them to the gui.
 */
 function refreshSettings(therapyId) {
-  updateTranslation('therapyInfo', R('therapyInfo', getTherapyAim(therapyId), getTherapyCorrection(therapyId), getTherapyBolus(therapyId))); 
+  var aim = getTherapyAim(therapyId);
+  var corr = getTherapyCorrection(therapyId).toString();
+  var meal = getTherapyBolus(therapyId).toString();
+  
+  updateTranslation('therapyInfo', R('therapyInfo', aim.toString(), corr.toString(), meal.toString())); 
   document.getElementById('therapySetup').innerHTML = getTherapyName(therapyId);
 
-  document.getElementById('settingsAim').value = getTherapyAim(therapyId);
-  document.getElementById('settingsCorr').value = getTherapyCorrection(therapyId);
-  document.getElementById('settingsBolus').value = getTherapyBolus(therapyId);
+  document.getElementById('settingsAim').value = aim;
+  document.getElementById('settingsCorr').value = corr;
+  document.getElementById('settingsBolus').value = meal;
   
   updateCalculations();
 }
@@ -781,8 +828,7 @@ function initIncrement(elemId, negative, smallstep) {
 /*
  * Update custom translations (Overwriten multilang function: ASF-feature).
  */
-function translateCustomTexts() { 
-  updateTranslation('therapyInfo', R('therapyInfo', getTherapyAim(selectedTherapy), getTherapyCorrection(selectedTherapy), getTherapyBolus(selectedTherapy)));
+function translateCustomTexts() {
   updateTranslation('aboutLink', R('aboutLink', version));
-  updateCalculations();
+  refreshSettings(selectedTherapy);
 }
