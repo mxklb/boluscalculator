@@ -92,9 +92,9 @@ function initLanguageOptions() {
     if( cnt == 0 ) console.log('warning: no translation defined');
     
     R.setLocale('langs');
-    for( var language of langfiles ) {
-      language = language.replace('_', '-');
-      document.getElementById(language).innerHTML = R(language);
+    for(var i=0; i<langfiles.length; i++) { 
+      langfiles[i] = langfiles[i].replace('_', '-');
+      document.getElementById(langfiles[i]).innerHTML = R(langfiles[i]);
     }
   }
 }
