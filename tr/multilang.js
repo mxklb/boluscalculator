@@ -82,9 +82,9 @@ function initLanguageOptions() {
   var select = document.getElementById( langSelectId );
   if( select != null ) {
     var cnt = 0;
-    for( var language of langfiles ) {
+    for(var i=0; i<langfiles.length; i++) { 
       option = document.createElement('option');
-      option.value = option.text = option.id = language.replace('_','-');
+      option.value = option.text = option.id = langfiles[i].replace('_','-');
       select.add(option);
       cnt++;
     }
