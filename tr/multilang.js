@@ -50,8 +50,8 @@ function loadjsfile( filename ) {
  * Load js langauge definitions and register R.js translations.
  */
 loadjsfile( langdirectory + 'langdef.js' );
-for( var file of langfiles ) { 
-  loadjsfile( langdirectory + file + '.js' ); 
+for(var i=0; i<langfiles.length; i++) { 
+  loadjsfile( langdirectory + langfiles[i] + '.js' ); 
 }
 
 /*
