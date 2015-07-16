@@ -663,4 +663,15 @@ input[type="image"] {
   color: #444;
   text-shadow: none;
 }
+#selectLanguage > option {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+}
+/* Remove arrow IE */
+#selectLanguage::-ms-expand {
+  display: none;
+}
 
