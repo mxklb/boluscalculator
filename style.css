@@ -462,9 +462,24 @@ input[type="image"] {
 .inputDiv > .inputTitle,
 .inputDiv > .inputFooter,
 .outputDiv > .inputTitle,
-.outputDiv > .inputFooter {
+.outputDiv > .inputFooter,
+.outputDiv > .appLanguage,
+.outputDiv > .roundedCorner,
+.outputDiv > .therapyTime,
+.outputDiv > .therapySetup {
   position: absolute;
   display: inline-block;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+  
+}
+.inputDiv > .inputTitle,
+.inputDiv > .inputFooter,
+.outputDiv > .inputTitle,
+.outputDiv > .inputFooter {
   z-index: 25;
   font-size: small;
   line-height: 18px;
@@ -474,20 +489,15 @@ input[type="image"] {
   padding: 0% .5em;
   white-space: nowrap;
   margin-top: -0.7em;
-  -webkit-transform: translateX(-50%);
-  -moz-transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
-  -o-transform: translateX(-50%);
-  transform: translateX(-50%);
   margin-left: -7.0em;
 }
-
 .inputDiv > .inputFooter {
   color: #aaa;
   background: white;
   font-weight: normal;
   margin-top: 3.1em;
 }
+
 .outputDiv > .inputTitle {
   font-size: 1em;
   margin-top: -0.5em;
@@ -618,6 +628,7 @@ input[type="image"] {
   border: 1px solid #ddd;
   border-radius: 5em;
   outline: none;
+  margin-bottom: 0em;
   -moz-appearance: textfield;
   -webkit-transform: translateX(-50%);
   -moz-transform: translateX(-50%);
@@ -627,7 +638,9 @@ input[type="image"] {
 }
 
 .appSetupItem {
-  margin-bottom: 0em; 
+  margin: 0em 0em;
+  margin-bottom: 0em;
+  height: 3em; 
 }
 
 #selectLanguage {
@@ -639,7 +652,8 @@ input[type="image"] {
   position: relative;
   display: inline-block;
   margin: auto;
-  margin-top: 1.25em; 
+  margin-top: 1em;
+  margin-bottom: 0em; 
   border-radius: 1.5em;
   border: 0px solid #eee;
   cursor: pointer; cursor: hand;
