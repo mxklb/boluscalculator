@@ -406,8 +406,6 @@ input[type="image"] {
 }
 
 /* Input/Output ----> */
-
-.setupDiv,
 .inputDiv,
 .outputDiv {
   display: block;
@@ -418,10 +416,6 @@ input[type="image"] {
 }
 .outputDiv {
   height: 4.1em;
-}
-.setupDiv {
-  margin: 1.5em auto;
-  margin-bottom: 2em;
 }
 
 .inputDiv > input,
