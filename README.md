@@ -3,7 +3,7 @@ IBC - An Insulin Bolus Calculator - A HTML5 App.
 
 A simple and transparent calculator app for the intensive/flexible insulin therapy.
 
-This app is deployed using gh-pages. Check out IBC here: [mxklb.github.io/boluscalculator](http://mxklb.github.io/boluscalculator/)
+This app is deployed using [gh-pages](https://pages.github.com/). Check out IBC here: [mxklb.github.io/boluscalculator](http://mxklb.github.io/boluscalculator/)
 
 ## About this App
 This is a bolus calculator app to estimate a single insulin dose based on personalized therapy settings, the actual blood glucose level and a meal. I wrote this app because I could not find any free web/mobile app that let one calculate an insulin bolus using the formulas I knew. Most of the apps I found did not clearly point out the formulas they use to perform the calculations. So this is the result ... 
@@ -34,7 +34,7 @@ The _Correction_ is defined as the difference of the actual _Glucose Level_ and 
 _Note:_ The _Correction_ could be negative, which indicates that the resulting amount of bread units is missing to hit the _Glucose Aim_. If it is possitive insulin is needed to reduce the blood glucose level to reach the _Glucose Aim_.
 
 ## How to use it
-This app is designed for actual versions of firefox and webkit based browsers (like chrome and safari). 
+This app is developed for actual versions of firefox and webkit based browsers like chrome and safari. It is designed for mobile screen resolutions above 320x480.
 
 However:
 
@@ -81,7 +81,7 @@ Feel free to contribute,
 - better send pull requests
 
 ### Translations
-To contribute translations for your favorite language refer to the [multilang](https://github.com/mxklb/multilang) project. IBC uses _multilang_ to generate the all its translations. _multilang_'s documentation is straight forward, it's as easy as generating one and slightly editing two files ..
+To contribute translations for your favorite language refer to the [multilang](https://github.com/mxklb/multilang) project. IBC uses _multilang_ to generate all its translations. _multilang_'s documentation is straight forward, it's as easy as generating one translation file and slightly editing two other files.
 
 ### Nice to have ..
 - Make the daytime time-spans user adjustable
