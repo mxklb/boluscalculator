@@ -51,12 +51,11 @@ body {
   #line1, #line2 {
     display: none;
   }
-}
-
-@media all and (max-height: 520px) {
   #title {
     margin-top: 0.5em;
   }
+}
+@media all and (max-height: 520px) {
   body {
     -webkit-transform: scale(.9);
     -moz-transform:    scale(.9);
@@ -65,7 +64,7 @@ body {
     transform:         scale(.9);
   }
 }
-@media all and (max-width: 315px) {
+@media all and (max-width: 300px) {
   body {
     -webkit-transform: scale(.9);
     -moz-transform:    scale(.9);
@@ -103,8 +102,8 @@ input:not([type='button']) {
 }
 
 form {
-  max-width: 320px;
-  min-width: 320px;
+  max-width: 300px;
+  min-width: 300px;
   margin: 0em auto;
 }
 
@@ -127,8 +126,8 @@ hr {
 }
 
 #setupGroup {
-  max-width: 320px;
-  min-width: 270px;
+  max-width: 300px;
+  min-width: 300px;
 }
 #setupGroup p {
   font-size: 1.1em;
@@ -371,15 +370,15 @@ input[type="image"] {
 #controls {
   display: inline-block;
   margin: 0em auto;
-  min-width: 320px;
-  max-width: 320px;
+  min-width: 300px;
+  max-width: 300px;
 }
 
 .buttonGroup {
   display: block;
   margin: 0em auto;
-  max-width: 320px;
-  min-width: 320px; 
+  max-width: 300px;
+  min-width: 300px; 
 }
 
 #about {
