@@ -1,4 +1,6 @@
 CACHE MANIFEST
+index.html
+style.css
 rjs/package.json
 rjs/R.enderBridge.js
 rjs/R.js
@@ -7,8 +9,8 @@ tr/multilang.js
 tr/de_DE.js
 tr/en_GB.js
 tr/langdef.js
-main.js
-style.css
+js/main.js
+js/ga.js
 images/favicon.svg
 images/favicon.ico
 images/favicon.png
