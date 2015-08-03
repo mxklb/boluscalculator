@@ -50,8 +50,8 @@ function loadjsfile( filename ) {
  * Load js langauge definitions and register R.js translations.
  */
 loadjsfile( langdirectory + 'langdef.js' );
-for( var file of langfiles ) { 
-  loadjsfile( langdirectory + file + '.js' ); 
+for(var i=0; i<langfiles.length; i++) { 
+  loadjsfile( langdirectory + langfiles[i] + '.js' ); 
 }
 
 /*
@@ -63,8 +63,12 @@ if( asfEnable && loadCustomjs ) loadjsfile( langdirectory + 'custom.js' );
  * Set 'defaultlang' from local storage (if existing). 
  */
 function getLocalLanguage() {
-  if( localStorage.getItem('lang') != null )
-    defaultlang = localStorage.getItem('lang');
+  try {
+    if( localStorage.getItem('lang') != null )
+      defaultlang = localStorage.getItem('lang');
+  } catch(e) {
+    console.log("Failed to access local storrage: %s", e);
+  }
 }
 
 /* 
@@ -78,9 +82,9 @@ function initLanguageOptions() {
   var select = document.getElementById( langSelectId );
   if( select != null ) {
     var cnt = 0;
-    for( var language of langfiles ) {
+    for(var i=0; i<langfiles.length; i++) { 
       option = document.createElement('option');
-      option.value = option.text = option.id = language.replace('_','-');
+      option.value = option.text = option.id = langfiles[i].replace('_','-');
       select.add(option);
       cnt++;
     }
@@ -88,9 +92,9 @@ function initLanguageOptions() {
     if( cnt == 0 ) console.log('warning: no translation defined');
     
     R.setLocale('langs');
-    for( var language of langfiles ) {
-      language = language.replace('_', '-');
-      document.getElementById(language).innerHTML = R(language);
+    for(var i=0; i<langfiles.length; i++) { 
+      langfiles[i] = langfiles[i].replace('_', '-');
+      document.getElementById(langfiles[i]).innerHTML = R(langfiles[i]);
     }
   }
 }
@@ -120,7 +124,11 @@ function selectedLanguageChanged() {
   var select = document.getElementById( langSelectId );
   if( select != null ) {
     defaultlang = select.options[select.selectedIndex].value;
-    localStorage.setItem('lang', defaultlang);
+    try {
+      localStorage.setItem('lang', defaultlang);
+    } catch(e) {
+      console.log("Failed to write local storrage: %s", e);
+    }
     updateLanguage();
   }
 }
