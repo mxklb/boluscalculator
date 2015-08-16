@@ -88,6 +88,7 @@ To contribute translations for your favorite language refer to the [multilang](h
 - Interpolate therapy settings (curves/splines)
 - Setup an optional high contrast theme
 - Use more icons to improve setup menu
+- Add blind mode (bad eyes) special ui
 - Validate the users input numbers
 - Restructure show-/hide layout
 - Add active insulin features
