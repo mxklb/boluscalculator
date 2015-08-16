@@ -1,0 +1,1 @@
+Sharing Buttons taken from [simplesharingbuttons.com](http://simplesharingbuttons.com/) 
