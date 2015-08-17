@@ -5,6 +5,8 @@ A simple and transparent calculator app for the intensive/flexible insulin thera
 
 This app is deployed using [gh-pages](https://pages.github.com/). Check out IBC here: [mxklb.github.io/boluscalculator](http://mxklb.github.io/boluscalculator/)
 
+Feel free to simply use and/or contribute to the develpoment ..
+
 ## About this App
 This is a bolus calculator app to estimate a single insulin dose based on personalized therapy settings, the actual blood glucose level and a meal. I wrote this app because I could not find any free web/mobile app that let one calculate an insulin bolus using the formulas I knew. Most of the apps I found did not clearly point out the formulas they use to perform the calculations. So this is the result ... 
 
@@ -49,9 +51,9 @@ All results are always recalculated if any input value got changed. Red colored 
 _Note:_ By setting the _Amount of Meal_ to zero, the result is the _Correction_ only. Setting the _Blood Glucose_ to the _Glucose Aim_, the result is the _Effective Meal_ only.
 
 ### Therapy Settings
-The 24h day is divided into 4 pieces; morning, noontime, evening and night. For each daytime the therapy settings _Glucose Aim_, _Corr. Factor_ and _Meal Factor_ can be adjusted separately by toggling the _Therapy Settings_ button. 
+The 24h day is divided into 4 pieces: morning, noontime, evening and night. For each daytime the therapy settings _Glucose Aim_, _Corr. Factor_ and _Meal Factor_ can be adjusted separately by toggling the _Therapy Settings_ button. 
 
-On load IBC automatically detects the correct therapy setting depending on the browsers daytime. To manually switch between different daytimes use the labeled buttons. The color red indicates that the selected setting does not match the IBC's detected daytime.
+On load IBC automatically detects the correct therapy setting depending on the browsers daytime. To manually switch between different daytime settings use the labeled buttons. Red colored borders indicate that the selected setting does not match the auto-detected daytime.
 
 ### Measurement Units
 The default _Blood Glucose_ measurement unit is [mg/dL]. It may be changed to international units [mmol/L]. Related therapy settings will change accordingly. This does not have any effect on the equations above. The transformation from [mmol/L] to [mg/dL] is just a factor of 18.
@@ -61,7 +63,7 @@ The default measurement unit for the _Amount of Meal_ is [bread units]. It may b
 ### Offline Usage
 This webapp is developed for on- and offline usage. No server is needed to run this app. All settings are always stored locally. You can always execute it locally by just using a suitable browser. To do so, use the following best practice ...
 
-1. If you are using chrome browser simple create an application shortcut to your desktop, finished.
+1. If you have a webkit based browser create an application shortcut to your desktop, finished.
 2. Clone or download this repository and place it somewhere locally
 
     A dropbox (or other cloud sync'ed) folder could be a good choice to also feed multiple devices. 
@@ -69,9 +71,9 @@ This webapp is developed for on- and offline usage. No server is needed to run t
     Then just open the local index.html file in the web browser et voila ...
 
 ## Implementation Details
-Think of something like a prototype or engineering app. It's developed as a kind of case study for myself, to learn something about web development technologies and intensive insulin therapy calculations ... All is implemented from scratch, just one lib [R.js](https://github.com/keithamus/R.js) is used. It's all plain html with css and java-script. For offline usage the app makes heavy use of techniques such as _local storage_ and _cache.manifest_.
+Think of something like a prototype or engineering app. It's developed as a kind of case study for myself, to learn something about web development technologies and intensive insulin therapy calculations ... Nearly all is implemented from scratch, just one lib [R.js](https://github.com/keithamus/R.js) is used. It's all plain html with css and java-script. For offline usage the app makes heavy use of techniques such as _local storage_ and _cache.manifest_.
 
-Actually the code is not tested, reviewed or validated! I'm sure the implementation could be done more elegant, unit-tests are missing .. nothing is optimized .. Nevertheless for the actual purpose everything shall work as expected ;) 
+Actually the code is not tested, reviewed or validated! I'm sure the implementation could be done more elegant, unit-tests are missing, especially css is a mess .. nothing is optimized .. Nevertheless for the actual purpose everything shall work as expected ;) 
 
 Feel free to contribute,
  
@@ -81,16 +83,16 @@ Feel free to contribute,
 - better send pull requests
 
 ### Translations
-To contribute translations for your favorite language refer to the [multilang](https://github.com/mxklb/multilang) project. IBC uses _multilang_ to generate all its translations. _multilang_'s documentation is straight forward, it's as easy as generating one translation file and slightly editing two other files.
+To contribute translations for your favorite language refer to the [multilang](https://github.com/mxklb/multilang) project. IBC uses _multilang_ to generate all its translations. _multilang_'s documentation is straight forward - Adding new languages is as easy as generating one translation file and registering it within another file.
 
 ### Nice to have ..
 - Make the daytime time-spans user adjustable
-- Interpolate therapy settings (curves/splines)
-- Setup an optional high contrast theme
-- Use more icons to improve setup menu
-- Add blind mode (bad eyes) special ui
+- Interpolate therapy settings ([smoothstep](https://en.wikipedia.org/wiki/Smoothstep))
+- Restructure UI and its show-/hide layout
+    - Setup an optional high contrast theme
+    - Add blind mode (bad eyes) large ui
+    - Use more icons to improve setup menu
 - Validate the users input numbers
-- Restructure show-/hide layout
 - Add active insulin features
 
 ## License
