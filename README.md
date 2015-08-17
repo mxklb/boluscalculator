@@ -1,11 +1,11 @@
 # Insulin Bolus Calculator
-IBC - An Insulin Bolus Calculator - A HTML5 App.
+IBC - An Insulin Bolus Calculator - A HTML5 WebApp.
 
 A simple and transparent calculator app for the intensive/flexible insulin therapy.
 
-This app is deployed using [gh-pages](https://pages.github.com/). Check out IBC here: [mxklb.github.io/boluscalculator](http://mxklb.github.io/boluscalculator/)
+This app is deployed using [gh-pages](https://pages.github.com/). Check it out here: [mxklb.github.io/boluscalculator](http://mxklb.github.io/boluscalculator/)
 
-Feel free to simply use and/or contribute to the develpoment ..
+Feel free to simply use it and/or contribute to the develpoment ..
 
 ## About this App
 This is a bolus calculator app to estimate a single insulin dose based on personalized therapy settings, the actual blood glucose level and a meal. I wrote this app because I could not find any free web/mobile app that let one calculate an insulin bolus using the formulas I knew. Most of the apps I found did not clearly point out the formulas they use to perform the calculations. So this is the result ... 
@@ -20,7 +20,7 @@ The equations used to calculate the resulting insulin dose are simple ...
 ### Final Bolus
 The _Final Bolus_ is defined as the sum of the _Effective Meal_ and a _Correction_.
 
-<p align="center"><a href="" starget="_blank"><img src="images/finalbolus.png"/></a></p>
+<p align="center"><a href="" target="_blank"><img src="images/finalbolus.png"/></a></p>
 
 The _Correction_ and the _Effective Meal_ are provisional results. These results depend on personal therapy settings, which could vary during the day (indicated by the index _i_). All three values are always displayed in [insulin units](https://en.wikipedia.org/wiki/Insulin_%28medication%29#Dosage_and_timing) [U].
 
