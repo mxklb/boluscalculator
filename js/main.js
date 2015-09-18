@@ -7,7 +7,7 @@
 var carbsFactor = 12.0;      // Initial carbs factor: [g] for one [U]
 var selectedTherapy = 0;     // Holds the active therapy setting
 var glucoseUnits = 0;        // 0 = [mg/dL] ; 1 = [mmol/L]
-var foodUnits = 0;           // 0 = [bread units]; 1 = [carbs]
+var foodUnits = 1;           // 0 = [bread units]; 1 = [carbs]
 
 // The version of this app
 var version = "v1.0 (beta)";
