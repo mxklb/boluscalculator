@@ -8,6 +8,8 @@ var carbsFactor = 12.0;      // Initial carbs factor: [g] for one [U]
 var selectedTherapy = 0;     // Holds the active therapy setting
 var glucoseUnits = 0;        // 0 = [mg/dL] ; 1 = [mmol/L]
 var foodUnits = 1;           // 0 = [bread units]; 1 = [carbs]
+var bloodInit = 125;         // Initial value for blood glucose
+var mealInit = 100;          // Initial value for amount of meal
 
 // The version of this app
 var version = "v1.0 (beta)";
@@ -87,26 +89,23 @@ function initLocalSettings() {
   for( therapyId = 0; therapyId < settings.length; therapyId++ ) {
     loadTherapySettings(therapyId);
   }
-  
-  var bg = 125;
-  var meal = 4.75;
-  
+    
   try {
     if( localStorage.getItem("glucose") != null ) {
       var tmp = localStorage.getItem("glucose").toString();
-      if( tmp.length ) bg = tmp;
+      if( tmp.length ) bloodInit = tmp;
     }
     
     if( localStorage.getItem("meal") != null ) {
       var tmp = localStorage.getItem("meal").toString();
-      if( tmp.length ) meal = tmp;
+      if( tmp.length ) mealInit = tmp;
     }
   } catch(e) {
     console.log("Failed to access local storrage: %s", e);
   }
   
-  document.getElementById('glucose').value = bg;
-  document.getElementById('foodbe').value = meal;
+  document.getElementById('glucose').value = bloodInit;
+  document.getElementById('foodbe').value = mealInit;
 }
 
 /*
