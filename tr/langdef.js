@@ -1,6 +1,7 @@
 /* The language names */
-R.registerLocale('langs', 
-{ 
+R.registerLocale('langs',
+{
   'en-GB': "English",
-  'de-DE': "German"
+  'de-DE': "German",
+  'pt-PT': "Portuguese"
 });
