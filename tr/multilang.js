@@ -4,11 +4,11 @@
  * This script automizes/wraps the registration of translations for R.js.
  * To do so it simply loads predefined translation js files to the head.
  * In addition it provides an automization for plain text translations and
- * some helper functions to easy up language selection by automatically 
+ * some helper functions to easy up language selection by automatically
  * adding html options according to the number of languages registered.
  * Users language selection will be stored in local storrage and
  * autoreload languange from local storrage is provided.
- * 
+ *
  * Uscase: Separate and easy up the translation process for R.js.
  *
  * 1. Define translation js file-names to be loaded.
@@ -17,11 +17,11 @@
  *
  * Note: langdef.js file must be inside langdirectory!
  *     * Select options will be auto populated with 'langdef.js' names.
- *     Make sure to add ...  
+ *     Make sure to add ...
  */
- 
-// >-- Translations to be loaded .. 
-var langfiles = ['en_GB', 'de_DE'];
+
+// >-- Translations to be loaded ..
+var langfiles = ['en_GB', 'de_DE', 'pt_PT'];
 
 // >-- Initial setup ..
 var langdirectory = 'tr/';           // The translation files directory
@@ -37,7 +37,7 @@ var langSelectId = 'selectLanguage'; // Select element id to be used for languag
 function translateCustomTexts() { }
 
 /*
- * Creates a script element with src 'filename' and appends it to the head. 
+ * Creates a script element with src 'filename' and appends it to the head.
  */
 function loadjsfile( filename ) {
   var fileref = document.createElement('script');
@@ -50,8 +50,8 @@ function loadjsfile( filename ) {
  * Load js langauge definitions and register R.js translations.
  */
 loadjsfile( langdirectory + 'langdef.js' );
-for(var i=0; i<langfiles.length; i++) { 
-  loadjsfile( langdirectory + langfiles[i] + '.js' ); 
+for(var i=0; i<langfiles.length; i++) {
+  loadjsfile( langdirectory + langfiles[i] + '.js' );
 }
 
 /*
@@ -60,7 +60,7 @@ for(var i=0; i<langfiles.length; i++) {
 if( asfEnable && loadCustomjs ) loadjsfile( langdirectory + 'custom.js' );
 
 /*
- * Set 'defaultlang' from local storage (if existing). 
+ * Set 'defaultlang' from local storage (if existing).
  */
 function getLocalLanguage() {
   try {
@@ -71,9 +71,9 @@ function getLocalLanguage() {
   }
 }
 
-/* 
+/*
  * Autopopulates select 'langSelectId' options with defined languages 'langfiles'.
- * 
+ *
  * Appends one select options for each defined language. The options id, value
  * and text will be set according to the 'langfiles' names. Therefore underscores
  * in the file names are substituted by minus signs.
@@ -82,28 +82,28 @@ function initLanguageOptions() {
   var select = document.getElementById( langSelectId );
   if( select != null ) {
     var cnt = 0;
-    for(var i=0; i<langfiles.length; i++) { 
+    for(var i=0; i<langfiles.length; i++) {
       option = document.createElement('option');
       option.value = option.text = option.id = langfiles[i].replace('_','-');
       select.add(option);
       cnt++;
     }
-    
+
     if( cnt == 0 ) console.log('warning: no translation defined');
-    
+
     R.setLocale('langs');
-    for(var i=0; i<langfiles.length; i++) { 
+    for(var i=0; i<langfiles.length; i++) {
       langfiles[i] = langfiles[i].replace('_', '-');
       document.getElementById(langfiles[i]).innerHTML = R(langfiles[i]);
     }
   }
 }
 
-/* 
- * Sets the selected index of the language selection corresponding to 'defaultlang'. 
+/*
+ * Sets the selected index of the language selection corresponding to 'defaultlang'.
  */
 function setSelectOption() {
-  var select = document.getElementById( langSelectId );  
+  var select = document.getElementById( langSelectId );
   if( select != null && select.options[select.selectedIndex].value != defaultlang ) {
     for( var i=0; i<select.length; i++ ) {
       if( select.options[i].value == defaultlang ) {
@@ -114,10 +114,10 @@ function setSelectOption() {
   }
 }
 
-/* 
+/*
  * Callback function if user changes the language from the 'langSelectId' element.
  *
- * Make sure to add 'onchange="selectedLanguageChanged();"' to the 'langSelectId' element. 
+ * Make sure to add 'onchange="selectedLanguageChanged();"' to the 'langSelectId' element.
  * Saves the user selection to the local storage and updates the viewed language.
  */
 function selectedLanguageChanged() {
@@ -139,7 +139,7 @@ function selectedLanguageChanged() {
  * - The string does not contain '%i' and '%s' char sequences.
  */
 function isStringValid(str) {
-  var valid = false; 
+  var valid = false;
   if( Boolean(str) && str.indexOf('%i') === -1 && str.indexOf('%s') === -1 ) {
     valid = true;
   }
@@ -150,7 +150,7 @@ function isStringValid(str) {
  * Updates the inner HTML of the given 'elementId' with the given 'text'.
  *
  * Constrains are: Must have a valid 'elementId' and a valid 'text'. For the
- * text this means it must pass isStringValid() and must not be equal to the 
+ * text this means it must pass isStringValid() and must not be equal to the
  * 'elementId'. Furthermore the class 'multilang' must be assigned.
  */
 function updateTranslation(elementId, text) {
@@ -181,7 +181,7 @@ function updateTranslationParameter(elementId, param) {
   updateTranslation(elementId, R(elementId, param));
 }
 
-/* 
+/*
  * Translate all plain text 'multilang' class elements.
  *
  * Selects all 'multilang' class elements in the dom and trys to translate
@@ -190,18 +190,18 @@ function updateTranslationParameter(elementId, param) {
  * parameters like %i are skipped. These need to be translated manually! See
  * custom.js for more details on how to use R.js' advanced formating ability.
  *
- * Uscase: Automize/wrap translation update of 'multilang' class elements. 
+ * Uscase: Automize/wrap translation update of 'multilang' class elements.
  */
 function translatePlainTexts() {
   var matchClass = "multilang";
   var elems = document.getElementsByTagName('*');
-  for( var i=0; elems[i]; i++ ) { 
+  for( var i=0; elems[i]; i++ ) {
     if((' ' + elems[i].className + ' ').indexOf(' ' + matchClass + ' ') > -1) {
       var text = R( elems[i].id );
       if( isStringValid(text) ) {
         updateTranslation(elems[i].id, text);
       }
-      else if( !asfEnable ) { 
+      else if( !asfEnable ) {
         console.log("invalid string '" + text + "' " + " for element id: " + elems[i].id);
         console.log("Is asf enabled? 'custom.js' loaded and are all asf strings overwritten?");
       }
@@ -209,14 +209,14 @@ function translatePlainTexts() {
   }
 }
 
-/* 
- * Updates the viewed language by using state of global 'defaultlang' 
+/*
+ * Updates the viewed language by using state of global 'defaultlang'
  */
 function updateLanguage(){
   R.setLocale( defaultlang );
   setSelectOption();
   translatePlainTexts();
-  if( asfEnable == true ) { 
+  if( asfEnable == true ) {
     translateCustomTexts();
   }
 }
@@ -229,4 +229,3 @@ function initLanguages() {
   getLocalLanguage();
   updateLanguage();
 }
-
