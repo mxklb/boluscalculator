@@ -1,0 +1,3 @@
+script: ./deploy.sh
+branches:
+  only: master

@@ -1,4 +1,6 @@
 # Insulin Bolus Calculator
+[![Build Status](https://travis-ci.org/mxklb/boluscalculator.svg?branch=master)](https://travis-ci.org/mxklb/boluscalculator)
+
 IBC - An Insulin Bolus Calculator - A HTML5 WebApp.
 
 A simple and transparent calculator app for the intensive/flexible insulin therapy.
