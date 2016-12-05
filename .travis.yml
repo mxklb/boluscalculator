@@ -1,4 +1,3 @@
-script:
 after_success:
 - bash ./deploy.sh
 branches:
