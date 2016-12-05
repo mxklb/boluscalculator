@@ -1,4 +1,4 @@
-/* English translation (en-GB) */
+/* Portuguese translation (en-GB) */
 R.registerLocale('pt-PT',
 {
   "title": 'Calculadora de Bolus de Insulina',

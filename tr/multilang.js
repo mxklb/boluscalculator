@@ -1,5 +1,5 @@
 /*
- * Author: maxkalb.github.io
+ * Author: mxklb.github.io
  *
  * This script automizes/wraps the registration of translations for R.js.
  * To do so it simply loads predefined translation js files to the head.
