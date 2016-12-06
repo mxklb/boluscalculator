@@ -24,7 +24,6 @@ rm -R tmp/.git
 cd source
 head=$(git log --format="%h" -n 1)
 
-
 # Remove development files
 cd ../tmp
 rm deploy.sh
