@@ -26,7 +26,7 @@ git checkout --quiet gh-pages
 
 # Remove development files
 rm deploy.sh
-rm travis.yml
+rm .gitignore
 
 # Remove CNAME for all others
 if [[ "$user" != "mxklb" ]] ; then
