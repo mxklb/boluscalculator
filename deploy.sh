@@ -16,16 +16,15 @@ repo="${split[2]}"
 
 # Clone master branch from user repo and make a copy + remove git folder
 git clone --quiet "https://$user:${GH_TOKEN}@github.com/$user/$repo.git" --branch=master source
-mkdir tmp
-cp -a source/. tmp/
-rm -R tmp/.git
+cd source
 
 # Get latest commit ID from master branch
-cd source
 head=$(git log --format="%h" -n 1)
 
+# Switch to gh-pages + apply changes
+git checkout --quiet gh-pages
+
 # Remove development files
-cd ../tmp
 rm deploy.sh
 rm travis.yml
 
@@ -36,11 +35,17 @@ if [[ "$user" != "mxklb" ]] ; then
   rm js/ga.js
 fi
 
-git init
-git config user.name "travis"
-git config user.email "travis@email.com"
-git add .
-git commit -m "Deployed from travis to gh-pages ($user@$head)"
+# Stage all
+git add -A
+
+# Check for changes
 status=$(git status)
 echo "$status";
-git push --force --quiet "https://${GH_TOKEN}@github.com/$user/$repo" master:gh-pages > /dev/null 2>&1
+
+# Setup travis git user, commit and push changes
+if [[ $status != *"nothing to commit"* ]] ; then
+  git config user.name "travis"
+  git config user.email "travis@email.com" 
+  git commit -m "CI Deployment to Github Pages ($user@$head)"
+  git push --force --quiet "https://${GH_TOKEN}@$remote" gh-pages:gh-pages > /dev/null 2>&1
+fi
