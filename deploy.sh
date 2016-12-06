@@ -21,13 +21,13 @@ cd source
 # Get latest commit ID from master branch
 head=$(git log --format="%h" -n 1)
 
-# Copy deployment files to tmp folder
+# Copy some deployment files to tmp folder
 IFS=$'\n' read -d '' -r -a files < deploy.list
 if [[ "$user" == "mxklb" ]] ; then
   for file in ${files[@]}; do
     dir=$(dirname "$file")
     mkdir -p ../tmp/"$dir"
-    cp "$file" ../tmp/"$file"
+    cp -r "$file" ../tmp/"$file"
   done 
 fi
 
@@ -36,9 +36,9 @@ git checkout --quiet gh-pages
 
 # Copy or remove deployment files
 if [[ "$user" == "mxklb" ]] ; then
-  for file in ${files[@]}; do cp ../tmp/"$file" "$file"; done
+  for file in ${files[@]}; do cp -r ../tmp/"$file" "$file"; done
 else
-  for file in ${files[@]}; do rm "$file"; done
+  for file in ${files[@]}; do rm -f "$file"; done
 fi
 
 # Stage all
