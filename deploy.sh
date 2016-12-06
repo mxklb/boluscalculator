@@ -29,14 +29,14 @@ git checkout --quiet gh-pages
 cp -rf ../tmp/* .
 
 # Remove development file
-deploy.sh
-travis.yml
+rm deploy.sh
+rm travis.yml
 
 # Remove CNAME for all others
 if [[ "$user" != "mxklb" ]] ; then
   rm CNAME
-  google8da70c8cfa316fbd.html
-  js/ga.js
+  rm google8da70c8cfa316fbd.html
+  rm js/ga.js
 fi
 
 ls -la
