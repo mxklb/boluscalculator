@@ -22,7 +22,7 @@ cd source
 head=$(git log --format="%h" -n 1)
 
 # Copy some deployment files to tmp folder
-IFS=$'\n' read -d '' -r -a files < deploy.list
+readarray -t files < deploy.list
 if [[ "$user" == "mxklb" ]] ; then
   for file in ${files[@]}; do
     dir=$(dirname "$file")
