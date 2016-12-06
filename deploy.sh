@@ -18,6 +18,12 @@ repo="${split[2]}"
 git clone --quiet "https://$user:${GH_TOKEN}@github.com/$user/$repo.git" --branch=master source
 mkdir tmp
 cp -rf source tmp/
+
+ls -la source 
+ls -la tmp
+
+exit 0
+
 rm -R tmp/.git
 
 # Get latest commit ID from master branch
