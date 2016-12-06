@@ -28,6 +28,7 @@ if [[ "$user" == "mxklb" ]] ; then
     dir=$(dirname "$file")
     mkdir -p ../tmp/"$dir"
     cp -r "$file" ../tmp/"$file"
+    echo "cp -r $file" ../tmp/"$file"
   done 
 fi
 
@@ -36,7 +37,10 @@ git checkout --quiet gh-pages
 
 # Copy or remove deployment files
 if [[ "$user" == "mxklb" ]] ; then
-  for file in ${files[@]}; do cp -r ../tmp/"$file" "$file"; done
+  for file in ${files[@]}; do 
+    cp ../tmp/"$file" "$file"
+    echo ../tmp/"$file" "$file" 
+  done
 else
   for file in ${files[@]}; do rm -f "$file"; done
 fi
