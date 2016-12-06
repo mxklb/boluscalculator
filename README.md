@@ -1,6 +1,4 @@
 # Insulin Bolus Calculator
-[![Build Status](https://travis-ci.org/mxklb/boluscalculator.svg?branch=master)](https://travis-ci.org/mxklb/boluscalculator)
-
 IBC - An Insulin Bolus Calculator - A HTML5 WebApp.
 
 A simple and transparent calculator app for the intensive/flexible insulin therapy.
@@ -8,6 +6,8 @@ A simple and transparent calculator app for the intensive/flexible insulin thera
 This app is deployed using [gh-pages](https://pages.github.com/). Check it out here: [mxklb.github.io/boluscalculator](http://mxklb.github.io/boluscalculator/)
 
 Feel free to simply use it and/or contribute to the develpoment ..
+
+[![Build Status](https://travis-ci.org/mxklb/boluscalculator.svg?branch=master)](https://travis-ci.org/mxklb/boluscalculator)
 
 ## About this App
 This is a bolus calculator app to estimate a single insulin dose based on personalized therapy settings, the actual blood glucose level and a meal. I wrote this app because I could not find any free web/mobile app that let one calculate an insulin bolus using the formulas I knew. Most of the apps I found did not clearly point out the formulas they use to perform the calculations. So this is the result ... 
