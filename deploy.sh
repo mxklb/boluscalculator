@@ -21,18 +21,24 @@ cd source
 # Get latest commit ID from master branch
 head=$(git log --format="%h" -n 1)
 
+# Copy deployment files to tmp folder
+IFS=$'\n' read -d '' -r -a files < deploy.list
+if [[ "$user" == "mxklb" ]] ; then
+  for file in ${files[@]}; do
+    dir=$(dirname "$file")
+    mkdir -p ../tmp/"$dir"
+    cp "$file" ../tmp/"$file"
+  done 
+fi
+
 # Switch to gh-pages + apply changes
 git checkout --quiet gh-pages
 
-# Remove development files
-rm deploy.sh
-rm .gitignore
-
-# Remove CNAME for all others
-if [[ "$user" != "mxklb" ]] ; then
-  rm CNAME
-  rm google8da70c8cfa316fbd.html
-  rm js/ga.js
+# Copy or remove deployment files
+if [[ "$user" == "mxklb" ]] ; then
+  for file in ${files[@]}; do cp ../tmp/"$file" "$file"; done
+else
+  for file in ${files[@]}; do rm "$file"; done
 fi
 
 # Stage all
