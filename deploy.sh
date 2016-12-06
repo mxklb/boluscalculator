@@ -26,9 +26,8 @@ IFS=$'\n' read -d '' -r -a files < deploy.list
 if [[ "$user" == "mxklb" ]] ; then
   for file in ${files[@]}; do
     dir=$(dirname "$file")
-    mkdir -p ../tmp/"$dir"
-    cp -r "$file" ../tmp/"$file"
-    echo "cp -r $file" ../tmp/"$file"
+    mkdir -p "../tmp/$dir"
+    cp -r "$file" "../tmp/$file"
   done 
 fi
 
@@ -38,8 +37,7 @@ git checkout --quiet gh-pages
 # Copy or remove deployment files
 if [[ "$user" == "mxklb" ]] ; then
   for file in ${files[@]}; do 
-    cp ../tmp/"$file" "$file"
-    echo ../tmp/"$file" "$file" 
+    cp "../tmp/$file" "$file"
   done
 else
   for file in ${files[@]}; do rm -f "$file"; done
