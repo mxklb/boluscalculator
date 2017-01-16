@@ -17,12 +17,10 @@ repo="${split[2]}"
 # Clone master branch from user repo and make a copy + remove git folder
 git clone --quiet "https://$user:${GH_TOKEN}@github.com/$user/$repo.git" --branch=master source
 cd source
-git branch
 
 # Copy master branch sources
 mkdir ../tmp
 rsync -Ra ./ ../tmp
-ls -la ../tmp
 
 # Get latest commit ID from master branch
 head=$(git log --format="%h" -n 1)
@@ -33,10 +31,9 @@ readarray -t rmfiles < clean.list
 
 # Switch to gh-pages + apply changes
 git checkout --quiet gh-pages
-git branch
 
 # Overwrite master sources
-rsync -a ../tmp/ ./
+rsync -a --exclude=.git ../tmp/ ./
 
 # Remove clean.list files
 for file in ${rmfiles[@]}; do 
