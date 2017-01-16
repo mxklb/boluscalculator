@@ -1,13 +1,11 @@
 # Insulin Bolus Calculator
-IBC - An Insulin Bolus Calculator - A HTML5 WebApp.
+IBC - An Insulin Bolus Calculator - A HTML5 WebApp. [![Build Status](https://travis-ci.org/mxklb/boluscalculator.svg?branch=master)](https://travis-ci.org/mxklb/boluscalculator)
 
 A simple and transparent calculator app for the intensive/flexible insulin therapy.
 
-This app is deployed using [gh-pages](https://pages.github.com/). Check it out here: [mxklb.github.io/boluscalculator](http://mxklb.github.io/boluscalculator/)
+This app is deployed using [gh-pages](https://pages.github.com/). Check it out here: [insulinboluscalculator.org](http://insulinboluscalculator.org/)
 
 Feel free to simply use it and/or contribute to the develpoment ..
-
-[![Build Status](https://travis-ci.org/mxklb/boluscalculator.svg?branch=master)](https://travis-ci.org/mxklb/boluscalculator)
 
 ## About this App
 This is a bolus calculator app to estimate a single insulin dose based on personalized therapy settings, the actual blood glucose level and a meal. I wrote this app because I could not find any free web/mobile app that let one calculate an insulin bolus using the formulas I knew. Most of the apps I found did not clearly point out the formulas they use to perform the calculations. So this is the result ... 
@@ -42,7 +40,7 @@ This app is developed for actual versions of firefox and webkit based browsers l
 
 However:
 
-1. Open [mxklb.github.io/boluscalculator](http://mxklb.github.io/boluscalculator/) in a modern web browser
+1. Open [insulinboluscalculator.org](http://insulinboluscalculator.org/) in a modern web browser
 2. Make sure the therapy settings are displayed according to your needs
 3. Enter the actual _Glucose Level_ (soberly measured) --> _Correction_
 4. Enter the _Amount of Meal_ to be eaten --> _Effective Meal_
