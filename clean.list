@@ -1,3 +1,6 @@
 .gitmodules
 .gitignore
 .travis.yml
+clean.list
+deploy.list
+deploy.sh
